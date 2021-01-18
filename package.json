@@ -1,0 +1,42 @@
+{
+  "name": "@amn31/ma-data-grid",
+  "version": "1.0.0",
+  "peerDependencies": {
+    "@angular/common": "^10.1.6",
+    "@angular/core": "^10.1.6"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0",
+    "@amn31/filter-multiple-conditions": "^1.0.2",
+    "jquery": "^3.5.1",
+    "materialize-css": "^1.0.0"
+  },
+  "description": "Permet l'affichage des données d'un tableau, avec pagination, trie, et filtre",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amn31/ma-data-grid.git"
+  },
+  "keywords": [
+    "angular",
+    "datagrid",
+    "filter",
+    "filter",
+    "multi",
+    "conditions",
+    "sequelize"
+  ],
+  "author": "Morillon Alain (amn31t@gmail.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amn31/ma-data-grid/issues"
+  },
+  "homepage": "https://github.com/amn31/ma-data-grid#readme",
+  "main": "bundles/amn31-ma-data-grid.umd.js",
+  "module": "fesm2015/amn31-ma-data-grid.js",
+  "es2015": "fesm2015/amn31-ma-data-grid.js",
+  "esm2015": "esm2015/amn31-ma-data-grid.js",
+  "fesm2015": "fesm2015/amn31-ma-data-grid.js",
+  "typings": "amn31-ma-data-grid.d.ts",
+  "metadata": "amn31-ma-data-grid.metadata.json",
+  "sideEffects": false
+}
