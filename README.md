@@ -1,11 +1,18 @@
 # MaDataGrid
 
-Permet l'affichage des données d'un tableau, avec pagination, trie, et filtre
+
+##### ma-data-grid
+ is an Angular component for presenting large and complex data. The table was designed to be flexible and light package. The features regarding "filtering", "sorting" or "paging" are already available without creating additional code.
+
+It was built for modern browsers using TypeScript, CSS3 and HTML5 and Angular 10.0.0.
+
+See demos for more information!
+<iframe src="https://www.ma-logiciel.com/ma-data-grid/?test1=" frameborder="1" width="90%" height="400"></iframe>
 
 ## Installation
 
 ```bash
-    npm install ..\ma-plugin-data-grid\dist\ma-data-grid
+    npm install @amn31/
 
     npm install jquery
     npm install materialize-css
