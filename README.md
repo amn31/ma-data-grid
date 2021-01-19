@@ -6,8 +6,11 @@
 
 It was built for modern browsers using TypeScript, CSS3 and HTML5 and Angular 10.0.0.
 
+
 See demos for more information!
-<iframe src="https://www.ma-logiciel.com/ma-data-grid/?test1=" frameborder="1" width="90%" height="400"></iframe>
+## Demo
+
+[https://amn31.github.io/ma-data-grid/?test1/](https://amn31.github.io/ma-data-grid/?test1)
 
 ## Installation
 
