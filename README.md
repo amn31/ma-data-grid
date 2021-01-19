@@ -1,18 +1,18 @@
 # MaDataGrid
 
 
-ma-data-grid is an Angular component for presenting large and complex data. The table was designed to be flexible and light package. The features regarding "filtering", "sorting" or "paging" are already available without creating additional code.
+[@amn31/ma-data-grid](https://www.npmjs.com/package/@amn31/ma-data-grid) is an Angular component for presenting large and complex data. The table was designed to be flexible and light package. The features regarding "filtering", "sorting" or "paging" are already available without creating additional code.
 
-ma-data-grid is running in one of 2 modes: "pagination enabled", reserved for large databases (more than 10,000 records). In  that latest mode, the sorting, paging and offset features are assigned to the database server (backend). Otherwise, in the "pagination disabled", the sorting, offset, and paging features are controlled by ma-data-grid
+[@amn31/ma-data-grid](https://www.npmjs.com/package/@amn31/ma-data-grid) is running in one of 2 modes: "pagination enabled", reserved for large databases (more than 10,000 records). In  that latest mode, the sorting, paging and offset features are assigned to the database server (backend). Otherwise, in the "pagination disabled", the sorting, offset, and paging features are controlled by [@amn31/ma-data-grid](https://www.npmjs.com/package/@amn31/ma-data-grid)
 
 It was built for modern browsers using TypeScript, CSS3 and HTML5 and Angular 10.0.0.
 
-See demos for more information!
+See demo for more information!
 
 
 # Demo
 
-[https://amn31.github.io/ma-data-grid/?test1/](https://amn31.github.io/ma-data-grid/?test1)
+[https://amn31.github.io/ma-data-grid/](https://amn31.github.io/ma-data-grid/?test1)
 
 
 # Installation
@@ -51,11 +51,7 @@ architect": {
 ```
 # How to use ?
 
-In the "pagination disabled" data are stored in memory and ma-data-grid can manage the most of things.
-
-## Use "pagination disabled"
-
-### Example of our data 
+## Example of our data for following examples
 ```json
 [
  {
@@ -94,13 +90,24 @@ In the "pagination disabled" data are stored in memory and ma-data-grid can mana
   }
 ]
 ```
+
+## Use "pagination disabled ([pagination]="false")"
+
+In the "pagination disabled" data are stored in memory and [@amn31/ma-data-grid](https://www.npmjs.com/package/@amn31/ma-data-grid) will manage the most of things.
+
 ### In component.html, add HTML code 
 
 ````html
     <!-- 
-        [pagination]="false" pagination mode is set to FALSE
-        [headFilter]="true"  the header filter will be 
-        (filterChange)="updateFilter($event)"    To detect change of header filter
+      [pagination]="false"    pagination mode is set to FALSE
+      [columns]="columns"     define columns to display
+      [headFilter]="true"     the header filter will be shown
+      (filterChange)=""      Method which will receive filtering event
+      [limit]="10"            Max number of rows to display
+      [canSelect]="{row|cell}" Define if row or cell can be selected
+      (select)=""             Method which will receive selecting event
+
+      [rows]="rows"           complete data to display
     -->
     <ma-data-grid #datagrid
         [pagination]="false" 
@@ -114,7 +121,8 @@ In the "pagination disabled" data are stored in memory and ma-data-grid can mana
 ````
 
 ### In component.ts
-#### Define all columns display
+**Define all columns display**
+
 ```typescript
 columns: MaDataGridColumnOptions[] = [
     { prop: 'id',    // Propertie to display
@@ -158,7 +166,9 @@ columns: MaDataGridColumnOptions[] = [
     { prop: 'modele', title: 'Model', sorted: true, extFilter: true, extFilterSelected: false }
   ];
 ```
-#### Load data 
+
+**Load data**
+
 ````typescript
   ngOnInit() {
     
@@ -175,7 +185,8 @@ columns: MaDataGridColumnOptions[] = [
   }
 ````
 
-#### Create header filter according to datas found
+**Create header filter according to datas found**
+
 According to the distinct values found in datas the headFilter can be create automaticaly
 
 ````typescript
@@ -193,7 +204,8 @@ According to the distinct values found in datas the headFilter can be create aut
   }
 ````
 
-#### How change data displayed with 'pipe'
+**How change data displayed with 'pipe'**
+
 Above we see pipe was setted to this.formatData
 ````typescript
 formatData(value, row:any, col): string {
@@ -207,7 +219,8 @@ formatData(value, row:any, col): string {
   }
 ````
 
-#### How detect selecting 
+**How detect selecting** 
+
 ````typescript
 SelectRowOrCell(event: MaDataGridSelectEvent) {
     console.log('SelectRowOrCell', event);
@@ -218,7 +231,8 @@ SelectRowOrCell(event: MaDataGridSelectEvent) {
   }
 ````
 
-#### How detect change of header filter
+**How detect change on header filter**
+
 When filter is changed, the new data are provided by event
 ````typescript
   updateFilter(event: MaDataGridHeadFilterEvent) {
@@ -229,133 +243,9 @@ When filter is changed, the new data are provided by event
   }
 ````
 
-### Directives
+### In component.css
 
-```html
-    <!-- [columns]="columns" [rows]="rows" voir ci-dessus -->
-    <!-- [canSelectRow]="true" le click sur une ligne envoie l'event (selectRow) -->
-    <!-- filter=true le fitre est présent et permettra l'envoie de l'event (filterChange) -->
-    <!-- [limit]="10" nombre de lignes par page -->
-    <!-- (change)  l'envoie de l'event de changement d'état -->
-    <ma-data-grid 
-        [columns]="columns" 
-        [canSelectRow]="true"  
-        (selectRow)="SelectRow($event)"
-        [filter]=true 
-        (filterChange)="updateFilter($event)"
-        [rows]="rows" 
-        [limit]="10"  
-        (change)="ChangeData($event)">
-    </ma-data-grid>
-```
-
-## Example
-
-### HTML 
-
-```html
-<div class="page" id="page">
-     
-    <div id="filter">
-        <ma-data-grid-filter [columns]="columns" (filterChange)="updateFilter($event)"></ma-data-grid-filter>
-    </div>
-    
-    <div id="mygrid" style="margin-left: 5%;margin-right: 5%;" >
-        <ma-data-grid [columns]="columns" 
-            [canSelectRow]="true" (selectRow)="SelectRow($event)"
-            [filter]="false" (filterChange)="updateFilter($event)"
-            [rows]="rows" [limit]="10"  
-            (change)="ChangeData($event)">
-        </ma-data-grid>
-    </div>
-
-</div>
-```
-
-### CODE
-
-```typescript
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { AppConfig } from 'src/app/config/globalConfig';
-import * as $ from 'jquery';
-import { MyCustomCellComponent } from 'src/app/components/data-grid/my-custom-cell.component';
-import { MaDataGridFilterEvent, MaDataGripColumnOptions } from 'ma-data-grid';
-
-@Component({
-  selector: 'app-table-grid',
-  templateUrl: './table-grid.component.html',
-  styleUrls: ['./table-grid.component.css']
-})
-
-export class TableGridComponent implements OnInit {
-  
-  rows: any[];
-  temp: any[];
-
-  // Définition des colonnes affichées
-  columns: MaDataGripColumnOptions[] = [
-    { prop: 'Num', title: 'N°', isRowNumber: true, filter: true, isFilterSelected: true},
-    { prop: 'Imei', title: 'Imei', sorted: true, filter: true, isFilterSelected: true },
-    { prop: 'Imei', title: 'Imei2', sorted: true , useTemplate: MyCustomCellComponent},
-    { prop: 'lastseen', title: 'Seen', sorted: true, isRowHTML: true},
-    { prop: 'lastseen2', title: 'Seen', sorted: false, pipe: this.formatData},
-    { prop: 'OperatingSystem', title: 'OS', sorted: true, filter: true, isFilterSelected: false},
-    { prop: 'Model', title: 'Model', sorted: true, cssClass: 'td_small'},
-    { prop: 'EnrollmentStatus', title: 'Status', sorted: true, filter: true, isFilterSelected: false},
-    { prop: 'Platform', title: 'Platform', sorted: true}
-  ];
-
-  constructor(private httpclient: HttpClient) { }
-
-  ngOnInit(): void {
-    // Récupération des données 
-    this.httpclient.get(AppConfig.API_SERVER+"/awdevices",{
-      responseType: 'json',
-    }).subscribe((data: Array<any>) => {
-      this.temp = this.rows = data.splice(0,17);
-    })
-  }
-
-  formatData (value,row,col):string {
-    //console.log("formatData "+ row[col.prop], col)
-    if (col.prop == 'lastseen2') {
-      return new Date(row['lastseen']).toLocaleString().replace(/,\s+.*/,'');
-    }
-    return value;
-  }
-
-  ChangeData(event) {
-    console.log('ChangeData',event)
-  }
-  
-  SelectRow(event) {
-    console.log('SelectRow',event)
-  }
-  
-  updateFilter(event:MaDataGridFilterEvent) {
-    
-    const val = event.text.toLowerCase();
-
-    // filter our data
-    const temp = this.temp.filter(function (d) {
-      if (!val) {
-        return true;
-      }
-      for (var f of event.fields) {
-        if (d[f] && d[f].toLowerCase().indexOf(val) !== -1)
-          return true;
-      }
-    });
-
-    // update the rows
-    this.rows = temp;
-
-  }
-}
-
-```
-### CSS
+In column 'City', we have used **cssClass** so, the associated value have to be declared
 
 ```css
 /deep/ .td_small {
@@ -364,23 +254,252 @@ export class TableGridComponent implements OnInit {
 }
 ```
 
-### TEMPLATE (MyCustomCellComponent) 
+### Template (CellUsageComponent) 
+
+In column 'Usage', we have used **useTemplate** so, the defined component must exist
 
 ```typescript
 import { Component, Input } from '@angular/core';
-import { MaDataGridCell } from 'ma-data-grid/public-api';
+import { MaDataGridCell } from '@amn31/ma-data-grid'
 
 @Component({
-  selector: 'my-custom-cell',
-  template: '<div (click)="clickCell(data)">"Custom cell<br/>" +  {{ data.lastseen | lowercase }}</div>'
+  selector: 'app-cell-usage',
+  template: `<div>
+        <small> {{data.usage}}% </small>
+        <div class="cell_usage" style="{{style}}">&nbsp;</div>
+      </div>`,
+  styleUrls: ['./cell-usage.component.css']
 })
-export class MyCustomCellComponent implements MaDataGridCell {
-
-  // Valeurs de l'objet représentant une colonne 
-  @Input() data: any;
+export class CellUsageComponent implements MaDataGridCell   {
   
-  clickCell(d) {
-    console.log('clickCell',d);
+  style: string = '';
+  data: any;
+
+  constructor() {
   }
+  
+  ngOnInit(): void {
+    // this.data represents the value of the current row 
+    this.style = "width: "+this.data.usage+'px;';
+  }
+
 }
 ```
+
+## Use "pagination enabled ([pagination]="true")"
+
+In the "pagination enabled" data have to be manages by the backend server and [@amn31/ma-data-grid](https://www.npmjs.com/package/@amn31/ma-data-grid) have to send parameters of filtering, ordering, paging and offset.
+
+### In component.html, add HTML code 
+
+````html
+    <!-- 
+      [pagination]="true"    pagination mode is set to TRUE
+      [columns]="columns"     define columns to display
+      [headFilter]="true"     the header filter will be shown
+      
+      [limit]="10"            Max number of rows to display
+      [canSelect]="{row|cell}" Define if row or cell can be selected
+      (select)=""             Method which will receive selecting event
+
+      # The component code must be manage paging, sorting, filtering, offset and counter
+      [rows]="rows"           represents the data to display of the current page 
+      (filterChange)="updateFilter($event)"    To detect change of header filter   
+      [count]="counter"       represents the total records of filtered datas
+      [page]="page"           represents the current page
+      (changePage)="changePage($event)"   Method which will called when page is setted
+      (sort)="sortBy($event)"             Method which will called when user will sort a column
+      
+    -->
+    <ma-data-grid #datagrid
+        [pagination]="true"
+        [count]="counter"
+        [page]="page"
+        (changePage)="changePage($event)"
+        (sort)="sortBy($event)"
+
+        [columns]="columns" 
+        [rows]="rows"
+        [limit]="10"
+        
+        canSelect="row" (select)="SelectRowOrCell($event)"
+        [headFilter]="true" (filterChange)="updateFilter($event)" >
+    </ma-data-grid>
+````
+### In component.ts
+
+**Define all columns display**
+
+See below how set columns
+```typescript
+columns: MaDataGridColumnOptions[] = [
+  ...
+]
+```
+
+**Load data**
+
+The most complicate part is here because you have to manage data according to parameters.
+This step must be executed when component is initialized but also when user edit the header filter, 
+or change the sort of columns.
+````typescript
+
+  ngOnInit() {
+    console.log("ngOnInit");
+    /* Initialize datas on start */
+    this.loadPage(0);
+
+    // Create header filters for 'Model' and 'Link'
+    // according to datas found (like below)
+    this.autoHeaderFilter('modele');
+    this.autoHeaderFilter('liaison');
+  }
+
+  /**
+   * Load data the current page according to parameters:
+   * 
+   *  page:    The current page to display
+   *  limit:   Max number of rows to display in the datagrid
+   *  where:   It's the where clause used according to the header Filter of the datagrid
+   *           here the method updateFilter() will be used
+   *  sort:    sort is used to sort the data according to that example of query {field: 'id', reverse: true}
+   *           here the method sortBy() will be used
+   *
+   * @param {number} page
+   */
+  loadPage(page:number) {
+
+    console.log("this._loadPage()");
+    this.wifiPointsService.getPoints({
+      where: this.where,    
+      offset: page * this.limit,
+      limit: this.limit,
+      sort: this.sort // Example: {field: 'id', reverse: true}
+    }).then((data: any) => {
+      // We see the content of datagrid is completed here
+      // with 
+      //    - this.rows     all rows of current page 
+      //    - this.page     current page [0-n]
+      //    - this.counter  number of records     
+      this.rows = data.rows;    
+      this.page = page;
+      this.counter = data.count;
+      console.log('loadPage DATA ============================= ', data);
+    })
+
+  }
+
+  /**
+   * When user uses header filter this method is called
+   *
+   * @param {MaDataGridHeadFilterEvent} event contains where a element of type FilterConditions 
+   *                                          See https://www.npmjs.com/package/@amn31/filter-multiple-conditions
+   *                                              https://www.npmjs.com/package/@amn31/convert2sequelize
+   * 
+   */
+  updateFilter(event: MaDataGridHeadFilterEvent) {
+    console.log('updateFilter', event.where);
+    this.where = event.where;
+    this.loadPage(0);
+  }
+
+  /**
+   * When user sort column this method is called
+   *
+   * @param {MaDataGridFilterEvent} event contains for example: {field: 'id', reverse: true}
+   * @memberof Test2Component
+   */
+  sortBy(event: MaDataGridFilterEvent) {
+    console.log('sortBy event', event);
+    this.sort = event;
+    this.loadPage(this.page);
+  }
+
+
+````
+
+## Use the External filter (Extra)
+
+A specific component for filtering can be used, to see it go to [https://amn31.github.io/ma-data-grid/](https://amn31.github.io/ma-data-grid/?test3). That component can be used for specific columns in order to filter the current page or more...
+
+### In component.html, add directives "extFilter"
+````html
+    <!-- 
+    
+      [extFilter]="true"    if "true" external filter is shown
+      (extFilterChange)="extUpdateFilter($event)"   On change on the external filter that method receive the events
+      
+    -->
+    <ma-data-grid #datagrid
+          ...
+          [extFilter]="true"
+          (extFilterChange)="extUpdateFilter($event)"
+
+          >
+    </ma-data-grid>
+````
+
+### In component.ts
+**Define columns which will use external filter by adding "extFilterSelected"**
+
+```typescript
+columns: MaDataGridColumnOptions[] = [
+    
+    { prop: 'commune', 
+      title: 'City', sorted: true, ...
+      extFilterSelected: true // allow externe filtering for that property 'City'
+    },
+    { prop: 'isNew', title: 'New', sorted: true, dataType: 'boolean' },
+    { prop: 'lng', title: 'Lng', sorted: true, dataType: 'number', extFilterSelected: true },
+    { prop: 'timestamp', title: 'Recorded', sorted: true, dataType: 'date' },
+    ...
+ ```
+
+**How detect change on external filter**
+
+When external filter is changed, the value to search and fields are provided. 
+The below example makes a basic search in the current page
+````typescript
+  /**
+   * Basic filter used for external filter
+   *
+   * @param {MaDataGridFilterEvent} event
+   */
+  extUpdateFilter(event: MaDataGridFilterEvent) {
+
+    console.log('extUpdateFilter', event);
+
+    // Value du search    
+    const val = event.text.toLowerCase();
+
+    // filter on data and for each provided fields (Ex:[ 'id', 'City' ])
+    const temp = this.temp.filter(function (d) {
+      if (!val) {
+        return true;
+      }
+      for (var f of event.fields) {
+        if (d[f] != null && d[f].toString().toLowerCase().indexOf(val) !== -1)
+          return true;
+      }
+      return false;
+    });
+
+    // update the rows
+    this.rows = temp;
+    console.log("DATA EXTERNAL FILTER ", this.rows)
+
+  }
+````
+## License
+
+[MIT](LICENSE)
+
+[Angular](https://angular.io/)
+
+[Sequelize](https://sequelize.org/master/manual/model-querying-basics.html)
+
+[@amn31/ma-data-grid](https://www.npmjs.com/package/@amn31/ma-data-grid)
+
+[@amn31/convert2sequelize](https://www.npmjs.com/package/@amn31/convert2sequelize)
+
+[@amn31/filter-multiple-conditions](https://www.npmjs.com/package/@amn31/filter-multiple-conditions)
