@@ -14,6 +14,13 @@ See demo for more information!
 
 [https://amn31.github.io/ma-data-grid/](https://amn31.github.io/ma-data-grid/?test1)
 
+You can download demo project 
+[ma-data-grid-demo.zip](https://github.com/amn31/ma-data-grid/blob/main/docs/ma-data-grid-demo.zip)
+then run command
+```bash
+npm install
+ng serve
+````
 
 # Installation
 
