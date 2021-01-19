@@ -855,7 +855,7 @@ class MaDataGridComponent {
         }
         else {
             // SANS PAGINATION
-            console.error("SANS PAGINATION");
+            // console.error("SANS PAGINATION")
             if (!force && (this.current_page == n_page)) {
                 return;
             }
