@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('jquery'), require('materialize-css'), require('@amn31/filter-multiple-conditions'), require('@angular/common'), require('@angular/forms')) :
-    typeof define === 'function' && define.amd ? define('@amn31/ma-data-grid', ['exports', '@angular/core', 'jquery', 'materialize-css', '@amn31/filter-multiple-conditions', '@angular/common', '@angular/forms'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.amn31 = global.amn31 || {}, global.amn31['ma-data-grid'] = {}), global.ng.core, global.$, global.M, global.filterMultipleConditions, global.ng.common, global.ng.forms));
-}(this, (function (exports, core, $, M, filterMultipleConditions, common, forms) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('jquery'), require('@angular/common'), require('materialize-css'), require('@angular/forms'), require('@amn31/filter-multiple-conditions')) :
+    typeof define === 'function' && define.amd ? define('@amn31/ma-data-grid', ['exports', '@angular/core', 'jquery', '@angular/common', 'materialize-css', '@angular/forms', '@amn31/filter-multiple-conditions'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.amn31 = global.amn31 || {}, global.amn31['ma-data-grid'] = {}), global.ng.core, global.$, global.ng.common, global.M, global.ng.forms, global.filterMultipleConditions));
+}(this, (function (exports, i0, $, i1, M, i1$1, filterMultipleConditions) { 'use strict';
 
     function _interopNamespace(e) {
         if (e && e.__esModule) { return e; } else {
@@ -298,12 +298,99 @@
     //   }
     // }
 
+    var _c0 = ["elemToggle"];
+    var _c1 = ["elemValue"];
+    function DataGridOpFilterComponent_i_3_Template(rf, ctx) {
+        if (rf & 1) {
+            i0.ɵɵelementStart(0, "i", 6);
+            i0.ɵɵtext(1, "search");
+            i0.ɵɵelementEnd();
+        }
+    }
+    function DataGridOpFilterComponent_div_7_div_1_span_3_Template(rf, ctx) {
+        if (rf & 1) {
+            i0.ɵɵelementStart(0, "span");
+            i0.ɵɵtext(1);
+            i0.ɵɵelementEnd();
+        }
+        if (rf & 2) {
+            var opt_r4 = i0.ɵɵnextContext(2).$implicit;
+            i0.ɵɵadvance(1);
+            i0.ɵɵtextInterpolate(opt_r4.label);
+        }
+    }
+    function DataGridOpFilterComponent_div_7_div_1_span_4_Template(rf, ctx) {
+        if (rf & 1) {
+            i0.ɵɵelement(0, "span", 11);
+        }
+        if (rf & 2) {
+            var opt_r4 = i0.ɵɵnextContext(2).$implicit;
+            i0.ɵɵproperty("innerHTML", opt_r4.label, i0.ɵɵsanitizeHtml);
+        }
+    }
+    function DataGridOpFilterComponent_div_7_div_1_Template(rf, ctx) {
+        if (rf & 1) {
+            var _r13_1 = i0.ɵɵgetCurrentView();
+            i0.ɵɵelementStart(0, "div");
+            i0.ɵɵelementStart(1, "label");
+            i0.ɵɵelementStart(2, "input", 9);
+            i0.ɵɵlistener("click", function DataGridOpFilterComponent_div_7_div_1_Template_input_click_2_listener() { i0.ɵɵrestoreView(_r13_1); var opt_r4 = i0.ɵɵnextContext().$implicit; var ctx_r11 = i0.ɵɵnextContext(); return ctx_r11.changeValues(opt_r4); });
+            i0.ɵɵelementEnd();
+            i0.ɵɵtemplate(3, DataGridOpFilterComponent_div_7_div_1_span_3_Template, 2, 1, "span", 8);
+            i0.ɵɵtemplate(4, DataGridOpFilterComponent_div_7_div_1_span_4_Template, 1, 1, "span", 10);
+            i0.ɵɵelementEnd();
+            i0.ɵɵelementEnd();
+        }
+        if (rf & 2) {
+            var opt_r4 = i0.ɵɵnextContext().$implicit;
+            var ctx_r5 = i0.ɵɵnextContext();
+            i0.ɵɵadvance(2);
+            i0.ɵɵproperty("value", opt_r4.value)("checked", opt_r4.checked);
+            i0.ɵɵadvance(1);
+            i0.ɵɵproperty("ngIf", !ctx_r5.isRowHTML);
+            i0.ɵɵadvance(1);
+            i0.ɵɵproperty("ngIf", ctx_r5.isRowHTML === true);
+        }
+    }
+    function DataGridOpFilterComponent_div_7_div_2_Template(rf, ctx) {
+        if (rf & 1) {
+            var _r17_1 = i0.ɵɵgetCurrentView();
+            i0.ɵɵelementStart(0, "div");
+            i0.ɵɵelementStart(1, "div", 12);
+            i0.ɵɵlistener("click", function DataGridOpFilterComponent_div_7_div_2_Template_div_click_1_listener() { i0.ɵɵrestoreView(_r17_1); var opt_r4 = i0.ɵɵnextContext().$implicit; var ctx_r15 = i0.ɵɵnextContext(); return ctx_r15.changeValue(opt_r4); });
+            i0.ɵɵtext(2);
+            i0.ɵɵelementEnd();
+            i0.ɵɵelementEnd();
+        }
+        if (rf & 2) {
+            var opt_r4 = i0.ɵɵnextContext().$implicit;
+            i0.ɵɵadvance(2);
+            i0.ɵɵtextInterpolate1("", opt_r4.label, "\u00A0");
+        }
+    }
+    function DataGridOpFilterComponent_div_7_Template(rf, ctx) {
+        if (rf & 1) {
+            i0.ɵɵelementStart(0, "div", 7);
+            i0.ɵɵtemplate(1, DataGridOpFilterComponent_div_7_div_1_Template, 5, 4, "div", 8);
+            i0.ɵɵtemplate(2, DataGridOpFilterComponent_div_7_div_2_Template, 3, 1, "div", 8);
+            i0.ɵɵelementEnd();
+        }
+        if (rf & 2) {
+            var opt_r4 = ctx.$implicit;
+            var ctx_r3 = i0.ɵɵnextContext();
+            i0.ɵɵproperty("value", opt_r4.value);
+            i0.ɵɵadvance(1);
+            i0.ɵɵproperty("ngIf", ctx_r3.multiple === true);
+            i0.ɵɵadvance(1);
+            i0.ɵɵproperty("ngIf", ctx_r3.multiple === false);
+        }
+    }
     var defaut_label = '';
     var DataGridOpFilterComponent = /** @class */ (function () {
         function DataGridOpFilterComponent() {
             this.value = '';
-            this.changeOperator = new core.EventEmitter();
-            this.changeEmptyOperator = new core.EventEmitter();
+            this.changeOperator = new i0.EventEmitter();
+            this.changeEmptyOperator = new i0.EventEmitter();
             this.options = null;
             this.multiple = false;
             this.isRowHTML = false;
@@ -472,30 +559,74 @@
         };
         return DataGridOpFilterComponent;
     }());
-    DataGridOpFilterComponent.decorators = [
-        { type: core.Component, args: [{
-                    selector: 'ma-data-grid-op-filter',
-                    template: "<!--\n<div class=\"red\">=</div>(onComplete)=\"onComplete($event)\"\n\n<app-ma-completion [data]=\"choices\" placeholder=\"\" value=\"defautValue\"  ></app-ma-completion>\n     <select dir=\"rtl\">\n    <option>Foo</option>    \n    <option>bar</option>\n    <option>to the right</option>\n</select>\n\n\n<div *ngIf=\"col.isRowNumber === true; then RowNumberBlock else dataBlock\"></div>\n<ng-template #RowNumberBlock>{{i}}</ng-template>\n<ng-template #dataBlock> {{u[col.prop] | dataGridPipe :u :c}}</ng-template>\n-->\n\n<div>\n\n    <div #elemValue (click)=\"toggleDiv()\" class=\"op_label\"><i *ngIf=\"label == ''\" class=\"tiny material-icons\">search</i>{{label}}\n    </div>\n    <div #elemToggle style=\"display: none; z-index: 20; max-height: 300px; overflow-y: auto; background-color: aliceblue;border: 1px solid #9e9e9e;\" [style.left.px]=\"popupPosition.left\"\n    [style.top.px]=\"popupPosition.top\">\n        <div *ngFor=\"let opt of options;\" class=\"op_filter\" [value]=\"opt.value\">\n            <div *ngIf=\"multiple === true\">\n                <label>\n                    <input type=\"checkbox\" class=\"op_filter\" [value]=\"opt.value\" [checked]=\"opt.checked\" (click)=\"changeValues(opt)\" />\n                    <span *ngIf=\"!isRowHTML\">{{opt.label}}</span>\n                    <span *ngIf=\"isRowHTML === true\" [innerHTML]=\"opt.label\"></span>\n                </label>\n            </div>\n            <div *ngIf=\"multiple === false\">\n                <div (click)=\"changeValue(opt)\">{{opt.label}}&nbsp;</div>\n            </div>\n        </div>\n    </div>\n\n</div>\n<!--\n<select class=\"browser-default op_filter\" [(ngModel)]=\"value\" (change)=\"_changeOperator($event)\" >\n    <option *ngFor=\"let opt of options;\"  class=\"op_filter\" [value]=\"opt.value\">{{opt.label}}\n    </option>\n</select>\n\n\n-->",
-                    styles: ["select.op_filter{border:1px inset #9e9e9e;height:1.4rem;min-width:25px;padding:0}.op_filter{border-top:1px solid #9e9e9e;padding-left:10px;padding-right:10px}.op_filter,.op_label{font-weight:lighter}"]
-                },] }
-    ];
-    DataGridOpFilterComponent.ctorParameters = function () { return []; };
-    DataGridOpFilterComponent.propDecorators = {
-        value: [{ type: core.Input }],
-        col: [{ type: core.Input }],
-        elemToggle: [{ type: core.ViewChild, args: ["elemToggle", { static: false },] }],
-        elemValue: [{ type: core.ViewChild, args: ["elemValue", { static: false },] }],
-        changeOperator: [{ type: core.Output }],
-        changeEmptyOperator: [{ type: core.Output }]
-    };
+    DataGridOpFilterComponent.ɵfac = function DataGridOpFilterComponent_Factory(t) { return new (t || DataGridOpFilterComponent)(); };
+    DataGridOpFilterComponent.ɵcmp = i0.ɵɵdefineComponent({ type: DataGridOpFilterComponent, selectors: [["ma-data-grid-op-filter"]], viewQuery: function DataGridOpFilterComponent_Query(rf, ctx) {
+            if (rf & 1) {
+                i0.ɵɵviewQuery(_c0, true);
+                i0.ɵɵviewQuery(_c1, true);
+            }
+            if (rf & 2) {
+                var _t;
+                i0.ɵɵqueryRefresh(_t = i0.ɵɵloadQuery()) && (ctx.elemToggle = _t.first);
+                i0.ɵɵqueryRefresh(_t = i0.ɵɵloadQuery()) && (ctx.elemValue = _t.first);
+            }
+        }, inputs: { value: "value", col: "col" }, outputs: { changeOperator: "changeOperator", changeEmptyOperator: "changeEmptyOperator" }, decls: 8, vars: 7, consts: [[1, "op_label", 3, "click"], ["elemValue", ""], ["class", "tiny material-icons", 4, "ngIf"], [2, "display", "none", "z-index", "20", "max-height", "300px", "overflow-y", "auto", "background-color", "aliceblue", "border", "1px solid #9e9e9e"], ["elemToggle", ""], ["class", "op_filter", 3, "value", 4, "ngFor", "ngForOf"], [1, "tiny", "material-icons"], [1, "op_filter", 3, "value"], [4, "ngIf"], ["type", "checkbox", 1, "op_filter", 3, "value", "checked", "click"], [3, "innerHTML", 4, "ngIf"], [3, "innerHTML"], [3, "click"]], template: function DataGridOpFilterComponent_Template(rf, ctx) {
+            if (rf & 1) {
+                i0.ɵɵelementStart(0, "div");
+                i0.ɵɵelementStart(1, "div", 0, 1);
+                i0.ɵɵlistener("click", function DataGridOpFilterComponent_Template_div_click_1_listener() { return ctx.toggleDiv(); });
+                i0.ɵɵtemplate(3, DataGridOpFilterComponent_i_3_Template, 2, 0, "i", 2);
+                i0.ɵɵtext(4);
+                i0.ɵɵelementEnd();
+                i0.ɵɵelementStart(5, "div", 3, 4);
+                i0.ɵɵtemplate(7, DataGridOpFilterComponent_div_7_Template, 3, 3, "div", 5);
+                i0.ɵɵelementEnd();
+                i0.ɵɵelementEnd();
+            }
+            if (rf & 2) {
+                i0.ɵɵadvance(3);
+                i0.ɵɵproperty("ngIf", ctx.label == "");
+                i0.ɵɵadvance(1);
+                i0.ɵɵtextInterpolate1("", ctx.label, " ");
+                i0.ɵɵadvance(1);
+                i0.ɵɵstyleProp("left", ctx.popupPosition.left, "px")("top", ctx.popupPosition.top, "px");
+                i0.ɵɵadvance(2);
+                i0.ɵɵproperty("ngForOf", ctx.options);
+            }
+        }, directives: [i1.NgIf, i1.NgForOf], styles: ["select.op_filter[_ngcontent-%COMP%]{border:1px inset #9e9e9e;height:1.4rem;min-width:25px;padding:0}.op_filter[_ngcontent-%COMP%]{border-top:1px solid #9e9e9e;padding-left:10px;padding-right:10px}.op_filter[_ngcontent-%COMP%], .op_label[_ngcontent-%COMP%]{font-weight:lighter}"] });
+    /*@__PURE__*/ (function () {
+        i0.ɵsetClassMetadata(DataGridOpFilterComponent, [{
+                type: i0.Component,
+                args: [{
+                        selector: 'ma-data-grid-op-filter',
+                        templateUrl: './data-grid-op-filter.component.html',
+                        styleUrls: ['./data-grid-op-filter.component.css']
+                    }]
+            }], function () { return []; }, { value: [{
+                    type: i0.Input
+                }], col: [{
+                    type: i0.Input
+                }], elemToggle: [{
+                    type: i0.ViewChild,
+                    args: ["elemToggle", { static: false }]
+                }], elemValue: [{
+                    type: i0.ViewChild,
+                    args: ["elemValue", { static: false }]
+                }], changeOperator: [{
+                    type: i0.Output
+                }], changeEmptyOperator: [{
+                    type: i0.Output
+                }] });
+    })();
 
+    var _c0$1 = ["madatepicker"];
     var DataGridPickerDateComponent = /** @class */ (function () {
         function DataGridPickerDateComponent() {
             this.datevalue = null;
             this.realValue = "";
             this.time = '';
             this.value = '';
-            this.changePicker = new core.EventEmitter();
+            this.changePicker = new i0.EventEmitter();
             this.datepicker_id = "dp_" + Math.floor((Math.random() * 100000));
         }
         DataGridPickerDateComponent.prototype.ngAfterViewInit = function () {
@@ -598,25 +729,64 @@
         };
         return DataGridPickerDateComponent;
     }());
-    DataGridPickerDateComponent.decorators = [
-        { type: core.Component, args: [{
-                    selector: 'ma-data-grid-datepicker',
-                    template: "\n    <!-- [(ngModel)]=\"realValue\"   -->\n    <input \n        [id]=\"datepicker_id\" \n        #madatepicker type=\"text\" \n        [(ngModel)]=\"realValue\"\n        class=\"ma-data-grid-datepicker datepicker\">\n\n",
-                    styles: [""]
-                },] }
-    ];
-    DataGridPickerDateComponent.ctorParameters = function () { return []; };
-    DataGridPickerDateComponent.propDecorators = {
-        value: [{ type: core.Input }],
-        type: [{ type: core.Input }],
-        changePicker: [{ type: core.Output }],
-        madatepicker: [{ type: core.ViewChild, args: ["madatepicker", { static: false },] }]
-    };
+    DataGridPickerDateComponent.ɵfac = function DataGridPickerDateComponent_Factory(t) { return new (t || DataGridPickerDateComponent)(); };
+    DataGridPickerDateComponent.ɵcmp = i0.ɵɵdefineComponent({ type: DataGridPickerDateComponent, selectors: [["ma-data-grid-datepicker"]], viewQuery: function DataGridPickerDateComponent_Query(rf, ctx) {
+            if (rf & 1) {
+                i0.ɵɵviewQuery(_c0$1, true);
+            }
+            if (rf & 2) {
+                var _t;
+                i0.ɵɵqueryRefresh(_t = i0.ɵɵloadQuery()) && (ctx.madatepicker = _t.first);
+            }
+        }, inputs: { value: "value", type: "type" }, outputs: { changePicker: "changePicker" }, decls: 2, vars: 2, consts: [["type", "text", 1, "ma-data-grid-datepicker", "datepicker", 3, "id", "ngModel", "ngModelChange"], ["madatepicker", ""]], template: function DataGridPickerDateComponent_Template(rf, ctx) {
+            if (rf & 1) {
+                i0.ɵɵelementStart(0, "input", 0, 1);
+                i0.ɵɵlistener("ngModelChange", function DataGridPickerDateComponent_Template_input_ngModelChange_0_listener($event) { return ctx.realValue = $event; });
+                i0.ɵɵelementEnd();
+            }
+            if (rf & 2) {
+                i0.ɵɵproperty("id", ctx.datepicker_id)("ngModel", ctx.realValue);
+            }
+        }, directives: [i1$1.DefaultValueAccessor, i1$1.NgControlStatus, i1$1.NgModel], styles: [""] });
+    /*@__PURE__*/ (function () {
+        i0.ɵsetClassMetadata(DataGridPickerDateComponent, [{
+                type: i0.Component,
+                args: [{
+                        selector: 'ma-data-grid-datepicker',
+                        templateUrl: './data-grid-picker-date.component.html',
+                        styleUrls: ['./data-grid-picker-date.component.css']
+                    }]
+            }], function () { return []; }, { value: [{
+                    type: i0.Input
+                }], type: [{
+                    type: i0.Input
+                }], changePicker: [{
+                    type: i0.Output
+                }], madatepicker: [{
+                    type: i0.ViewChild,
+                    args: ["madatepicker", { static: false }]
+                }] });
+    })();
 
+    function DataGridHeadFilterComponent_td_5_Template(rf, ctx) {
+        if (rf & 1) {
+            var _r4_1 = i0.ɵɵgetCurrentView();
+            i0.ɵɵelementStart(0, "td", 4);
+            i0.ɵɵelementStart(1, "input", 7);
+            i0.ɵɵlistener("ngModelChange", function DataGridHeadFilterComponent_td_5_Template_input_ngModelChange_1_listener($event) { i0.ɵɵrestoreView(_r4_1); var ctx_r3 = i0.ɵɵnextContext(); return ctx_r3.filter_value = $event; })("keyup", function DataGridHeadFilterComponent_td_5_Template_input_keyup_1_listener($event) { i0.ɵɵrestoreView(_r4_1); var ctx_r5 = i0.ɵɵnextContext(); return ctx_r5._changeOperator($event); });
+            i0.ɵɵelementEnd();
+            i0.ɵɵelementEnd();
+        }
+        if (rf & 2) {
+            var ctx_r1 = i0.ɵɵnextContext();
+            i0.ɵɵadvance(1);
+            i0.ɵɵproperty("ngModel", ctx_r1.filter_value);
+        }
+    }
     var DataGridHeadFilterComponent = /** @class */ (function () {
         function DataGridHeadFilterComponent() {
             this.filter_value = '';
-            this.changeHeaderFilter = new core.EventEmitter();
+            this.changeHeaderFilter = new i0.EventEmitter();
             this.astuce_datapicker = 'display: none';
         }
         DataGridHeadFilterComponent.prototype.ngOnInit = function () {
@@ -659,21 +829,66 @@
         };
         return DataGridHeadFilterComponent;
     }());
-    DataGridHeadFilterComponent.decorators = [
-        { type: core.Component, args: [{
-                    selector: 'ma-data-grid-head-filter',
-                    template: "<table>\n    <tr>\n        <td class=\"header_filter_op\" >\n            <ma-data-grid-op-filter #op_filter [col]=\"col\" (changeEmptyOperator)=\"_changeEmptyOperator()\" (changeOperator)=\"_changeOperator($event)\"></ma-data-grid-op-filter>\n        </td>\n        <td class=\"header_filter\" *ngIf=\"col.dataType != 'date' && col.dataType != 'boolean' && (!col.headFilter || col.headFilter.length == 0)\">\n            <input class=\"header_filter\" [(ngModel)]=\"filter_value\" (keyup)=\"_changeOperator($event)\" />\n        </td>\n        <td class=\"header_filter\" [style]=\"astuce_datapicker\" >\n            <ma-data-grid-datepicker #madate_picker type=\"date\" (changePicker)=\"_changeDate($event)\"></ma-data-grid-datepicker>\n        </td>\n    </tr>\n</table>",
-                    styles: ["input.header_filter{background-color:#e8f5f8;border:1px inset #9e9e9e;height:1.2rem;margin:0 0 0 -5px}/deep/ .ma-data-grid-datepicker{height:1.2rem;max-height:1.2rem}td.header_filter{padding:1px 1px 1px 5px}td.header_filter_op{padding:1px 1px 1px 0}"]
-                },] }
-    ];
-    DataGridHeadFilterComponent.ctorParameters = function () { return []; };
-    DataGridHeadFilterComponent.propDecorators = {
-        filter_value: [{ type: core.Input }],
-        col: [{ type: core.Input }],
-        changeHeaderFilter: [{ type: core.Output }],
-        op_filter: [{ type: core.ViewChild, args: [DataGridOpFilterComponent, { static: true },] }],
-        madate_picker: [{ type: core.ViewChild, args: [DataGridPickerDateComponent, { static: true },] }]
-    };
+    DataGridHeadFilterComponent.ɵfac = function DataGridHeadFilterComponent_Factory(t) { return new (t || DataGridHeadFilterComponent)(); };
+    DataGridHeadFilterComponent.ɵcmp = i0.ɵɵdefineComponent({ type: DataGridHeadFilterComponent, selectors: [["ma-data-grid-head-filter"]], viewQuery: function DataGridHeadFilterComponent_Query(rf, ctx) {
+            if (rf & 1) {
+                i0.ɵɵstaticViewQuery(DataGridOpFilterComponent, true);
+                i0.ɵɵstaticViewQuery(DataGridPickerDateComponent, true);
+            }
+            if (rf & 2) {
+                var _t;
+                i0.ɵɵqueryRefresh(_t = i0.ɵɵloadQuery()) && (ctx.op_filter = _t.first);
+                i0.ɵɵqueryRefresh(_t = i0.ɵɵloadQuery()) && (ctx.madate_picker = _t.first);
+            }
+        }, inputs: { filter_value: "filter_value", col: "col" }, outputs: { changeHeaderFilter: "changeHeaderFilter" }, decls: 9, vars: 4, consts: [[1, "header_filter_op"], [3, "col", "changeEmptyOperator", "changeOperator"], ["op_filter", ""], ["class", "header_filter", 4, "ngIf"], [1, "header_filter"], ["type", "date", 3, "changePicker"], ["madate_picker", ""], [1, "header_filter", 3, "ngModel", "ngModelChange", "keyup"]], template: function DataGridHeadFilterComponent_Template(rf, ctx) {
+            if (rf & 1) {
+                i0.ɵɵelementStart(0, "table");
+                i0.ɵɵelementStart(1, "tr");
+                i0.ɵɵelementStart(2, "td", 0);
+                i0.ɵɵelementStart(3, "ma-data-grid-op-filter", 1, 2);
+                i0.ɵɵlistener("changeEmptyOperator", function DataGridHeadFilterComponent_Template_ma_data_grid_op_filter_changeEmptyOperator_3_listener() { return ctx._changeEmptyOperator(); })("changeOperator", function DataGridHeadFilterComponent_Template_ma_data_grid_op_filter_changeOperator_3_listener($event) { return ctx._changeOperator($event); });
+                i0.ɵɵelementEnd();
+                i0.ɵɵelementEnd();
+                i0.ɵɵtemplate(5, DataGridHeadFilterComponent_td_5_Template, 2, 1, "td", 3);
+                i0.ɵɵelementStart(6, "td", 4);
+                i0.ɵɵelementStart(7, "ma-data-grid-datepicker", 5, 6);
+                i0.ɵɵlistener("changePicker", function DataGridHeadFilterComponent_Template_ma_data_grid_datepicker_changePicker_7_listener($event) { return ctx._changeDate($event); });
+                i0.ɵɵelementEnd();
+                i0.ɵɵelementEnd();
+                i0.ɵɵelementEnd();
+                i0.ɵɵelementEnd();
+            }
+            if (rf & 2) {
+                i0.ɵɵadvance(3);
+                i0.ɵɵproperty("col", ctx.col);
+                i0.ɵɵadvance(2);
+                i0.ɵɵproperty("ngIf", ctx.col.dataType != "date" && ctx.col.dataType != "boolean" && (!ctx.col.headFilter || ctx.col.headFilter.length == 0));
+                i0.ɵɵadvance(1);
+                i0.ɵɵstyleMap(ctx.astuce_datapicker);
+            }
+        }, directives: [DataGridOpFilterComponent, i1.NgIf, DataGridPickerDateComponent, i1$1.DefaultValueAccessor, i1$1.NgControlStatus, i1$1.NgModel], styles: ["input.header_filter[_ngcontent-%COMP%]{background-color:#e8f5f8;border:1px inset #9e9e9e;height:1.2rem;margin:0 0 0 -5px}  .ma-data-grid-datepicker{height:1.2rem;max-height:1.2rem}td.header_filter[_ngcontent-%COMP%]{padding:1px 1px 1px 5px}td.header_filter_op[_ngcontent-%COMP%]{padding:1px 1px 1px 0}"] });
+    /*@__PURE__*/ (function () {
+        i0.ɵsetClassMetadata(DataGridHeadFilterComponent, [{
+                type: i0.Component,
+                args: [{
+                        selector: 'ma-data-grid-head-filter',
+                        templateUrl: './data-grid-head-filter.component.html',
+                        styleUrls: ['./data-grid-head-filter.component.css']
+                    }]
+            }], function () { return []; }, { filter_value: [{
+                    type: i0.Input
+                }], col: [{
+                    type: i0.Input
+                }], changeHeaderFilter: [{
+                    type: i0.Output
+                }], op_filter: [{
+                    type: i0.ViewChild,
+                    args: [DataGridOpFilterComponent, { static: true }]
+                }], madate_picker: [{
+                    type: i0.ViewChild,
+                    args: [DataGridPickerDateComponent, { static: true }]
+                }] });
+    })();
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -976,12 +1191,57 @@
         return value;
     }
 
+    function MaGridFilterComponent_div_10_label_1_span_4_Template(rf, ctx) {
+        if (rf & 1) {
+            i0.ɵɵelementStart(0, "span", 12);
+            i0.ɵɵtext(1, "|");
+            i0.ɵɵelementEnd();
+        }
+    }
+    function MaGridFilterComponent_div_10_label_1_Template(rf, ctx) {
+        if (rf & 1) {
+            var _r8_1 = i0.ɵɵgetCurrentView();
+            i0.ɵɵelementStart(0, "label");
+            i0.ɵɵelementStart(1, "input", 9);
+            i0.ɵɵlistener("click", function MaGridFilterComponent_div_10_label_1_Template_input_click_1_listener() { i0.ɵɵrestoreView(_r8_1); var col_r1 = i0.ɵɵnextContext().$implicit; var ctx_r6 = i0.ɵɵnextContext(); return ctx_r6.clickChekbox(col_r1); });
+            i0.ɵɵelementEnd();
+            i0.ɵɵelementStart(2, "span", 10);
+            i0.ɵɵtext(3);
+            i0.ɵɵelementEnd();
+            i0.ɵɵtemplate(4, MaGridFilterComponent_div_10_label_1_span_4_Template, 2, 0, "span", 11);
+            i0.ɵɵelementEnd();
+        }
+        if (rf & 2) {
+            var ctx_r9 = i0.ɵɵnextContext();
+            var col_r1 = ctx_r9.$implicit;
+            var isLast_r2 = ctx_r9.last;
+            i0.ɵɵadvance(1);
+            i0.ɵɵproperty("checked", col_r1.extFilterSelected);
+            i0.ɵɵadvance(2);
+            i0.ɵɵtextInterpolate(col_r1.title);
+            i0.ɵɵadvance(1);
+            i0.ɵɵproperty("ngIf", !isLast_r2);
+        }
+    }
+    function MaGridFilterComponent_div_10_Template(rf, ctx) {
+        if (rf & 1) {
+            i0.ɵɵelementStart(0, "div", 7);
+            i0.ɵɵtemplate(1, MaGridFilterComponent_div_10_label_1_Template, 5, 3, "label", 8);
+            i0.ɵɵelementEnd();
+        }
+        if (rf & 2) {
+            var col_r1 = ctx.$implicit;
+            i0.ɵɵadvance(1);
+            i0.ɵɵproperty("ngIf", col_r1.extFilter === true);
+        }
+    }
     var MaGridFilterComponent = /** @class */ (function () {
         function MaGridFilterComponent() {
             this.placeholder = 'Enter filter';
-            this.searchValueChange = new core.EventEmitter();
+            this.customCSS = "";
+            this.searchValueChange = new i0.EventEmitter();
             this.columns = [];
-            this.filterChange = new core.EventEmitter();
+            this.filterChange = new i0.EventEmitter();
             this.input_filter = "if_" + Math.floor((Math.random() * 100000));
             this.filters = [];
             this.selectedFields = [];
@@ -1055,21 +1315,536 @@
         };
         return MaGridFilterComponent;
     }());
-    MaGridFilterComponent.decorators = [
-        { type: core.Component, args: [{
-                    selector: 'ma-data-grid-filter',
-                    template: "<div class=\"row ma-grid-filter\">\n    <div class=\"input-field col s3\"  >\n        <i (click)=\"enableFocus()\" class=\"material-icons prefix\">search</i>\n          <input [id]=\"input_filter\" type=\"text\" class=\"validate\" (keyup)=\"updateFilter($event)\">\n          <label for=\"icon_prefix\">{{placeholder}}</label>\n    </div>\n    <div class=\"col s8 checkboxes_part\">\n        <div class=\"title_field\"> Select column(s) filter</div>\n        <!--  [disabled]=\"selectedFields.length == 0\"\n<span *ngFor=\"let col of columns\"> {{col.prop}} | </span>\n[(ngModel)]=\"col.extFilterSelected\" \n[ngClass]=\"{'disabled':selectedFields.length >= 0}\"\n        -->\n        <div class=\"checkbox_field\" *ngFor=\"let col of filters;last as isLast;index as i;\">\n            <label *ngIf=\"col.extFilter === true\">\n                <input type=\"checkbox\" [checked]=\"col.extFilterSelected\" (click)=\"clickChekbox(col)\" />\n                <span class=\"checkbox_title\">{{col.title}}</span>\n                <span *ngIf=\"!isLast\" class=\"checkbox_separator\">|</span>\n            </label>\n        </div>\n    </div>\n</div>\n",
-                    styles: [".ma-grid-filter .checkboxes_part{border:1px solid #667;color:#667;margin-right:10px}.ma-grid-filter .title_field{font-weight:500;margin-left:15px}.ma-grid-filter .checkbox_field{display:inline;margin-left:5px;margin-right:5px}.ma-grid-filter span.checkbox_title{min-width:70px;padding-left:22px}.ma-grid-filter span.checkbox_title:after{content:\"|\"}.ma-grid-filter span.checkbox_separator{font-size:large;margin-left:5px}"]
-                },] }
-    ];
-    MaGridFilterComponent.ctorParameters = function () { return []; };
-    MaGridFilterComponent.propDecorators = {
-        searchValue: [{ type: core.Input }],
-        searchValueChange: [{ type: core.Output }],
-        columns: [{ type: core.Input }],
-        filterChange: [{ type: core.Output }]
-    };
+    MaGridFilterComponent.ɵfac = function MaGridFilterComponent_Factory(t) { return new (t || MaGridFilterComponent)(); };
+    MaGridFilterComponent.ɵcmp = i0.ɵɵdefineComponent({ type: MaGridFilterComponent, selectors: [["ma-data-grid-filter"]], inputs: { searchValue: "searchValue", customCSS: "customCSS", columns: "columns" }, outputs: { searchValueChange: "searchValueChange", filterChange: "filterChange" }, features: [i0.ɵɵNgOnChangesFeature], decls: 11, vars: 6, consts: [[1, "row", "ma-grid-filter"], [1, "input-field", "col", "s3"], [1, "material-icons", "prefix", 3, "click"], ["type", "text", 1, "validate", 3, "id", "keyup"], ["for", "icon_prefix"], [1, "title_field"], ["class", "checkbox_field", 4, "ngFor", "ngForOf"], [1, "checkbox_field"], [4, "ngIf"], ["type", "checkbox", 3, "checked", "click"], [1, "checkbox_title"], ["class", "checkbox_separator", 4, "ngIf"], [1, "checkbox_separator"]], template: function MaGridFilterComponent_Template(rf, ctx) {
+            if (rf & 1) {
+                i0.ɵɵelementStart(0, "div", 0);
+                i0.ɵɵelementStart(1, "div", 1);
+                i0.ɵɵelementStart(2, "i", 2);
+                i0.ɵɵlistener("click", function MaGridFilterComponent_Template_i_click_2_listener() { return ctx.enableFocus(); });
+                i0.ɵɵtext(3, "search");
+                i0.ɵɵelementEnd();
+                i0.ɵɵelementStart(4, "input", 3);
+                i0.ɵɵlistener("keyup", function MaGridFilterComponent_Template_input_keyup_4_listener($event) { return ctx.updateFilter($event); });
+                i0.ɵɵelementEnd();
+                i0.ɵɵelementStart(5, "label", 4);
+                i0.ɵɵtext(6);
+                i0.ɵɵelementEnd();
+                i0.ɵɵelementEnd();
+                i0.ɵɵelementStart(7, "div");
+                i0.ɵɵelementStart(8, "div", 5);
+                i0.ɵɵtext(9, " Select column(s) filter");
+                i0.ɵɵelementEnd();
+                i0.ɵɵtemplate(10, MaGridFilterComponent_div_10_Template, 2, 1, "div", 6);
+                i0.ɵɵelementEnd();
+                i0.ɵɵelementEnd();
+            }
+            if (rf & 2) {
+                i0.ɵɵadvance(4);
+                i0.ɵɵproperty("id", ctx.input_filter);
+                i0.ɵɵadvance(2);
+                i0.ɵɵtextInterpolate(ctx.placeholder);
+                i0.ɵɵadvance(1);
+                i0.ɵɵclassMapInterpolate1("col s8 ", ctx.customCSS, "ma-grid-filter-checkboxes");
+                i0.ɵɵadvance(3);
+                i0.ɵɵproperty("ngForOf", ctx.filters);
+            }
+        }, directives: [i1.NgForOf, i1.NgIf], styles: ["[_nghost-%COMP%]{--border-size:0px;--color-border:#667;--color-defaut:#667}.ma-grid-filter[_ngcontent-%COMP%]   .ma-grid-filter-checkboxes[_ngcontent-%COMP%]{border:1px solid var(--color-border);color:var(--color-defaut);margin-right:10px}.ma-grid-filter[_ngcontent-%COMP%]   .title_field[_ngcontent-%COMP%]{font-weight:500;margin-left:15px}.ma-grid-filter[_ngcontent-%COMP%]   .checkbox_field[_ngcontent-%COMP%]{display:inline;margin-left:5px;margin-right:5px}.ma-grid-filter[_ngcontent-%COMP%]   span.checkbox_title[_ngcontent-%COMP%]{min-width:70px;padding-left:22px}.ma-grid-filter[_ngcontent-%COMP%]   span.checkbox_title[_ngcontent-%COMP%]:after{content:\"|\"}.ma-grid-filter[_ngcontent-%COMP%]   span.checkbox_separator[_ngcontent-%COMP%]{font-size:large;margin-left:5px}"] });
+    /*@__PURE__*/ (function () {
+        i0.ɵsetClassMetadata(MaGridFilterComponent, [{
+                type: i0.Component,
+                args: [{
+                        selector: 'ma-data-grid-filter',
+                        templateUrl: './ma-grid-filter.component.html',
+                        styleUrls: ['./ma-grid-filter.component.css']
+                    }]
+            }], function () { return []; }, { searchValue: [{
+                    type: i0.Input
+                }], customCSS: [{
+                    type: i0.Input
+                }], searchValueChange: [{
+                    type: i0.Output
+                }], columns: [{
+                    type: i0.Input
+                }], filterChange: [{
+                    type: i0.Output
+                }] });
+    })();
 
+    var MaGridCellTemplateDirective = /** @class */ (function () {
+        function MaGridCellTemplateDirective(viewContainerRef) {
+            this.viewContainerRef = viewContainerRef;
+        }
+        return MaGridCellTemplateDirective;
+    }());
+    MaGridCellTemplateDirective.ɵfac = function MaGridCellTemplateDirective_Factory(t) { return new (t || MaGridCellTemplateDirective)(i0.ɵɵdirectiveInject(i0.ViewContainerRef)); };
+    MaGridCellTemplateDirective.ɵdir = i0.ɵɵdefineDirective({ type: MaGridCellTemplateDirective, selectors: [["", "libMaGridCellTemplate", ""]] });
+    /*@__PURE__*/ (function () {
+        i0.ɵsetClassMetadata(MaGridCellTemplateDirective, [{
+                type: i0.Directive,
+                args: [{
+                        selector: '[libMaGridCellTemplate]'
+                    }]
+            }], function () { return [{ type: i0.ViewContainerRef }]; }, null);
+    })();
+
+    var DataGridCellItemComponent = /** @class */ (function () {
+        function DataGridCellItemComponent(component, data) {
+            this.component = component;
+            this.data = data;
+        }
+        return DataGridCellItemComponent;
+    }());
+
+    function DataGridTemplateCellComponent_ng_template_0_Template(rf, ctx) { }
+    var DataGridTemplateCellComponent = /** @class */ (function () {
+        function DataGridTemplateCellComponent(componentFactoryResolver) {
+            this.componentFactoryResolver = componentFactoryResolver;
+            // console.log('DataGridTemplateCellComponent c',this.template);
+        }
+        DataGridTemplateCellComponent.prototype.ngOnInit = function () {
+            // 
+            if (!this.template) {
+                return;
+            }
+            var component = new DataGridCellItemComponent(this.template, this.data);
+            var componentFactory = this.componentFactoryResolver.resolveComponentFactory(component.component);
+            if (!this.libMaGridCellTemplate) {
+                return;
+            }
+            var viewContainerRef = this.libMaGridCellTemplate.viewContainerRef;
+            var componentRef = viewContainerRef.createComponent(componentFactory);
+            componentRef.instance.data = component.data;
+        };
+        return DataGridTemplateCellComponent;
+    }());
+    DataGridTemplateCellComponent.ɵfac = function DataGridTemplateCellComponent_Factory(t) { return new (t || DataGridTemplateCellComponent)(i0.ɵɵdirectiveInject(i0.ComponentFactoryResolver)); };
+    DataGridTemplateCellComponent.ɵcmp = i0.ɵɵdefineComponent({ type: DataGridTemplateCellComponent, selectors: [["ma-data-grid-template-cell-t1"]], viewQuery: function DataGridTemplateCellComponent_Query(rf, ctx) {
+            if (rf & 1) {
+                i0.ɵɵstaticViewQuery(MaGridCellTemplateDirective, true);
+            }
+            if (rf & 2) {
+                var _t;
+                i0.ɵɵqueryRefresh(_t = i0.ɵɵloadQuery()) && (ctx.libMaGridCellTemplate = _t.first);
+            }
+        }, inputs: { data: "data", template: "template" }, decls: 1, vars: 0, consts: [["libMaGridCellTemplate", ""]], template: function DataGridTemplateCellComponent_Template(rf, ctx) {
+            if (rf & 1) {
+                i0.ɵɵtemplate(0, DataGridTemplateCellComponent_ng_template_0_Template, 0, 0, "ng-template", 0);
+            }
+        }, directives: [MaGridCellTemplateDirective], encapsulation: 2 });
+    /*@__PURE__*/ (function () {
+        i0.ɵsetClassMetadata(DataGridTemplateCellComponent, [{
+                type: i0.Component,
+                args: [{
+                        selector: 'ma-data-grid-template-cell-t1',
+                        template: '<ng-template libMaGridCellTemplate></ng-template>'
+                    }]
+            }], function () { return [{ type: i0.ComponentFactoryResolver }]; }, { data: [{
+                    type: i0.Input
+                }], template: [{
+                    type: i0.Input
+                }], libMaGridCellTemplate: [{
+                    type: i0.ViewChild,
+                    args: [MaGridCellTemplateDirective, { static: true }]
+                }] });
+    })();
+
+    var DataGridCellBooleanComponent = /** @class */ (function () {
+        function DataGridCellBooleanComponent() {
+            this.icon = '';
+        }
+        DataGridCellBooleanComponent.prototype.ngOnInit = function () {
+            // console.log(this.data[this.col.prop]);
+            if (this.data[this.col.prop] === true) {
+                this.icon = 'check_box';
+            }
+            else if (this.data[this.col.prop] === false) {
+                this.icon = 'check_box_outline_blank';
+            }
+        };
+        return DataGridCellBooleanComponent;
+    }());
+    DataGridCellBooleanComponent.ɵfac = function DataGridCellBooleanComponent_Factory(t) { return new (t || DataGridCellBooleanComponent)(); };
+    DataGridCellBooleanComponent.ɵcmp = i0.ɵɵdefineComponent({ type: DataGridCellBooleanComponent, selectors: [["ma-data-grid-cell-boolean"]], inputs: { data: "data", col: "col" }, decls: 3, vars: 1, consts: [[2, "text-align", "center"], [1, "tiny", "material-icons"]], template: function DataGridCellBooleanComponent_Template(rf, ctx) {
+            if (rf & 1) {
+                i0.ɵɵelementStart(0, "div", 0);
+                i0.ɵɵelementStart(1, "i", 1);
+                i0.ɵɵtext(2);
+                i0.ɵɵelementEnd();
+                i0.ɵɵelementEnd();
+            }
+            if (rf & 2) {
+                i0.ɵɵadvance(2);
+                i0.ɵɵtextInterpolate(ctx.icon);
+            }
+        }, encapsulation: 2 });
+    /*@__PURE__*/ (function () {
+        i0.ɵsetClassMetadata(DataGridCellBooleanComponent, [{
+                type: i0.Component,
+                args: [{
+                        selector: 'ma-data-grid-cell-boolean',
+                        template: '<div style="text-align: center"><i class="tiny material-icons">{{icon}}</i></div>'
+                    }]
+            }], function () { return []; }, { data: [{
+                    type: i0.Input
+                }], col: [{
+                    type: i0.Input
+                }] });
+    })();
+
+    var DataGridPipePipe = /** @class */ (function () {
+        function DataGridPipePipe() {
+        }
+        DataGridPipePipe.prototype.transform = function (value, row, col) {
+            if (col.pipe) {
+                return col.pipe(value, row, col);
+            }
+            return value;
+        };
+        return DataGridPipePipe;
+    }());
+    DataGridPipePipe.ɵfac = function DataGridPipePipe_Factory(t) { return new (t || DataGridPipePipe)(); };
+    DataGridPipePipe.ɵpipe = i0.ɵɵdefinePipe({ name: "maDataGridPipe", type: DataGridPipePipe, pure: true });
+    /*@__PURE__*/ (function () {
+        i0.ɵsetClassMetadata(DataGridPipePipe, [{
+                type: i0.Pipe,
+                args: [{
+                        name: 'maDataGridPipe'
+                    }]
+            }], null, null);
+    })();
+
+    function MaDataGridComponent_ma_data_grid_filter_0_Template(rf, ctx) {
+        if (rf & 1) {
+            var _r12_1 = i0.ɵɵgetCurrentView();
+            i0.ɵɵelementStart(0, "ma-data-grid-filter", 15, 16);
+            i0.ɵɵlistener("searchValueChange", function MaDataGridComponent_ma_data_grid_filter_0_Template_ma_data_grid_filter_searchValueChange_0_listener($event) { i0.ɵɵrestoreView(_r12_1); var ctx_r11 = i0.ɵɵnextContext(); return ctx_r11.searchValue = $event; })("filterChange", function MaDataGridComponent_ma_data_grid_filter_0_Template_ma_data_grid_filter_filterChange_0_listener($event) { i0.ɵɵrestoreView(_r12_1); var ctx_r13 = i0.ɵɵnextContext(); return ctx_r13._filterChange($event); });
+            i0.ɵɵelementEnd();
+        }
+        if (rf & 2) {
+            var ctx_r0 = i0.ɵɵnextContext();
+            i0.ɵɵproperty("customCSS", ctx_r0.customCSS)("searchValue", ctx_r0.searchValue)("columns", ctx_r0.columns);
+        }
+    }
+    function MaDataGridComponent_td_5_span_2_span_1_Template(rf, ctx) {
+        if (rf & 1) {
+            i0.ɵɵelementStart(0, "span", 21);
+            i0.ɵɵtext(1, "swap_vert");
+            i0.ɵɵelementEnd();
+        }
+    }
+    function MaDataGridComponent_td_5_span_2_span_2_Template(rf, ctx) {
+        if (rf & 1) {
+            i0.ɵɵelementStart(0, "span", 21);
+            i0.ɵɵtext(1, "arrow_drop_down");
+            i0.ɵɵelementEnd();
+        }
+    }
+    function MaDataGridComponent_td_5_span_2_span_3_Template(rf, ctx) {
+        if (rf & 1) {
+            i0.ɵɵelementStart(0, "span", 21);
+            i0.ɵɵtext(1, "arrow_drop_up");
+            i0.ɵɵelementEnd();
+        }
+    }
+    function MaDataGridComponent_td_5_span_2_Template(rf, ctx) {
+        if (rf & 1) {
+            var _r22_1 = i0.ɵɵgetCurrentView();
+            i0.ɵɵelementStart(0, "span", 19);
+            i0.ɵɵlistener("click", function MaDataGridComponent_td_5_span_2_Template_span_click_0_listener() { i0.ɵɵrestoreView(_r22_1); var col_r14 = i0.ɵɵnextContext().$implicit; var ctx_r20 = i0.ɵɵnextContext(); return ctx_r20.sortBy(col_r14); });
+            i0.ɵɵtemplate(1, MaDataGridComponent_td_5_span_2_span_1_Template, 2, 0, "span", 20);
+            i0.ɵɵtemplate(2, MaDataGridComponent_td_5_span_2_span_2_Template, 2, 0, "span", 20);
+            i0.ɵɵtemplate(3, MaDataGridComponent_td_5_span_2_span_3_Template, 2, 0, "span", 20);
+            i0.ɵɵelementEnd();
+        }
+        if (rf & 2) {
+            var col_r14 = i0.ɵɵnextContext().$implicit;
+            var ctx_r16 = i0.ɵɵnextContext();
+            i0.ɵɵadvance(1);
+            i0.ɵɵproperty("ngIf", ctx_r16.sortedField.field != col_r14.prop);
+            i0.ɵɵadvance(1);
+            i0.ɵɵproperty("ngIf", ctx_r16.sortedField.field === col_r14.prop && ctx_r16.sortedField.reverse);
+            i0.ɵɵadvance(1);
+            i0.ɵɵproperty("ngIf", ctx_r16.sortedField.field === col_r14.prop && !ctx_r16.sortedField.reverse);
+        }
+    }
+    var _c0$2 = function (a0) { return { grid_cell_first: a0 }; };
+    function MaDataGridComponent_td_5_Template(rf, ctx) {
+        if (rf & 1) {
+            i0.ɵɵelementStart(0, "td", 17);
+            i0.ɵɵtext(1);
+            i0.ɵɵtemplate(2, MaDataGridComponent_td_5_span_2_Template, 4, 3, "span", 18);
+            i0.ɵɵelementEnd();
+        }
+        if (rf & 2) {
+            var col_r14 = ctx.$implicit;
+            var i_r15 = ctx.index;
+            var ctx_r1 = i0.ɵɵnextContext();
+            i0.ɵɵclassMapInterpolate2("", ctx_r1.customCSS, "grid_cell ", ctx_r1.customCSS, "grid_cell_title");
+            i0.ɵɵproperty("ngClass", i0.ɵɵpureFunction1(7, _c0$2, i_r15 == 0));
+            i0.ɵɵadvance(1);
+            i0.ɵɵtextInterpolate1(" ", col_r14.title, " ");
+            i0.ɵɵadvance(1);
+            i0.ɵɵproperty("ngIf", col_r14.isRowNumber !== true && col_r14.sorted === true);
+        }
+    }
+    function MaDataGridComponent_tr_6_td_1_ma_data_grid_head_filter_1_Template(rf, ctx) {
+        if (rf & 1) {
+            var _r30_1 = i0.ɵɵgetCurrentView();
+            i0.ɵɵelementStart(0, "ma-data-grid-head-filter", 23, 24);
+            i0.ɵɵlistener("changeHeaderFilter", function MaDataGridComponent_tr_6_td_1_ma_data_grid_head_filter_1_Template_ma_data_grid_head_filter_changeHeaderFilter_0_listener($event) { i0.ɵɵrestoreView(_r30_1); var ctx_r29 = i0.ɵɵnextContext(3); return ctx_r29._changeHeaderFilter($event); });
+            i0.ɵɵelementEnd();
+        }
+        if (rf & 2) {
+            var col_r25 = i0.ɵɵnextContext().$implicit;
+            i0.ɵɵproperty("col", col_r25);
+        }
+    }
+    function MaDataGridComponent_tr_6_td_1_Template(rf, ctx) {
+        if (rf & 1) {
+            i0.ɵɵelementStart(0, "td", 17);
+            i0.ɵɵtemplate(1, MaDataGridComponent_tr_6_td_1_ma_data_grid_head_filter_1_Template, 2, 1, "ma-data-grid-head-filter", 22);
+            i0.ɵɵelementEnd();
+        }
+        if (rf & 2) {
+            var col_r25 = ctx.$implicit;
+            var i_r26 = ctx.index;
+            var ctx_r24 = i0.ɵɵnextContext(2);
+            i0.ɵɵclassMapInterpolate2("", ctx_r24.customCSS, "grid_cell ", ctx_r24.customCSS, "grid_cell_title");
+            i0.ɵɵproperty("ngClass", i0.ɵɵpureFunction1(6, _c0$2, i_r26 == 0));
+            i0.ɵɵadvance(1);
+            i0.ɵɵproperty("ngIf", col_r25.dataType || col_r25.headFilter);
+        }
+    }
+    function MaDataGridComponent_tr_6_Template(rf, ctx) {
+        if (rf & 1) {
+            i0.ɵɵelementStart(0, "tr");
+            i0.ɵɵtemplate(1, MaDataGridComponent_tr_6_td_1_Template, 2, 8, "td", 4);
+            i0.ɵɵelementEnd();
+        }
+        if (rf & 2) {
+            var ctx_r2 = i0.ɵɵnextContext();
+            i0.ɵɵclassMapInterpolate1("", ctx_r2.customCSS, "grid_row");
+            i0.ɵɵadvance(1);
+            i0.ɵɵproperty("ngForOf", ctx_r2.columns);
+        }
+    }
+    function MaDataGridComponent_tr_7_td_1_datagrid_cell_element_2_Template(rf, ctx) {
+        if (rf & 1) {
+            i0.ɵɵelementStart(0, "datagrid-cell-element");
+            i0.ɵɵtext(1);
+            i0.ɵɵelementEnd();
+        }
+        if (rf & 2) {
+            var i_r35 = i0.ɵɵnextContext(2).index;
+            i0.ɵɵadvance(1);
+            i0.ɵɵtextInterpolate(i_r35);
+        }
+    }
+    function MaDataGridComponent_tr_7_td_1_datagrid_cell_element_3_Template(rf, ctx) {
+        if (rf & 1) {
+            i0.ɵɵelementStart(0, "datagrid-cell-element");
+            i0.ɵɵelement(1, "span", 29);
+            i0.ɵɵelementEnd();
+        }
+        if (rf & 2) {
+            var col_r38 = i0.ɵɵnextContext().$implicit;
+            var row_r32 = i0.ɵɵnextContext().$implicit;
+            i0.ɵɵadvance(1);
+            i0.ɵɵproperty("innerHTML", row_r32[col_r38.prop], i0.ɵɵsanitizeHtml);
+        }
+    }
+    function MaDataGridComponent_tr_7_td_1_datagrid_cell_element_4_Template(rf, ctx) {
+        if (rf & 1) {
+            i0.ɵɵelementStart(0, "datagrid-cell-element");
+            i0.ɵɵelement(1, "ma-data-grid-template-cell-t1", 30);
+            i0.ɵɵelementEnd();
+        }
+        if (rf & 2) {
+            var col_r38 = i0.ɵɵnextContext().$implicit;
+            var row_r32 = i0.ɵɵnextContext().$implicit;
+            i0.ɵɵadvance(1);
+            i0.ɵɵproperty("template", col_r38.useTemplate)("data", row_r32);
+        }
+    }
+    function MaDataGridComponent_tr_7_td_1_datagrid_cell_element_5_Template(rf, ctx) {
+        if (rf & 1) {
+            i0.ɵɵelementStart(0, "datagrid-cell-element");
+            i0.ɵɵelement(1, "ma-data-grid-cell-boolean", 31);
+            i0.ɵɵelementEnd();
+        }
+        if (rf & 2) {
+            var col_r38 = i0.ɵɵnextContext().$implicit;
+            var row_r32 = i0.ɵɵnextContext().$implicit;
+            i0.ɵɵadvance(1);
+            i0.ɵɵproperty("template", col_r38.useTemplate)("col", col_r38)("data", row_r32);
+        }
+    }
+    function MaDataGridComponent_tr_7_td_1_datagrid_cell_element_6_Template(rf, ctx) {
+        if (rf & 1) {
+            i0.ɵɵelementStart(0, "datagrid-cell-element");
+            i0.ɵɵtext(1);
+            i0.ɵɵpipe(2, "maDataGridPipe");
+            i0.ɵɵelementEnd();
+        }
+        if (rf & 2) {
+            var col_r38 = i0.ɵɵnextContext().$implicit;
+            var row_r32 = i0.ɵɵnextContext().$implicit;
+            i0.ɵɵadvance(1);
+            i0.ɵɵtextInterpolate(i0.ɵɵpipeBind3(2, 1, row_r32[col_r38.prop], row_r32, col_r38));
+        }
+    }
+    var _c1$1 = function (a0, a1, a2) { return { "grid_cell_selected": a0, "grid_cell_end": a1, "grid_cell_first": a2 }; };
+    function MaDataGridComponent_tr_7_td_1_Template(rf, ctx) {
+        if (rf & 1) {
+            var _r59_1 = i0.ɵɵgetCurrentView();
+            i0.ɵɵelementStart(0, "td", 25);
+            i0.ɵɵlistener("click", function MaDataGridComponent_tr_7_td_1_Template_td_click_0_listener() { i0.ɵɵrestoreView(_r59_1); var col_r38 = ctx.$implicit; var ctx_r58 = i0.ɵɵnextContext(); var i_r35 = ctx_r58.index; var row_r32 = ctx_r58.$implicit; var ctx_r57 = i0.ɵɵnextContext(); return ctx_r57.SelectCell(i_r35, row_r32, col_r38); });
+            i0.ɵɵelementStart(1, "datagrid-cell-container", 26);
+            i0.ɵɵtemplate(2, MaDataGridComponent_tr_7_td_1_datagrid_cell_element_2_Template, 2, 1, "datagrid-cell-element", 27);
+            i0.ɵɵtemplate(3, MaDataGridComponent_tr_7_td_1_datagrid_cell_element_3_Template, 2, 1, "datagrid-cell-element", 27);
+            i0.ɵɵtemplate(4, MaDataGridComponent_tr_7_td_1_datagrid_cell_element_4_Template, 2, 2, "datagrid-cell-element", 27);
+            i0.ɵɵtemplate(5, MaDataGridComponent_tr_7_td_1_datagrid_cell_element_5_Template, 2, 3, "datagrid-cell-element", 27);
+            i0.ɵɵtemplate(6, MaDataGridComponent_tr_7_td_1_datagrid_cell_element_6_Template, 3, 5, "datagrid-cell-element", 28);
+            i0.ɵɵelementEnd();
+            i0.ɵɵelementEnd();
+        }
+        if (rf & 2) {
+            var col_r38 = ctx.$implicit;
+            var isFirstCol_r41 = ctx.first;
+            var isLastCol_r42 = ctx.last;
+            var i_r35 = i0.ɵɵnextContext().index;
+            var ctx_r37 = i0.ɵɵnextContext();
+            i0.ɵɵclassMapInterpolate2("", ctx_r37.customCSS, "grid_cell ", col_r38.cssClass, "");
+            i0.ɵɵproperty("ngClass", i0.ɵɵpureFunction3(10, _c1$1, i_r35 == ctx_r37.row_selected && col_r38.prop == ctx_r37.cell_selected, isLastCol_r42, isFirstCol_r41));
+            i0.ɵɵadvance(1);
+            i0.ɵɵproperty("ngSwitch", true);
+            i0.ɵɵadvance(1);
+            i0.ɵɵproperty("ngSwitchCase", col_r38.isRowNumber === true);
+            i0.ɵɵadvance(1);
+            i0.ɵɵproperty("ngSwitchCase", col_r38.isRowHTML === true);
+            i0.ɵɵadvance(1);
+            i0.ɵɵproperty("ngSwitchCase", col_r38.useTemplate != null);
+            i0.ɵɵadvance(1);
+            i0.ɵɵproperty("ngSwitchCase", col_r38.dataType == "boolean");
+        }
+    }
+    var _c2 = function (a0, a1, a2, a3, a4) { return { "grid_row_selected": a0, "CSSclassEven": a1, "CSSclassOdd": a2, "grid_row_first": a3, "grid_row_end": a4 }; };
+    function MaDataGridComponent_tr_7_Template(rf, ctx) {
+        if (rf & 1) {
+            var _r62_1 = i0.ɵɵgetCurrentView();
+            i0.ɵɵelementStart(0, "tr", 25);
+            i0.ɵɵlistener("click", function MaDataGridComponent_tr_7_Template_tr_click_0_listener() { i0.ɵɵrestoreView(_r62_1); var i_r35 = ctx.index; var row_r32 = ctx.$implicit; var ctx_r61 = i0.ɵɵnextContext(); return ctx_r61.SelectRow(i_r35, row_r32); });
+            i0.ɵɵtemplate(1, MaDataGridComponent_tr_7_td_1_Template, 7, 14, "td", 6);
+            i0.ɵɵelementEnd();
+        }
+        if (rf & 2) {
+            var isLastRow_r33 = ctx.last;
+            var pair_r34 = ctx.even;
+            var i_r35 = ctx.index;
+            var isFirstRow_r36 = ctx.first;
+            var ctx_r3 = i0.ɵɵnextContext();
+            i0.ɵɵclassMapInterpolate1("", ctx_r3.customCSS, "grid_row");
+            i0.ɵɵproperty("ngClass", i0.ɵɵpureFunction5(5, _c2, i_r35 == ctx_r3.row_selected && !ctx_r3.cell_selected, pair_r34, !pair_r34, isFirstRow_r36, isLastRow_r33));
+            i0.ɵɵadvance(1);
+            i0.ɵɵproperty("ngForOf", ctx_r3.columns);
+        }
+    }
+    function MaDataGridComponent_span_12_Template(rf, ctx) {
+        if (rf & 1) {
+            i0.ɵɵelementStart(0, "span");
+            i0.ɵɵtext(1, "s");
+            i0.ɵɵelementEnd();
+        }
+    }
+    var _c3 = function (a0, a1) { return { "disabled": a0, "": a1 }; };
+    function MaDataGridComponent_li_15_Template(rf, ctx) {
+        if (rf & 1) {
+            var _r64_1 = i0.ɵɵgetCurrentView();
+            i0.ɵɵelementStart(0, "li", 25);
+            i0.ɵɵlistener("click", function MaDataGridComponent_li_15_Template_li_click_0_listener() { i0.ɵɵrestoreView(_r64_1); var ctx_r63 = i0.ɵɵnextContext(); return ctx_r63.FastDecrementPage(); });
+            i0.ɵɵelementStart(1, "a", 32);
+            i0.ɵɵelementStart(2, "i", 33);
+            i0.ɵɵtext(3, "fast_rewind");
+            i0.ɵɵelementEnd();
+            i0.ɵɵelementEnd();
+            i0.ɵɵelementEnd();
+        }
+        if (rf & 2) {
+            var ctx_r5 = i0.ɵɵnextContext();
+            i0.ɵɵproperty("ngClass", i0.ɵɵpureFunction2(1, _c3, ctx_r5.current_page == 0, ctx_r5.current_page != 0));
+        }
+    }
+    function MaDataGridComponent_li_16_Template(rf, ctx) {
+        if (rf & 1) {
+            var _r66_1 = i0.ɵɵgetCurrentView();
+            i0.ɵɵelementStart(0, "li", 25);
+            i0.ɵɵlistener("click", function MaDataGridComponent_li_16_Template_li_click_0_listener() { i0.ɵɵrestoreView(_r66_1); var ctx_r65 = i0.ɵɵnextContext(); return ctx_r65.DecrementPage(); });
+            i0.ɵɵelementStart(1, "a", 32);
+            i0.ɵɵelementStart(2, "i", 33);
+            i0.ɵɵtext(3, "chevron_left");
+            i0.ɵɵelementEnd();
+            i0.ɵɵelementEnd();
+            i0.ɵɵelementEnd();
+        }
+        if (rf & 2) {
+            var ctx_r6 = i0.ɵɵnextContext();
+            i0.ɵɵproperty("ngClass", i0.ɵɵpureFunction2(1, _c3, ctx_r6.current_page == 0, ctx_r6.current_page != 0));
+        }
+    }
+    var _c4 = function (a0, a1) { return { "active": a0, "": a1 }; };
+    function MaDataGridComponent_li_17_Template(rf, ctx) {
+        if (rf & 1) {
+            var _r69_1 = i0.ɵɵgetCurrentView();
+            i0.ɵɵelementStart(0, "li", 25);
+            i0.ɵɵlistener("click", function MaDataGridComponent_li_17_Template_li_click_0_listener() { i0.ɵɵrestoreView(_r69_1); var n_page_r67 = ctx.$implicit; var ctx_r68 = i0.ɵɵnextContext(); return ctx_r68._changePage(n_page_r67); });
+            i0.ɵɵelementStart(1, "a", 34);
+            i0.ɵɵtext(2);
+            i0.ɵɵelementEnd();
+            i0.ɵɵelementEnd();
+        }
+        if (rf & 2) {
+            var n_page_r67 = ctx.$implicit;
+            var ctx_r7 = i0.ɵɵnextContext();
+            i0.ɵɵproperty("ngClass", i0.ɵɵpureFunction2(2, _c4, ctx_r7.current_page == n_page_r67, ctx_r7.current_page != n_page_r67));
+            i0.ɵɵadvance(2);
+            i0.ɵɵtextInterpolate(n_page_r67 + 1);
+        }
+    }
+    function MaDataGridComponent_li_18_Template(rf, ctx) {
+        if (rf & 1) {
+            var _r71_1 = i0.ɵɵgetCurrentView();
+            i0.ɵɵelementStart(0, "li", 25);
+            i0.ɵɵlistener("click", function MaDataGridComponent_li_18_Template_li_click_0_listener() { i0.ɵɵrestoreView(_r71_1); var ctx_r70 = i0.ɵɵnextContext(); return ctx_r70.IncrementPage(); });
+            i0.ɵɵelementStart(1, "a", 32);
+            i0.ɵɵelementStart(2, "i", 33);
+            i0.ɵɵtext(3, "chevron_right");
+            i0.ɵɵelementEnd();
+            i0.ɵɵelementEnd();
+            i0.ɵɵelementEnd();
+        }
+        if (rf & 2) {
+            var ctx_r8 = i0.ɵɵnextContext();
+            i0.ɵɵproperty("ngClass", i0.ɵɵpureFunction2(1, _c3, ctx_r8.current_page == ctx_r8.max_page, ctx_r8.current_page != ctx_r8.max_page));
+        }
+    }
+    function MaDataGridComponent_li_19_Template(rf, ctx) {
+        if (rf & 1) {
+            var _r73_1 = i0.ɵɵgetCurrentView();
+            i0.ɵɵelementStart(0, "li", 25);
+            i0.ɵɵlistener("click", function MaDataGridComponent_li_19_Template_li_click_0_listener() { i0.ɵɵrestoreView(_r73_1); var ctx_r72 = i0.ɵɵnextContext(); return ctx_r72.FastIncrementPage(); });
+            i0.ɵɵelementStart(1, "a", 32);
+            i0.ɵɵelementStart(2, "i", 33);
+            i0.ɵɵtext(3, "fast_forward");
+            i0.ɵɵelementEnd();
+            i0.ɵɵelementEnd();
+            i0.ɵɵelementEnd();
+        }
+        if (rf & 2) {
+            var ctx_r9 = i0.ɵɵnextContext();
+            i0.ɵɵproperty("ngClass", i0.ɵɵpureFunction2(1, _c3, ctx_r9.current_page == ctx_r9.max_page, ctx_r9.current_page != ctx_r9.max_page));
+        }
+    }
     // import { PipeLengthPipe } from 'src/app/pipes/pipe-length.pipe';
     var MaDataGridComponent = /** @class */ (function () {
         function MaDataGridComponent() {
@@ -1085,14 +1860,17 @@
             this.pagination = false;
             this.page = -1;
             this.count = 0;
+            this.customCSS = "";
             this.rows = [];
-            this.change = new core.EventEmitter();
-            this.select = new core.EventEmitter();
-            this.extFilterChange = new core.EventEmitter();
-            this.filterChange = new core.EventEmitter();
-            this.changePage = new core.EventEmitter();
-            this.sort = new core.EventEmitter();
-            this.canSelectChange = new core.EventEmitter();
+            this.change = new i0.EventEmitter();
+            this.select = new i0.EventEmitter();
+            this.extFilterChange = new i0.EventEmitter();
+            this.filterChange = new i0.EventEmitter();
+            this.changePage = new i0.EventEmitter();
+            this.sort = new i0.EventEmitter();
+            this.canSelectChange = new i0.EventEmitter();
+            this.grid_cell_first = this.customCSS + 'grid_cell_first';
+            this.grid_row_selected = this.customCSS + 'grid_row_selected';
             this.current_page = -1;
             this.max_page = 1;
             this.max_nb_page = 6;
@@ -1110,6 +1888,7 @@
                 reverse: true
             };
             this.timeout = null;
+            //console.log('YO')
         }
         MaDataGridComponent.prototype.resetSelection = function () {
             this.cell_selected = -1;
@@ -1345,35 +2124,126 @@
         };
         return MaDataGridComponent;
     }());
-    MaDataGridComponent.decorators = [
-        { type: core.Component, args: [{
-                    selector: 'ma-data-grid',
-                    //providers: [PipeLengthPipe],
-                    template: "<!-- #gridfilter *ngIf=\"extFilter\" -->\r\n<ma-data-grid-filter #gridfilter *ngIf=\"extFilter\"  [(searchValue)]=\"searchValue\" [columns]=\"columns\"  (filterChange)=\"_filterChange($event)\"></ma-data-grid-filter>\r\n<div class=\"datagrid_page\">\r\n    <div class=\"scroller\">\r\n        <table class=\"grid_table\">\r\n            <!-- HEADER -->\r\n            <tr class=\"grid_row\">\r\n                <td class=\"grid_cell grid_cell_title\"  [ngClass]=\"{'grid_cell_first': i==0}\" *ngFor=\"let col of columns;index as i; \">\r\n                    {{col.title}} \r\n                    <span *ngIf=\"col.isRowNumber !== true && col.sorted === true\" (click)=\"sortBy(col)\">\r\n                        <span *ngIf=\"sortedField.field != col.prop\" class=\"grid_sort tiny material-icons\">swap_vert</span>\r\n                        <span *ngIf=\"sortedField.field === col.prop && sortedField.reverse\" class=\"grid_sort tiny material-icons\">arrow_drop_down</span>\r\n                        <span *ngIf=\"sortedField.field === col.prop && !sortedField.reverse\" class=\"grid_sort tiny material-icons\">arrow_drop_up</span>\r\n                    </span> \r\n                </td>\r\n            </tr>\r\n            <!-- Head Filter -->\r\n            <tr class=\"grid_row\" *ngIf=\"headFilter\">\r\n                <td class=\"grid_cell grid_cell_title\"  [ngClass]=\"{'grid_cell_first': i==0}\" *ngFor=\"let col of columns;index as i; \">\r\n                    <ma-data-grid-head-filter #headerfilter *ngIf=\"col.dataType || col.headFilter\" [col]=\"col\" (changeHeaderFilter)=\"_changeHeaderFilter($event)\"></ma-data-grid-head-filter>\r\n                </td>\r\n            </tr>\r\n            <!-- DATA -->\r\n            <tr class=\"grid_row\" *ngFor=\"let row of rows_displayed; \r\n                    last as isLastRow; \r\n                    even as pair; \r\n                    index as i; \r\n                    first as isFirstRow\"\r\n                (click)=\"SelectRow(i,row)\" [ngClass]=\"{'grid_row_selected': i == row_selected && !cell_selected, 'CSSclassEven': pair,'CSSclassOdd': !pair, 'grid_row_first': isFirstRow, 'grid_row_end': isLastRow}\">\r\n    \r\n                <td class=\"grid_cell {{col.cssClass}}\" *ngFor=\"let col of columns; \r\n                    index as ncol; \r\n                    count as maxcol; \r\n                    first as isFirstCol\r\n                    last as isLastCol;\" \r\n                    \r\n                    [ngClass]=\"{'grid_cell_selected': i == row_selected && col.prop == cell_selected, 'grid_cell_end': isLastCol,'grid_cell_first': isFirstCol}\"\r\n                    (click)=\"SelectCell(i,row,col)\">\r\n                    <!--  {{col.prop}} repr\u00E9sente le nom de colonne d'un \u00E9l\u00E9ment contenu dans 'colmuns' -- >\r\n                    <div *ngIf=\"col.isRowNumber === true; then RowNumberBlock else dataBlock\"></div>\r\n                    <ng-template #RowNumberBlock>{{i}}</ng-template>\r\n                    <ng-template #dataBlock> {{u[col.prop] | dataGridPipe :u :c}}</ng-template>\r\n                    -->\r\n                    <datagrid-cell-container [ngSwitch]=\"true\"  >\r\n                        <datagrid-cell-element *ngSwitchCase=\"col.isRowNumber === true\">{{i}}</datagrid-cell-element>\r\n                        <datagrid-cell-element *ngSwitchCase=\"col.isRowHTML === true\"><span [innerHTML]=\"row[col.prop]\"></span></datagrid-cell-element>\r\n                        <datagrid-cell-element *ngSwitchCase=\"col.useTemplate != null\"><ma-data-grid-template-cell-t1 [template]=\"col.useTemplate\" [data]=\"row\"></ma-data-grid-template-cell-t1></datagrid-cell-element>\r\n                        <datagrid-cell-element *ngSwitchCase=\"col.dataType == 'boolean'\"><ma-data-grid-cell-boolean [template]=\"col.useTemplate\" [col]=\"col\" [data]=\"row\"></ma-data-grid-cell-boolean></datagrid-cell-element>\r\n                        <datagrid-cell-element *ngSwitchDefault>{{row[col.prop] | maDataGridPipe :row :col}}</datagrid-cell-element>\r\n                    </datagrid-cell-container>\r\n                </td>\r\n        \r\n            </tr>\r\n        </table>\r\n        \r\n    </div>\r\n    <div class=\"row\" style=\"padding-top: 5px;\">\r\n        <div class=\"col s3 \">\r\n            <div class=\"page_number\">#{{nb_record}} record<span *ngIf=\"nb_record > 1\">s</span></div>\r\n        </div>\r\n        <div class=\"col s8 div_pagination\">\r\n           \r\n            <ul class=\"pagination\">\r\n                <li *ngIf=\"max_page >= 9\" (click)=\"FastDecrementPage()\" [ngClass]=\"{'disabled': current_page == 0,'': current_page != 0}\"><a  class=\"pointer\"><i class=\"material-icons small\">fast_rewind</i></a></li>\r\n                <li *ngIf=\"nb_record > 0\" (click)=\"DecrementPage()\" [ngClass]=\"{'disabled': current_page == 0,'': current_page != 0}\"><a  class=\"pointer\"><i class=\"material-icons small\">chevron_left</i></a></li>\r\n                <li *ngFor=\"let n_page of pages\" (click)=\"_changePage(n_page)\" [ngClass]=\"{'active': current_page == n_page,'': current_page != n_page}\" ><a class=\"pointer\" class=\"a_pagination small \">{{(n_page+1)}}</a></li>\r\n                <li *ngIf=\"nb_record > 0\" (click)=\"IncrementPage()\" [ngClass]=\"{'disabled': current_page == max_page,'': current_page != max_page}\"><a  class=\"pointer\"><i class=\"material-icons small\">chevron_right</i></a></li>\r\n                <li *ngIf=\"max_page >= 9\" (click)=\"FastIncrementPage()\" [ngClass]=\"{'disabled': current_page == max_page,'': current_page != max_page}\"><a class=\"pointer\"><i class=\"material-icons small\">fast_forward</i></a></li>\r\n            </ul>\r\n       \r\n        </div>\r\n    </div>\r\n</div>\r\n    \r\n    ",
-                    styles: [".datagrid_page .CSSclassOdd{background-color:#ddd}.datagrid_page{height:100%;width:100%}.div_pagination .pointer{cursor:default}.div_pagination .page_number{color:#667;font-size:1rem;padding:0 10px}.datagrid_page .div_pagination{display:-ms-inline-grid;display:inline-grid;justify-content:flex-end}.a_pagination:hover,.div_pagination .a_pagination{color:#667;display:inline-block;font-size:1rem;line-height:30px;padding:0 10px;text-decoration:none}.datagrid_page .scroller{-ms-grid-row-align:center;align-self:center;background-color:#fefefe;overflow:auto;scrollbar-color:#667 #fefefe;scrollbar-width:auto;width:100%}.grid_table .grid_row_selected{background-color:#667;color:#ddd}.grid_table .grid_sort{cursor:pointer}.datagrid_page .grid_table{width:100%}.grid_table .grid_cell_title{border-top:1px solid #667;color:#667;font-weight:700;text-align:center}.grid_table .grid_cell_selected{background-color:#667;color:#ddd}.grid_table .grid_cell_first{border-left:10px solid #667}.grid_table .grid_cell_end{border-right:0 solid #667}.grid_table .grid_cell{border-right:1px solid #667;margin:0;padding:0 0 0 5px}.grid_table .grid_row_first{border-bottom:1px solid #667}.grid_table .grid_row_last{border-bottom:0 solid #667}.grid_table .grid_row{border-bottom:1px solid #667}"]
-                },] }
-    ];
-    MaDataGridComponent.ctorParameters = function () { return []; };
-    MaDataGridComponent.propDecorators = {
-        columns: [{ type: core.Input }],
-        limit: [{ type: core.Input }],
-        canSelect: [{ type: core.Input }],
-        extFilter: [{ type: core.Input }],
-        headFilter: [{ type: core.Input }],
-        pagination: [{ type: core.Input }],
-        page: [{ type: core.Input }],
-        count: [{ type: core.Input }],
-        rows: [{ type: core.Input }],
-        change: [{ type: core.Output }],
-        select: [{ type: core.Output }],
-        extFilterChange: [{ type: core.Output }],
-        filterChange: [{ type: core.Output }],
-        changePage: [{ type: core.Output }],
-        sort: [{ type: core.Output }],
-        canSelectChange: [{ type: core.Output }],
-        gridfilter: [{ type: core.ViewChild, args: [MaGridFilterComponent, { static: true },] }],
-        headerfilter: [{ type: core.ViewChildren, args: [DataGridHeadFilterComponent,] }]
-    };
+    MaDataGridComponent.ɵfac = function MaDataGridComponent_Factory(t) { return new (t || MaDataGridComponent)(); };
+    MaDataGridComponent.ɵcmp = i0.ɵɵdefineComponent({ type: MaDataGridComponent, selectors: [["ma-data-grid"]], viewQuery: function MaDataGridComponent_Query(rf, ctx) {
+            if (rf & 1) {
+                i0.ɵɵstaticViewQuery(MaGridFilterComponent, true);
+                i0.ɵɵviewQuery(DataGridHeadFilterComponent, true);
+            }
+            if (rf & 2) {
+                var _t;
+                i0.ɵɵqueryRefresh(_t = i0.ɵɵloadQuery()) && (ctx.gridfilter = _t.first);
+                i0.ɵɵqueryRefresh(_t = i0.ɵɵloadQuery()) && (ctx.headerfilter = _t);
+            }
+        }, inputs: { columns: "columns", limit: "limit", canSelect: "canSelect", extFilter: "extFilter", headFilter: "headFilter", pagination: "pagination", page: "page", count: "count", customCSS: "customCSS", rows: "rows" }, outputs: { change: "change", select: "select", extFilterChange: "extFilterChange", filterChange: "filterChange", changePage: "changePage", sort: "sort", canSelectChange: "canSelectChange" }, features: [i0.ɵɵNgOnChangesFeature], decls: 20, vars: 14, consts: [[3, "customCSS", "searchValue", "columns", "searchValueChange", "filterChange", 4, "ngIf"], [1, "datagrid_page"], [1, "scroller"], [1, "grid_row"], [3, "class", "ngClass", 4, "ngFor", "ngForOf"], [3, "class", 4, "ngIf"], [3, "class", "ngClass", "click", 4, "ngFor", "ngForOf"], [1, "row", 2, "padding-top", "5px"], [1, "col", "s3"], [1, "page_number"], [4, "ngIf"], [1, "col", "s8", "div_pagination"], [1, "pagination"], [3, "ngClass", "click", 4, "ngIf"], [3, "ngClass", "click", 4, "ngFor", "ngForOf"], [3, "customCSS", "searchValue", "columns", "searchValueChange", "filterChange"], ["gridfilter", ""], [3, "ngClass"], [3, "click", 4, "ngIf"], [3, "click"], ["class", "grid_sort tiny material-icons", 4, "ngIf"], [1, "grid_sort", "tiny", "material-icons"], [3, "col", "changeHeaderFilter", 4, "ngIf"], [3, "col", "changeHeaderFilter"], ["headerfilter", ""], [3, "ngClass", "click"], [3, "ngSwitch"], [4, "ngSwitchCase"], [4, "ngSwitchDefault"], [3, "innerHTML"], [3, "template", "data"], [3, "template", "col", "data"], [1, "pointer"], [1, "material-icons", "small"], [1, "a_pagination", "small"]], template: function MaDataGridComponent_Template(rf, ctx) {
+            if (rf & 1) {
+                i0.ɵɵtemplate(0, MaDataGridComponent_ma_data_grid_filter_0_Template, 2, 3, "ma-data-grid-filter", 0);
+                i0.ɵɵelementStart(1, "div", 1);
+                i0.ɵɵelementStart(2, "div", 2);
+                i0.ɵɵelementStart(3, "table");
+                i0.ɵɵelementStart(4, "tr", 3);
+                i0.ɵɵtemplate(5, MaDataGridComponent_td_5_Template, 3, 9, "td", 4);
+                i0.ɵɵelementEnd();
+                i0.ɵɵtemplate(6, MaDataGridComponent_tr_6_Template, 2, 4, "tr", 5);
+                i0.ɵɵtemplate(7, MaDataGridComponent_tr_7_Template, 2, 11, "tr", 6);
+                i0.ɵɵelementEnd();
+                i0.ɵɵelementEnd();
+                i0.ɵɵelementStart(8, "div", 7);
+                i0.ɵɵelementStart(9, "div", 8);
+                i0.ɵɵelementStart(10, "div", 9);
+                i0.ɵɵtext(11);
+                i0.ɵɵtemplate(12, MaDataGridComponent_span_12_Template, 2, 0, "span", 10);
+                i0.ɵɵelementEnd();
+                i0.ɵɵelementEnd();
+                i0.ɵɵelementStart(13, "div", 11);
+                i0.ɵɵelementStart(14, "ul", 12);
+                i0.ɵɵtemplate(15, MaDataGridComponent_li_15_Template, 4, 4, "li", 13);
+                i0.ɵɵtemplate(16, MaDataGridComponent_li_16_Template, 4, 4, "li", 13);
+                i0.ɵɵtemplate(17, MaDataGridComponent_li_17_Template, 3, 5, "li", 14);
+                i0.ɵɵtemplate(18, MaDataGridComponent_li_18_Template, 4, 4, "li", 13);
+                i0.ɵɵtemplate(19, MaDataGridComponent_li_19_Template, 4, 4, "li", 13);
+                i0.ɵɵelementEnd();
+                i0.ɵɵelementEnd();
+                i0.ɵɵelementEnd();
+                i0.ɵɵelementEnd();
+            }
+            if (rf & 2) {
+                i0.ɵɵproperty("ngIf", ctx.extFilter);
+                i0.ɵɵadvance(3);
+                i0.ɵɵclassMapInterpolate1("", ctx.customCSS, "grid_table");
+                i0.ɵɵadvance(2);
+                i0.ɵɵproperty("ngForOf", ctx.columns);
+                i0.ɵɵadvance(1);
+                i0.ɵɵproperty("ngIf", ctx.headFilter);
+                i0.ɵɵadvance(1);
+                i0.ɵɵproperty("ngForOf", ctx.rows_displayed);
+                i0.ɵɵadvance(4);
+                i0.ɵɵtextInterpolate1("#", ctx.nb_record, " record");
+                i0.ɵɵadvance(1);
+                i0.ɵɵproperty("ngIf", ctx.nb_record > 1);
+                i0.ɵɵadvance(3);
+                i0.ɵɵproperty("ngIf", ctx.max_page >= 9);
+                i0.ɵɵadvance(1);
+                i0.ɵɵproperty("ngIf", ctx.nb_record > 0);
+                i0.ɵɵadvance(1);
+                i0.ɵɵproperty("ngForOf", ctx.pages);
+                i0.ɵɵadvance(1);
+                i0.ɵɵproperty("ngIf", ctx.nb_record > 0);
+                i0.ɵɵadvance(1);
+                i0.ɵɵproperty("ngIf", ctx.max_page >= 9);
+            }
+        }, directives: [i1.NgIf, i1.NgForOf, MaGridFilterComponent, i1.NgClass, DataGridHeadFilterComponent, i1.NgSwitch, i1.NgSwitchCase, i1.NgSwitchDefault, DataGridTemplateCellComponent, DataGridCellBooleanComponent], pipes: [DataGridPipePipe], styles: ["[_nghost-%COMP%]{--color-border:#667;--color-defaut:#667}.datagrid_page[_ngcontent-%COMP%]   .CSSclassOdd[_ngcontent-%COMP%]{background-color:#ddd}.datagrid_page[_ngcontent-%COMP%]{height:100%;width:100%}.div_pagination[_ngcontent-%COMP%]   .pointer[_ngcontent-%COMP%]{cursor:default}.div_pagination[_ngcontent-%COMP%]   .page_number[_ngcontent-%COMP%]{color:var(--color-defaut);font-size:1rem;padding:0 10px}.datagrid_page[_ngcontent-%COMP%]   .div_pagination[_ngcontent-%COMP%]{display:-ms-inline-grid;display:inline-grid;justify-content:flex-end}.a_pagination[_ngcontent-%COMP%]:hover, .div_pagination[_ngcontent-%COMP%]   .a_pagination[_ngcontent-%COMP%]{color:var(--color-border);display:inline-block;font-size:1rem;line-height:30px;padding:0 10px;text-decoration:none}.datagrid_page[_ngcontent-%COMP%]   .scroller[_ngcontent-%COMP%]{-ms-grid-row-align:center;align-self:center;background-color:#fefefe;overflow:auto;scrollbar-color:var(--color-border) #fefefe;scrollbar-width:auto;width:100%}.grid_table[_ngcontent-%COMP%]   .grid_row_selected[_ngcontent-%COMP%]{background-color:#667;color:#ddd}.grid_table[_ngcontent-%COMP%]   .grid_sort[_ngcontent-%COMP%]{cursor:pointer}.datagrid_page[_ngcontent-%COMP%]   .grid_table[_ngcontent-%COMP%]{width:100%}.grid_table[_ngcontent-%COMP%]   .grid_cell_title[_ngcontent-%COMP%]{border-top:1px solid var(--color-border);color:var(--color-defaut);font-weight:700;text-align:center}.grid_table[_ngcontent-%COMP%]   .grid_cell_selected[_ngcontent-%COMP%]{background-color:#667;color:#ddd}.grid_table[_ngcontent-%COMP%]   .grid_cell_first[_ngcontent-%COMP%]{border-left:10px solid var(--color-border)}.grid_table[_ngcontent-%COMP%]   .grid_cell_end[_ngcontent-%COMP%]{border-right:0 solid var(--color-border)}.grid_table[_ngcontent-%COMP%]   .grid_cell[_ngcontent-%COMP%]{border-right:1px solid var(--color-border)}.grid_table[_ngcontent-%COMP%]   .grid_row_first[_ngcontent-%COMP%]{border-bottom:1px solid var(--color-border)}.grid_table[_ngcontent-%COMP%]   .grid_row_last[_ngcontent-%COMP%]{border-bottom:0 solid var(--color-border)}.grid_table[_ngcontent-%COMP%]   .grid_row[_ngcontent-%COMP%]{border-bottom:1px solid var(--color-border)}"] });
+    /*@__PURE__*/ (function () {
+        i0.ɵsetClassMetadata(MaDataGridComponent, [{
+                type: i0.Component,
+                args: [{
+                        selector: 'ma-data-grid',
+                        //providers: [PipeLengthPipe],
+                        templateUrl: './ma-data-grid.component.html',
+                        styleUrls: ['./ma-data-grid.component.css'],
+                    }]
+            }], function () { return []; }, { columns: [{
+                    type: i0.Input
+                }], limit: [{
+                    type: i0.Input
+                }], canSelect: [{
+                    type: i0.Input
+                }], extFilter: [{
+                    type: i0.Input
+                }], headFilter: [{
+                    type: i0.Input
+                }], pagination: [{
+                    type: i0.Input
+                }], page: [{
+                    type: i0.Input
+                }], count: [{
+                    type: i0.Input
+                }], customCSS: [{
+                    type: i0.Input
+                }], rows: [{
+                    type: i0.Input
+                }], change: [{
+                    type: i0.Output
+                }], select: [{
+                    type: i0.Output
+                }], extFilterChange: [{
+                    type: i0.Output
+                }], filterChange: [{
+                    type: i0.Output
+                }], changePage: [{
+                    type: i0.Output
+                }], sort: [{
+                    type: i0.Output
+                }], canSelectChange: [{
+                    type: i0.Output
+                }], gridfilter: [{
+                    type: i0.ViewChild,
+                    args: [MaGridFilterComponent, { static: true }]
+                }], headerfilter: [{
+                    type: i0.ViewChildren,
+                    args: [DataGridHeadFilterComponent]
+                }] });
+    })();
 
     var MaAnchorGridCellDirective = /** @class */ (function () {
         function MaAnchorGridCellDirective(viewContainerRef) {
@@ -1381,149 +2251,74 @@
         }
         return MaAnchorGridCellDirective;
     }());
-    MaAnchorGridCellDirective.decorators = [
-        { type: core.Directive, args: [{
-                    selector: '[libMaAnchorGridCell]'
-                },] }
-    ];
-    MaAnchorGridCellDirective.ctorParameters = function () { return [
-        { type: core.ViewContainerRef }
-    ]; };
-
-    var MaGridCellTemplateDirective = /** @class */ (function () {
-        function MaGridCellTemplateDirective(viewContainerRef) {
-            this.viewContainerRef = viewContainerRef;
-        }
-        return MaGridCellTemplateDirective;
-    }());
-    MaGridCellTemplateDirective.decorators = [
-        { type: core.Directive, args: [{
-                    selector: '[libMaGridCellTemplate]'
-                },] }
-    ];
-    MaGridCellTemplateDirective.ctorParameters = function () { return [
-        { type: core.ViewContainerRef }
-    ]; };
-
-    var DataGridCellItemComponent = /** @class */ (function () {
-        function DataGridCellItemComponent(component, data) {
-            this.component = component;
-            this.data = data;
-        }
-        return DataGridCellItemComponent;
-    }());
-
-    var DataGridTemplateCellComponent = /** @class */ (function () {
-        function DataGridTemplateCellComponent(componentFactoryResolver) {
-            this.componentFactoryResolver = componentFactoryResolver;
-            // console.log('DataGridTemplateCellComponent c',this.template);
-        }
-        DataGridTemplateCellComponent.prototype.ngOnInit = function () {
-            // 
-            if (!this.template) {
-                return;
-            }
-            var component = new DataGridCellItemComponent(this.template, this.data);
-            var componentFactory = this.componentFactoryResolver.resolveComponentFactory(component.component);
-            if (!this.libMaGridCellTemplate) {
-                return;
-            }
-            var viewContainerRef = this.libMaGridCellTemplate.viewContainerRef;
-            var componentRef = viewContainerRef.createComponent(componentFactory);
-            componentRef.instance.data = component.data;
-        };
-        return DataGridTemplateCellComponent;
-    }());
-    DataGridTemplateCellComponent.decorators = [
-        { type: core.Component, args: [{
-                    selector: 'ma-data-grid-template-cell-t1',
-                    template: '<ng-template libMaGridCellTemplate></ng-template>'
-                },] }
-    ];
-    DataGridTemplateCellComponent.ctorParameters = function () { return [
-        { type: core.ComponentFactoryResolver }
-    ]; };
-    DataGridTemplateCellComponent.propDecorators = {
-        data: [{ type: core.Input }],
-        template: [{ type: core.Input }],
-        libMaGridCellTemplate: [{ type: core.ViewChild, args: [MaGridCellTemplateDirective, { static: true },] }]
-    };
-
-    var DataGridPipePipe = /** @class */ (function () {
-        function DataGridPipePipe() {
-        }
-        DataGridPipePipe.prototype.transform = function (value, row, col) {
-            if (col.pipe) {
-                return col.pipe(value, row, col);
-            }
-            return value;
-        };
-        return DataGridPipePipe;
-    }());
-    DataGridPipePipe.decorators = [
-        { type: core.Pipe, args: [{
-                    name: 'maDataGridPipe'
-                },] }
-    ];
-
-    var DataGridCellBooleanComponent = /** @class */ (function () {
-        function DataGridCellBooleanComponent() {
-            this.icon = '';
-        }
-        DataGridCellBooleanComponent.prototype.ngOnInit = function () {
-            // console.log(this.data[this.col.prop]);
-            if (this.data[this.col.prop] === true) {
-                this.icon = 'check_box';
-            }
-            else if (this.data[this.col.prop] === false) {
-                this.icon = 'check_box_outline_blank';
-            }
-        };
-        return DataGridCellBooleanComponent;
-    }());
-    DataGridCellBooleanComponent.decorators = [
-        { type: core.Component, args: [{
-                    selector: 'ma-data-grid-cell-boolean',
-                    template: '<div style="text-align: center"><i class="tiny material-icons">{{icon}}</i></div>'
-                },] }
-    ];
-    DataGridCellBooleanComponent.ctorParameters = function () { return []; };
-    DataGridCellBooleanComponent.propDecorators = {
-        data: [{ type: core.Input }],
-        col: [{ type: core.Input }]
-    };
+    MaAnchorGridCellDirective.ɵfac = function MaAnchorGridCellDirective_Factory(t) { return new (t || MaAnchorGridCellDirective)(i0.ɵɵdirectiveInject(i0.ViewContainerRef)); };
+    MaAnchorGridCellDirective.ɵdir = i0.ɵɵdefineDirective({ type: MaAnchorGridCellDirective, selectors: [["", "libMaAnchorGridCell", ""]] });
+    /*@__PURE__*/ (function () {
+        i0.ɵsetClassMetadata(MaAnchorGridCellDirective, [{
+                type: i0.Directive,
+                args: [{
+                        selector: '[libMaAnchorGridCell]'
+                    }]
+            }], function () { return [{ type: i0.ViewContainerRef }]; }, null);
+    })();
 
     var MaDataGridModule = /** @class */ (function () {
         function MaDataGridModule() {
         }
         return MaDataGridModule;
     }());
-    MaDataGridModule.decorators = [
-        { type: core.NgModule, args: [{
-                    declarations: [
-                        MaDataGridComponent,
-                        MaAnchorGridCellDirective,
-                        DataGridTemplateCellComponent,
-                        DataGridPipePipe,
-                        MaGridFilterComponent,
-                        DataGridHeadFilterComponent,
-                        DataGridOpFilterComponent,
-                        DataGridPickerDateComponent,
-                        DataGridCellBooleanComponent,
-                        MaGridCellTemplateDirective
-                    ],
-                    imports: [
-                        common.CommonModule,
-                        forms.FormsModule
-                    ],
-                    exports: [
-                        /* Ajouter CommonModule pour éviter les erreurs
-                            Can't bind to 'ngClass' since it isn't a known property */
-                        MaDataGridComponent,
-                        MaGridFilterComponent
-                    ]
-                },] }
-    ];
+    MaDataGridModule.ɵmod = i0.ɵɵdefineNgModule({ type: MaDataGridModule });
+    MaDataGridModule.ɵinj = i0.ɵɵdefineInjector({ factory: function MaDataGridModule_Factory(t) { return new (t || MaDataGridModule)(); }, imports: [[
+                i1.CommonModule,
+                i1$1.FormsModule
+            ]] });
+    (function () {
+        (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(MaDataGridModule, { declarations: [MaDataGridComponent,
+                MaAnchorGridCellDirective,
+                DataGridTemplateCellComponent,
+                DataGridPipePipe,
+                MaGridFilterComponent,
+                DataGridHeadFilterComponent,
+                DataGridOpFilterComponent,
+                DataGridPickerDateComponent,
+                DataGridCellBooleanComponent,
+                MaGridCellTemplateDirective], imports: [i1.CommonModule,
+                i1$1.FormsModule], exports: [
+                /* Ajouter CommonModule pour éviter les erreurs
+                    Can't bind to 'ngClass' since it isn't a known property */
+                MaDataGridComponent,
+                MaGridFilterComponent
+            ] });
+    })();
+    /*@__PURE__*/ (function () {
+        i0.ɵsetClassMetadata(MaDataGridModule, [{
+                type: i0.NgModule,
+                args: [{
+                        declarations: [
+                            MaDataGridComponent,
+                            MaAnchorGridCellDirective,
+                            DataGridTemplateCellComponent,
+                            DataGridPipePipe,
+                            MaGridFilterComponent,
+                            DataGridHeadFilterComponent,
+                            DataGridOpFilterComponent,
+                            DataGridPickerDateComponent,
+                            DataGridCellBooleanComponent,
+                            MaGridCellTemplateDirective
+                        ],
+                        imports: [
+                            i1.CommonModule,
+                            i1$1.FormsModule
+                        ],
+                        exports: [
+                            /* Ajouter CommonModule pour éviter les erreurs
+                                Can't bind to 'ngClass' since it isn't a known property */
+                            MaDataGridComponent,
+                            MaGridFilterComponent
+                        ]
+                    }]
+            }], null, null);
+    })();
 
     /*
      * Public API Surface of ma-data-grid
@@ -1540,14 +2335,6 @@
     exports.options_header_date = options_header_date;
     exports.options_header_number = options_header_number;
     exports.options_header_string = options_header_string;
-    exports.ɵa = DataGridHeadFilterComponent;
-    exports.ɵb = DataGridOpFilterComponent;
-    exports.ɵc = DataGridPickerDateComponent;
-    exports.ɵd = MaAnchorGridCellDirective;
-    exports.ɵe = DataGridTemplateCellComponent;
-    exports.ɵf = MaGridCellTemplateDirective;
-    exports.ɵg = DataGridPipePipe;
-    exports.ɵh = DataGridCellBooleanComponent;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

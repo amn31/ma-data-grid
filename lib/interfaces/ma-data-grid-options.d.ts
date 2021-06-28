@@ -40,3 +40,4 @@ export interface MaDataGridFilterEvent {
     text: string;
     fields: string[];
 }
+//# sourceMappingURL=ma-data-grid-options.d.ts.map

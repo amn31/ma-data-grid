@@ -4,6 +4,7 @@ import { DataGridHeadFilterComponent } from './components/data-grid-head-filter/
 import { MaDataGridFilterEvent, MaDataGridColumnOptions, MaDataGridSelectMethod, MaDataGridSelectEvent } from './interfaces/ma-data-grid-options';
 import { MaGridFilterComponent } from './ma-grid-filter.component';
 import { FilterConditions } from "@amn31/filter-multiple-conditions";
+import * as i0 from "@angular/core";
 export declare class MaDataGridComponent implements OnInit, OnChanges {
     columns: MaDataGridColumnOptions[];
     limit: number;
@@ -13,6 +14,7 @@ export declare class MaDataGridComponent implements OnInit, OnChanges {
     pagination: boolean;
     page: number;
     count: number;
+    customCSS: string;
     rows: any;
     change: EventEmitter<any>;
     select: EventEmitter<MaDataGridSelectEvent>;
@@ -23,6 +25,8 @@ export declare class MaDataGridComponent implements OnInit, OnChanges {
     canSelectChange: EventEmitter<MaDataGridSelectMethod>;
     gridfilter: MaGridFilterComponent;
     headerfilter: QueryList<DataGridHeadFilterComponent>;
+    grid_cell_first: string;
+    grid_row_selected: string;
     current_page: number;
     max_page: number;
     max_nb_page: number;
@@ -57,4 +61,7 @@ export declare class MaDataGridComponent implements OnInit, OnChanges {
     timeout: any;
     private _changeHeaderFilter;
     private _delayChangeHeaderFilter;
+    static ɵfac: i0.ɵɵFactoryDef<MaDataGridComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDefWithMeta<MaDataGridComponent, "ma-data-grid", never, { "columns": "columns"; "limit": "limit"; "canSelect": "canSelect"; "extFilter": "extFilter"; "headFilter": "headFilter"; "pagination": "pagination"; "page": "page"; "count": "count"; "customCSS": "customCSS"; "rows": "rows"; }, { "change": "change"; "select": "select"; "extFilterChange": "extFilterChange"; "filterChange": "filterChange"; "changePage": "changePage"; "sort": "sort"; "canSelectChange": "canSelectChange"; }, never, never>;
 }
+//# sourceMappingURL=ma-data-grid.component.d.ts.map

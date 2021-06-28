@@ -1,9 +1,9 @@
-import { EventEmitter, Component, Input, ViewChild, Output, ViewChildren, Directive, ViewContainerRef, ComponentFactoryResolver, Pipe, NgModule } from '@angular/core';
+import { ɵɵelementStart, ɵɵtext, ɵɵelementEnd, ɵɵnextContext, ɵɵadvance, ɵɵtextInterpolate, ɵɵelement, ɵɵproperty, ɵɵsanitizeHtml, ɵɵgetCurrentView, ɵɵlistener, ɵɵrestoreView, ɵɵtemplate, ɵɵtextInterpolate1, EventEmitter, ɵɵdefineComponent, ɵɵviewQuery, ɵɵqueryRefresh, ɵɵloadQuery, ɵɵstyleProp, ɵsetClassMetadata, Component, Input, ViewChild, Output, ɵɵstaticViewQuery, ɵɵstyleMap, ɵɵNgOnChangesFeature, ɵɵclassMapInterpolate1, ɵɵdirectiveInject, ViewContainerRef, ɵɵdefineDirective, Directive, ComponentFactoryResolver, ɵɵdefinePipe, Pipe, ɵɵclassMapInterpolate2, ɵɵpureFunction1, ɵɵpipe, ɵɵpipeBind3, ɵɵpureFunction3, ɵɵpureFunction5, ɵɵpureFunction2, ViewChildren, ɵɵdefineNgModule, ɵɵdefineInjector, ɵɵsetNgModuleScope, NgModule } from '@angular/core';
 import * as $ from 'jquery';
+import { NgIf, NgForOf, NgClass, NgSwitch, NgSwitchCase, NgSwitchDefault, CommonModule } from '@angular/common';
 import { Datepicker, Timepicker, updateTextFields } from 'materialize-css';
+import { DefaultValueAccessor, NgControlStatus, NgModel, FormsModule } from '@angular/forms';
 import { MaFilter } from '@amn31/filter-multiple-conditions';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 
 //import { Type } from '@angular/core';
 const options_header_boolean = [{
@@ -276,6 +276,76 @@ const options_header_date = [{
 //   }
 // }
 
+const _c0 = ["elemToggle"];
+const _c1 = ["elemValue"];
+function DataGridOpFilterComponent_i_3_Template(rf, ctx) { if (rf & 1) {
+    ɵɵelementStart(0, "i", 6);
+    ɵɵtext(1, "search");
+    ɵɵelementEnd();
+} }
+function DataGridOpFilterComponent_div_7_div_1_span_3_Template(rf, ctx) { if (rf & 1) {
+    ɵɵelementStart(0, "span");
+    ɵɵtext(1);
+    ɵɵelementEnd();
+} if (rf & 2) {
+    const opt_r4 = ɵɵnextContext(2).$implicit;
+    ɵɵadvance(1);
+    ɵɵtextInterpolate(opt_r4.label);
+} }
+function DataGridOpFilterComponent_div_7_div_1_span_4_Template(rf, ctx) { if (rf & 1) {
+    ɵɵelement(0, "span", 11);
+} if (rf & 2) {
+    const opt_r4 = ɵɵnextContext(2).$implicit;
+    ɵɵproperty("innerHTML", opt_r4.label, ɵɵsanitizeHtml);
+} }
+function DataGridOpFilterComponent_div_7_div_1_Template(rf, ctx) { if (rf & 1) {
+    const _r13 = ɵɵgetCurrentView();
+    ɵɵelementStart(0, "div");
+    ɵɵelementStart(1, "label");
+    ɵɵelementStart(2, "input", 9);
+    ɵɵlistener("click", function DataGridOpFilterComponent_div_7_div_1_Template_input_click_2_listener() { ɵɵrestoreView(_r13); const opt_r4 = ɵɵnextContext().$implicit; const ctx_r11 = ɵɵnextContext(); return ctx_r11.changeValues(opt_r4); });
+    ɵɵelementEnd();
+    ɵɵtemplate(3, DataGridOpFilterComponent_div_7_div_1_span_3_Template, 2, 1, "span", 8);
+    ɵɵtemplate(4, DataGridOpFilterComponent_div_7_div_1_span_4_Template, 1, 1, "span", 10);
+    ɵɵelementEnd();
+    ɵɵelementEnd();
+} if (rf & 2) {
+    const opt_r4 = ɵɵnextContext().$implicit;
+    const ctx_r5 = ɵɵnextContext();
+    ɵɵadvance(2);
+    ɵɵproperty("value", opt_r4.value)("checked", opt_r4.checked);
+    ɵɵadvance(1);
+    ɵɵproperty("ngIf", !ctx_r5.isRowHTML);
+    ɵɵadvance(1);
+    ɵɵproperty("ngIf", ctx_r5.isRowHTML === true);
+} }
+function DataGridOpFilterComponent_div_7_div_2_Template(rf, ctx) { if (rf & 1) {
+    const _r17 = ɵɵgetCurrentView();
+    ɵɵelementStart(0, "div");
+    ɵɵelementStart(1, "div", 12);
+    ɵɵlistener("click", function DataGridOpFilterComponent_div_7_div_2_Template_div_click_1_listener() { ɵɵrestoreView(_r17); const opt_r4 = ɵɵnextContext().$implicit; const ctx_r15 = ɵɵnextContext(); return ctx_r15.changeValue(opt_r4); });
+    ɵɵtext(2);
+    ɵɵelementEnd();
+    ɵɵelementEnd();
+} if (rf & 2) {
+    const opt_r4 = ɵɵnextContext().$implicit;
+    ɵɵadvance(2);
+    ɵɵtextInterpolate1("", opt_r4.label, "\u00A0");
+} }
+function DataGridOpFilterComponent_div_7_Template(rf, ctx) { if (rf & 1) {
+    ɵɵelementStart(0, "div", 7);
+    ɵɵtemplate(1, DataGridOpFilterComponent_div_7_div_1_Template, 5, 4, "div", 8);
+    ɵɵtemplate(2, DataGridOpFilterComponent_div_7_div_2_Template, 3, 1, "div", 8);
+    ɵɵelementEnd();
+} if (rf & 2) {
+    const opt_r4 = ctx.$implicit;
+    const ctx_r3 = ɵɵnextContext();
+    ɵɵproperty("value", opt_r4.value);
+    ɵɵadvance(1);
+    ɵɵproperty("ngIf", ctx_r3.multiple === true);
+    ɵɵadvance(1);
+    ɵɵproperty("ngIf", ctx_r3.multiple === false);
+} }
 const defaut_label = '';
 class DataGridOpFilterComponent {
     constructor() {
@@ -448,23 +518,59 @@ class DataGridOpFilterComponent {
         });
     }
 }
-DataGridOpFilterComponent.decorators = [
-    { type: Component, args: [{
+DataGridOpFilterComponent.ɵfac = function DataGridOpFilterComponent_Factory(t) { return new (t || DataGridOpFilterComponent)(); };
+DataGridOpFilterComponent.ɵcmp = ɵɵdefineComponent({ type: DataGridOpFilterComponent, selectors: [["ma-data-grid-op-filter"]], viewQuery: function DataGridOpFilterComponent_Query(rf, ctx) { if (rf & 1) {
+        ɵɵviewQuery(_c0, true);
+        ɵɵviewQuery(_c1, true);
+    } if (rf & 2) {
+        var _t;
+        ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx.elemToggle = _t.first);
+        ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx.elemValue = _t.first);
+    } }, inputs: { value: "value", col: "col" }, outputs: { changeOperator: "changeOperator", changeEmptyOperator: "changeEmptyOperator" }, decls: 8, vars: 7, consts: [[1, "op_label", 3, "click"], ["elemValue", ""], ["class", "tiny material-icons", 4, "ngIf"], [2, "display", "none", "z-index", "20", "max-height", "300px", "overflow-y", "auto", "background-color", "aliceblue", "border", "1px solid #9e9e9e"], ["elemToggle", ""], ["class", "op_filter", 3, "value", 4, "ngFor", "ngForOf"], [1, "tiny", "material-icons"], [1, "op_filter", 3, "value"], [4, "ngIf"], ["type", "checkbox", 1, "op_filter", 3, "value", "checked", "click"], [3, "innerHTML", 4, "ngIf"], [3, "innerHTML"], [3, "click"]], template: function DataGridOpFilterComponent_Template(rf, ctx) { if (rf & 1) {
+        ɵɵelementStart(0, "div");
+        ɵɵelementStart(1, "div", 0, 1);
+        ɵɵlistener("click", function DataGridOpFilterComponent_Template_div_click_1_listener() { return ctx.toggleDiv(); });
+        ɵɵtemplate(3, DataGridOpFilterComponent_i_3_Template, 2, 0, "i", 2);
+        ɵɵtext(4);
+        ɵɵelementEnd();
+        ɵɵelementStart(5, "div", 3, 4);
+        ɵɵtemplate(7, DataGridOpFilterComponent_div_7_Template, 3, 3, "div", 5);
+        ɵɵelementEnd();
+        ɵɵelementEnd();
+    } if (rf & 2) {
+        ɵɵadvance(3);
+        ɵɵproperty("ngIf", ctx.label == "");
+        ɵɵadvance(1);
+        ɵɵtextInterpolate1("", ctx.label, " ");
+        ɵɵadvance(1);
+        ɵɵstyleProp("left", ctx.popupPosition.left, "px")("top", ctx.popupPosition.top, "px");
+        ɵɵadvance(2);
+        ɵɵproperty("ngForOf", ctx.options);
+    } }, directives: [NgIf, NgForOf], styles: ["select.op_filter[_ngcontent-%COMP%]{border:1px inset #9e9e9e;height:1.4rem;min-width:25px;padding:0}.op_filter[_ngcontent-%COMP%]{border-top:1px solid #9e9e9e;padding-left:10px;padding-right:10px}.op_filter[_ngcontent-%COMP%], .op_label[_ngcontent-%COMP%]{font-weight:lighter}"] });
+/*@__PURE__*/ (function () { ɵsetClassMetadata(DataGridOpFilterComponent, [{
+        type: Component,
+        args: [{
                 selector: 'ma-data-grid-op-filter',
-                template: "<!--\n<div class=\"red\">=</div>(onComplete)=\"onComplete($event)\"\n\n<app-ma-completion [data]=\"choices\" placeholder=\"\" value=\"defautValue\"  ></app-ma-completion>\n     <select dir=\"rtl\">\n    <option>Foo</option>    \n    <option>bar</option>\n    <option>to the right</option>\n</select>\n\n\n<div *ngIf=\"col.isRowNumber === true; then RowNumberBlock else dataBlock\"></div>\n<ng-template #RowNumberBlock>{{i}}</ng-template>\n<ng-template #dataBlock> {{u[col.prop] | dataGridPipe :u :c}}</ng-template>\n-->\n\n<div>\n\n    <div #elemValue (click)=\"toggleDiv()\" class=\"op_label\"><i *ngIf=\"label == ''\" class=\"tiny material-icons\">search</i>{{label}}\n    </div>\n    <div #elemToggle style=\"display: none; z-index: 20; max-height: 300px; overflow-y: auto; background-color: aliceblue;border: 1px solid #9e9e9e;\" [style.left.px]=\"popupPosition.left\"\n    [style.top.px]=\"popupPosition.top\">\n        <div *ngFor=\"let opt of options;\" class=\"op_filter\" [value]=\"opt.value\">\n            <div *ngIf=\"multiple === true\">\n                <label>\n                    <input type=\"checkbox\" class=\"op_filter\" [value]=\"opt.value\" [checked]=\"opt.checked\" (click)=\"changeValues(opt)\" />\n                    <span *ngIf=\"!isRowHTML\">{{opt.label}}</span>\n                    <span *ngIf=\"isRowHTML === true\" [innerHTML]=\"opt.label\"></span>\n                </label>\n            </div>\n            <div *ngIf=\"multiple === false\">\n                <div (click)=\"changeValue(opt)\">{{opt.label}}&nbsp;</div>\n            </div>\n        </div>\n    </div>\n\n</div>\n<!--\n<select class=\"browser-default op_filter\" [(ngModel)]=\"value\" (change)=\"_changeOperator($event)\" >\n    <option *ngFor=\"let opt of options;\"  class=\"op_filter\" [value]=\"opt.value\">{{opt.label}}\n    </option>\n</select>\n\n\n-->",
-                styles: ["select.op_filter{border:1px inset #9e9e9e;height:1.4rem;min-width:25px;padding:0}.op_filter{border-top:1px solid #9e9e9e;padding-left:10px;padding-right:10px}.op_filter,.op_label{font-weight:lighter}"]
-            },] }
-];
-DataGridOpFilterComponent.ctorParameters = () => [];
-DataGridOpFilterComponent.propDecorators = {
-    value: [{ type: Input }],
-    col: [{ type: Input }],
-    elemToggle: [{ type: ViewChild, args: ["elemToggle", { static: false },] }],
-    elemValue: [{ type: ViewChild, args: ["elemValue", { static: false },] }],
-    changeOperator: [{ type: Output }],
-    changeEmptyOperator: [{ type: Output }]
-};
+                templateUrl: './data-grid-op-filter.component.html',
+                styleUrls: ['./data-grid-op-filter.component.css']
+            }]
+    }], function () { return []; }, { value: [{
+            type: Input
+        }], col: [{
+            type: Input
+        }], elemToggle: [{
+            type: ViewChild,
+            args: ["elemToggle", { static: false }]
+        }], elemValue: [{
+            type: ViewChild,
+            args: ["elemValue", { static: false }]
+        }], changeOperator: [{
+            type: Output
+        }], changeEmptyOperator: [{
+            type: Output
+        }] }); })();
 
+const _c0$1 = ["madatepicker"];
 class DataGridPickerDateComponent {
     constructor() {
         this.datevalue = null;
@@ -573,21 +679,49 @@ class DataGridPickerDateComponent {
         this.changePicker.emit(this.time);
     }
 }
-DataGridPickerDateComponent.decorators = [
-    { type: Component, args: [{
+DataGridPickerDateComponent.ɵfac = function DataGridPickerDateComponent_Factory(t) { return new (t || DataGridPickerDateComponent)(); };
+DataGridPickerDateComponent.ɵcmp = ɵɵdefineComponent({ type: DataGridPickerDateComponent, selectors: [["ma-data-grid-datepicker"]], viewQuery: function DataGridPickerDateComponent_Query(rf, ctx) { if (rf & 1) {
+        ɵɵviewQuery(_c0$1, true);
+    } if (rf & 2) {
+        var _t;
+        ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx.madatepicker = _t.first);
+    } }, inputs: { value: "value", type: "type" }, outputs: { changePicker: "changePicker" }, decls: 2, vars: 2, consts: [["type", "text", 1, "ma-data-grid-datepicker", "datepicker", 3, "id", "ngModel", "ngModelChange"], ["madatepicker", ""]], template: function DataGridPickerDateComponent_Template(rf, ctx) { if (rf & 1) {
+        ɵɵelementStart(0, "input", 0, 1);
+        ɵɵlistener("ngModelChange", function DataGridPickerDateComponent_Template_input_ngModelChange_0_listener($event) { return ctx.realValue = $event; });
+        ɵɵelementEnd();
+    } if (rf & 2) {
+        ɵɵproperty("id", ctx.datepicker_id)("ngModel", ctx.realValue);
+    } }, directives: [DefaultValueAccessor, NgControlStatus, NgModel], styles: [""] });
+/*@__PURE__*/ (function () { ɵsetClassMetadata(DataGridPickerDateComponent, [{
+        type: Component,
+        args: [{
                 selector: 'ma-data-grid-datepicker',
-                template: "\n    <!-- [(ngModel)]=\"realValue\"   -->\n    <input \n        [id]=\"datepicker_id\" \n        #madatepicker type=\"text\" \n        [(ngModel)]=\"realValue\"\n        class=\"ma-data-grid-datepicker datepicker\">\n\n",
-                styles: [""]
-            },] }
-];
-DataGridPickerDateComponent.ctorParameters = () => [];
-DataGridPickerDateComponent.propDecorators = {
-    value: [{ type: Input }],
-    type: [{ type: Input }],
-    changePicker: [{ type: Output }],
-    madatepicker: [{ type: ViewChild, args: ["madatepicker", { static: false },] }]
-};
+                templateUrl: './data-grid-picker-date.component.html',
+                styleUrls: ['./data-grid-picker-date.component.css']
+            }]
+    }], function () { return []; }, { value: [{
+            type: Input
+        }], type: [{
+            type: Input
+        }], changePicker: [{
+            type: Output
+        }], madatepicker: [{
+            type: ViewChild,
+            args: ["madatepicker", { static: false }]
+        }] }); })();
 
+function DataGridHeadFilterComponent_td_5_Template(rf, ctx) { if (rf & 1) {
+    const _r4 = ɵɵgetCurrentView();
+    ɵɵelementStart(0, "td", 4);
+    ɵɵelementStart(1, "input", 7);
+    ɵɵlistener("ngModelChange", function DataGridHeadFilterComponent_td_5_Template_input_ngModelChange_1_listener($event) { ɵɵrestoreView(_r4); const ctx_r3 = ɵɵnextContext(); return ctx_r3.filter_value = $event; })("keyup", function DataGridHeadFilterComponent_td_5_Template_input_keyup_1_listener($event) { ɵɵrestoreView(_r4); const ctx_r5 = ɵɵnextContext(); return ctx_r5._changeOperator($event); });
+    ɵɵelementEnd();
+    ɵɵelementEnd();
+} if (rf & 2) {
+    const ctx_r1 = ɵɵnextContext();
+    ɵɵadvance(1);
+    ɵɵproperty("ngModel", ctx_r1.filter_value);
+} }
 class DataGridHeadFilterComponent {
     constructor() {
         this.filter_value = '';
@@ -633,25 +767,99 @@ class DataGridHeadFilterComponent {
         });
     }
 }
-DataGridHeadFilterComponent.decorators = [
-    { type: Component, args: [{
+DataGridHeadFilterComponent.ɵfac = function DataGridHeadFilterComponent_Factory(t) { return new (t || DataGridHeadFilterComponent)(); };
+DataGridHeadFilterComponent.ɵcmp = ɵɵdefineComponent({ type: DataGridHeadFilterComponent, selectors: [["ma-data-grid-head-filter"]], viewQuery: function DataGridHeadFilterComponent_Query(rf, ctx) { if (rf & 1) {
+        ɵɵstaticViewQuery(DataGridOpFilterComponent, true);
+        ɵɵstaticViewQuery(DataGridPickerDateComponent, true);
+    } if (rf & 2) {
+        var _t;
+        ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx.op_filter = _t.first);
+        ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx.madate_picker = _t.first);
+    } }, inputs: { filter_value: "filter_value", col: "col" }, outputs: { changeHeaderFilter: "changeHeaderFilter" }, decls: 9, vars: 4, consts: [[1, "header_filter_op"], [3, "col", "changeEmptyOperator", "changeOperator"], ["op_filter", ""], ["class", "header_filter", 4, "ngIf"], [1, "header_filter"], ["type", "date", 3, "changePicker"], ["madate_picker", ""], [1, "header_filter", 3, "ngModel", "ngModelChange", "keyup"]], template: function DataGridHeadFilterComponent_Template(rf, ctx) { if (rf & 1) {
+        ɵɵelementStart(0, "table");
+        ɵɵelementStart(1, "tr");
+        ɵɵelementStart(2, "td", 0);
+        ɵɵelementStart(3, "ma-data-grid-op-filter", 1, 2);
+        ɵɵlistener("changeEmptyOperator", function DataGridHeadFilterComponent_Template_ma_data_grid_op_filter_changeEmptyOperator_3_listener() { return ctx._changeEmptyOperator(); })("changeOperator", function DataGridHeadFilterComponent_Template_ma_data_grid_op_filter_changeOperator_3_listener($event) { return ctx._changeOperator($event); });
+        ɵɵelementEnd();
+        ɵɵelementEnd();
+        ɵɵtemplate(5, DataGridHeadFilterComponent_td_5_Template, 2, 1, "td", 3);
+        ɵɵelementStart(6, "td", 4);
+        ɵɵelementStart(7, "ma-data-grid-datepicker", 5, 6);
+        ɵɵlistener("changePicker", function DataGridHeadFilterComponent_Template_ma_data_grid_datepicker_changePicker_7_listener($event) { return ctx._changeDate($event); });
+        ɵɵelementEnd();
+        ɵɵelementEnd();
+        ɵɵelementEnd();
+        ɵɵelementEnd();
+    } if (rf & 2) {
+        ɵɵadvance(3);
+        ɵɵproperty("col", ctx.col);
+        ɵɵadvance(2);
+        ɵɵproperty("ngIf", ctx.col.dataType != "date" && ctx.col.dataType != "boolean" && (!ctx.col.headFilter || ctx.col.headFilter.length == 0));
+        ɵɵadvance(1);
+        ɵɵstyleMap(ctx.astuce_datapicker);
+    } }, directives: [DataGridOpFilterComponent, NgIf, DataGridPickerDateComponent, DefaultValueAccessor, NgControlStatus, NgModel], styles: ["input.header_filter[_ngcontent-%COMP%]{background-color:#e8f5f8;border:1px inset #9e9e9e;height:1.2rem;margin:0 0 0 -5px}  .ma-data-grid-datepicker{height:1.2rem;max-height:1.2rem}td.header_filter[_ngcontent-%COMP%]{padding:1px 1px 1px 5px}td.header_filter_op[_ngcontent-%COMP%]{padding:1px 1px 1px 0}"] });
+/*@__PURE__*/ (function () { ɵsetClassMetadata(DataGridHeadFilterComponent, [{
+        type: Component,
+        args: [{
                 selector: 'ma-data-grid-head-filter',
-                template: "<table>\n    <tr>\n        <td class=\"header_filter_op\" >\n            <ma-data-grid-op-filter #op_filter [col]=\"col\" (changeEmptyOperator)=\"_changeEmptyOperator()\" (changeOperator)=\"_changeOperator($event)\"></ma-data-grid-op-filter>\n        </td>\n        <td class=\"header_filter\" *ngIf=\"col.dataType != 'date' && col.dataType != 'boolean' && (!col.headFilter || col.headFilter.length == 0)\">\n            <input class=\"header_filter\" [(ngModel)]=\"filter_value\" (keyup)=\"_changeOperator($event)\" />\n        </td>\n        <td class=\"header_filter\" [style]=\"astuce_datapicker\" >\n            <ma-data-grid-datepicker #madate_picker type=\"date\" (changePicker)=\"_changeDate($event)\"></ma-data-grid-datepicker>\n        </td>\n    </tr>\n</table>",
-                styles: ["input.header_filter{background-color:#e8f5f8;border:1px inset #9e9e9e;height:1.2rem;margin:0 0 0 -5px}/deep/ .ma-data-grid-datepicker{height:1.2rem;max-height:1.2rem}td.header_filter{padding:1px 1px 1px 5px}td.header_filter_op{padding:1px 1px 1px 0}"]
-            },] }
-];
-DataGridHeadFilterComponent.ctorParameters = () => [];
-DataGridHeadFilterComponent.propDecorators = {
-    filter_value: [{ type: Input }],
-    col: [{ type: Input }],
-    changeHeaderFilter: [{ type: Output }],
-    op_filter: [{ type: ViewChild, args: [DataGridOpFilterComponent, { static: true },] }],
-    madate_picker: [{ type: ViewChild, args: [DataGridPickerDateComponent, { static: true },] }]
-};
+                templateUrl: './data-grid-head-filter.component.html',
+                styleUrls: ['./data-grid-head-filter.component.css']
+            }]
+    }], function () { return []; }, { filter_value: [{
+            type: Input
+        }], col: [{
+            type: Input
+        }], changeHeaderFilter: [{
+            type: Output
+        }], op_filter: [{
+            type: ViewChild,
+            args: [DataGridOpFilterComponent, { static: true }]
+        }], madate_picker: [{
+            type: ViewChild,
+            args: [DataGridPickerDateComponent, { static: true }]
+        }] }); })();
 
+function MaGridFilterComponent_div_10_label_1_span_4_Template(rf, ctx) { if (rf & 1) {
+    ɵɵelementStart(0, "span", 12);
+    ɵɵtext(1, "|");
+    ɵɵelementEnd();
+} }
+function MaGridFilterComponent_div_10_label_1_Template(rf, ctx) { if (rf & 1) {
+    const _r8 = ɵɵgetCurrentView();
+    ɵɵelementStart(0, "label");
+    ɵɵelementStart(1, "input", 9);
+    ɵɵlistener("click", function MaGridFilterComponent_div_10_label_1_Template_input_click_1_listener() { ɵɵrestoreView(_r8); const col_r1 = ɵɵnextContext().$implicit; const ctx_r6 = ɵɵnextContext(); return ctx_r6.clickChekbox(col_r1); });
+    ɵɵelementEnd();
+    ɵɵelementStart(2, "span", 10);
+    ɵɵtext(3);
+    ɵɵelementEnd();
+    ɵɵtemplate(4, MaGridFilterComponent_div_10_label_1_span_4_Template, 2, 0, "span", 11);
+    ɵɵelementEnd();
+} if (rf & 2) {
+    const ctx_r9 = ɵɵnextContext();
+    const col_r1 = ctx_r9.$implicit;
+    const isLast_r2 = ctx_r9.last;
+    ɵɵadvance(1);
+    ɵɵproperty("checked", col_r1.extFilterSelected);
+    ɵɵadvance(2);
+    ɵɵtextInterpolate(col_r1.title);
+    ɵɵadvance(1);
+    ɵɵproperty("ngIf", !isLast_r2);
+} }
+function MaGridFilterComponent_div_10_Template(rf, ctx) { if (rf & 1) {
+    ɵɵelementStart(0, "div", 7);
+    ɵɵtemplate(1, MaGridFilterComponent_div_10_label_1_Template, 5, 3, "label", 8);
+    ɵɵelementEnd();
+} if (rf & 2) {
+    const col_r1 = ctx.$implicit;
+    ɵɵadvance(1);
+    ɵɵproperty("ngIf", col_r1.extFilter === true);
+} }
 class MaGridFilterComponent {
     constructor() {
         this.placeholder = 'Enter filter';
+        this.customCSS = "";
         this.searchValueChange = new EventEmitter();
         this.columns = [];
         this.filterChange = new EventEmitter();
@@ -716,21 +924,446 @@ class MaGridFilterComponent {
         this.filterChange.emit(e);
     }
 }
-MaGridFilterComponent.decorators = [
-    { type: Component, args: [{
+MaGridFilterComponent.ɵfac = function MaGridFilterComponent_Factory(t) { return new (t || MaGridFilterComponent)(); };
+MaGridFilterComponent.ɵcmp = ɵɵdefineComponent({ type: MaGridFilterComponent, selectors: [["ma-data-grid-filter"]], inputs: { searchValue: "searchValue", customCSS: "customCSS", columns: "columns" }, outputs: { searchValueChange: "searchValueChange", filterChange: "filterChange" }, features: [ɵɵNgOnChangesFeature], decls: 11, vars: 6, consts: [[1, "row", "ma-grid-filter"], [1, "input-field", "col", "s3"], [1, "material-icons", "prefix", 3, "click"], ["type", "text", 1, "validate", 3, "id", "keyup"], ["for", "icon_prefix"], [1, "title_field"], ["class", "checkbox_field", 4, "ngFor", "ngForOf"], [1, "checkbox_field"], [4, "ngIf"], ["type", "checkbox", 3, "checked", "click"], [1, "checkbox_title"], ["class", "checkbox_separator", 4, "ngIf"], [1, "checkbox_separator"]], template: function MaGridFilterComponent_Template(rf, ctx) { if (rf & 1) {
+        ɵɵelementStart(0, "div", 0);
+        ɵɵelementStart(1, "div", 1);
+        ɵɵelementStart(2, "i", 2);
+        ɵɵlistener("click", function MaGridFilterComponent_Template_i_click_2_listener() { return ctx.enableFocus(); });
+        ɵɵtext(3, "search");
+        ɵɵelementEnd();
+        ɵɵelementStart(4, "input", 3);
+        ɵɵlistener("keyup", function MaGridFilterComponent_Template_input_keyup_4_listener($event) { return ctx.updateFilter($event); });
+        ɵɵelementEnd();
+        ɵɵelementStart(5, "label", 4);
+        ɵɵtext(6);
+        ɵɵelementEnd();
+        ɵɵelementEnd();
+        ɵɵelementStart(7, "div");
+        ɵɵelementStart(8, "div", 5);
+        ɵɵtext(9, " Select column(s) filter");
+        ɵɵelementEnd();
+        ɵɵtemplate(10, MaGridFilterComponent_div_10_Template, 2, 1, "div", 6);
+        ɵɵelementEnd();
+        ɵɵelementEnd();
+    } if (rf & 2) {
+        ɵɵadvance(4);
+        ɵɵproperty("id", ctx.input_filter);
+        ɵɵadvance(2);
+        ɵɵtextInterpolate(ctx.placeholder);
+        ɵɵadvance(1);
+        ɵɵclassMapInterpolate1("col s8 ", ctx.customCSS, "ma-grid-filter-checkboxes");
+        ɵɵadvance(3);
+        ɵɵproperty("ngForOf", ctx.filters);
+    } }, directives: [NgForOf, NgIf], styles: ["[_nghost-%COMP%]{--border-size:0px;--color-border:#667;--color-defaut:#667}.ma-grid-filter[_ngcontent-%COMP%]   .ma-grid-filter-checkboxes[_ngcontent-%COMP%]{border:1px solid var(--color-border);color:var(--color-defaut);margin-right:10px}.ma-grid-filter[_ngcontent-%COMP%]   .title_field[_ngcontent-%COMP%]{font-weight:500;margin-left:15px}.ma-grid-filter[_ngcontent-%COMP%]   .checkbox_field[_ngcontent-%COMP%]{display:inline;margin-left:5px;margin-right:5px}.ma-grid-filter[_ngcontent-%COMP%]   span.checkbox_title[_ngcontent-%COMP%]{min-width:70px;padding-left:22px}.ma-grid-filter[_ngcontent-%COMP%]   span.checkbox_title[_ngcontent-%COMP%]:after{content:\"|\"}.ma-grid-filter[_ngcontent-%COMP%]   span.checkbox_separator[_ngcontent-%COMP%]{font-size:large;margin-left:5px}"] });
+/*@__PURE__*/ (function () { ɵsetClassMetadata(MaGridFilterComponent, [{
+        type: Component,
+        args: [{
                 selector: 'ma-data-grid-filter',
-                template: "<div class=\"row ma-grid-filter\">\n    <div class=\"input-field col s3\"  >\n        <i (click)=\"enableFocus()\" class=\"material-icons prefix\">search</i>\n          <input [id]=\"input_filter\" type=\"text\" class=\"validate\" (keyup)=\"updateFilter($event)\">\n          <label for=\"icon_prefix\">{{placeholder}}</label>\n    </div>\n    <div class=\"col s8 checkboxes_part\">\n        <div class=\"title_field\"> Select column(s) filter</div>\n        <!--  [disabled]=\"selectedFields.length == 0\"\n<span *ngFor=\"let col of columns\"> {{col.prop}} | </span>\n[(ngModel)]=\"col.extFilterSelected\" \n[ngClass]=\"{'disabled':selectedFields.length >= 0}\"\n        -->\n        <div class=\"checkbox_field\" *ngFor=\"let col of filters;last as isLast;index as i;\">\n            <label *ngIf=\"col.extFilter === true\">\n                <input type=\"checkbox\" [checked]=\"col.extFilterSelected\" (click)=\"clickChekbox(col)\" />\n                <span class=\"checkbox_title\">{{col.title}}</span>\n                <span *ngIf=\"!isLast\" class=\"checkbox_separator\">|</span>\n            </label>\n        </div>\n    </div>\n</div>\n",
-                styles: [".ma-grid-filter .checkboxes_part{border:1px solid #667;color:#667;margin-right:10px}.ma-grid-filter .title_field{font-weight:500;margin-left:15px}.ma-grid-filter .checkbox_field{display:inline;margin-left:5px;margin-right:5px}.ma-grid-filter span.checkbox_title{min-width:70px;padding-left:22px}.ma-grid-filter span.checkbox_title:after{content:\"|\"}.ma-grid-filter span.checkbox_separator{font-size:large;margin-left:5px}"]
-            },] }
-];
-MaGridFilterComponent.ctorParameters = () => [];
-MaGridFilterComponent.propDecorators = {
-    searchValue: [{ type: Input }],
-    searchValueChange: [{ type: Output }],
-    columns: [{ type: Input }],
-    filterChange: [{ type: Output }]
-};
+                templateUrl: './ma-grid-filter.component.html',
+                styleUrls: ['./ma-grid-filter.component.css']
+            }]
+    }], function () { return []; }, { searchValue: [{
+            type: Input
+        }], customCSS: [{
+            type: Input
+        }], searchValueChange: [{
+            type: Output
+        }], columns: [{
+            type: Input
+        }], filterChange: [{
+            type: Output
+        }] }); })();
 
+class MaGridCellTemplateDirective {
+    constructor(viewContainerRef) {
+        this.viewContainerRef = viewContainerRef;
+    }
+}
+MaGridCellTemplateDirective.ɵfac = function MaGridCellTemplateDirective_Factory(t) { return new (t || MaGridCellTemplateDirective)(ɵɵdirectiveInject(ViewContainerRef)); };
+MaGridCellTemplateDirective.ɵdir = ɵɵdefineDirective({ type: MaGridCellTemplateDirective, selectors: [["", "libMaGridCellTemplate", ""]] });
+/*@__PURE__*/ (function () { ɵsetClassMetadata(MaGridCellTemplateDirective, [{
+        type: Directive,
+        args: [{
+                selector: '[libMaGridCellTemplate]'
+            }]
+    }], function () { return [{ type: ViewContainerRef }]; }, null); })();
+
+class DataGridCellItemComponent {
+    constructor(component, data) {
+        this.component = component;
+        this.data = data;
+    }
+}
+
+function DataGridTemplateCellComponent_ng_template_0_Template(rf, ctx) { }
+class DataGridTemplateCellComponent {
+    constructor(componentFactoryResolver) {
+        this.componentFactoryResolver = componentFactoryResolver;
+        // console.log('DataGridTemplateCellComponent c',this.template);
+    }
+    ngOnInit() {
+        // 
+        if (!this.template) {
+            return;
+        }
+        const component = new DataGridCellItemComponent(this.template, this.data);
+        const componentFactory = this.componentFactoryResolver.resolveComponentFactory(component.component);
+        if (!this.libMaGridCellTemplate) {
+            return;
+        }
+        const viewContainerRef = this.libMaGridCellTemplate.viewContainerRef;
+        const componentRef = viewContainerRef.createComponent(componentFactory);
+        componentRef.instance.data = component.data;
+    }
+}
+DataGridTemplateCellComponent.ɵfac = function DataGridTemplateCellComponent_Factory(t) { return new (t || DataGridTemplateCellComponent)(ɵɵdirectiveInject(ComponentFactoryResolver)); };
+DataGridTemplateCellComponent.ɵcmp = ɵɵdefineComponent({ type: DataGridTemplateCellComponent, selectors: [["ma-data-grid-template-cell-t1"]], viewQuery: function DataGridTemplateCellComponent_Query(rf, ctx) { if (rf & 1) {
+        ɵɵstaticViewQuery(MaGridCellTemplateDirective, true);
+    } if (rf & 2) {
+        var _t;
+        ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx.libMaGridCellTemplate = _t.first);
+    } }, inputs: { data: "data", template: "template" }, decls: 1, vars: 0, consts: [["libMaGridCellTemplate", ""]], template: function DataGridTemplateCellComponent_Template(rf, ctx) { if (rf & 1) {
+        ɵɵtemplate(0, DataGridTemplateCellComponent_ng_template_0_Template, 0, 0, "ng-template", 0);
+    } }, directives: [MaGridCellTemplateDirective], encapsulation: 2 });
+/*@__PURE__*/ (function () { ɵsetClassMetadata(DataGridTemplateCellComponent, [{
+        type: Component,
+        args: [{
+                selector: 'ma-data-grid-template-cell-t1',
+                template: '<ng-template libMaGridCellTemplate></ng-template>'
+            }]
+    }], function () { return [{ type: ComponentFactoryResolver }]; }, { data: [{
+            type: Input
+        }], template: [{
+            type: Input
+        }], libMaGridCellTemplate: [{
+            type: ViewChild,
+            args: [MaGridCellTemplateDirective, { static: true }]
+        }] }); })();
+
+class DataGridCellBooleanComponent {
+    constructor() {
+        this.icon = '';
+    }
+    ngOnInit() {
+        // console.log(this.data[this.col.prop]);
+        if (this.data[this.col.prop] === true) {
+            this.icon = 'check_box';
+        }
+        else if (this.data[this.col.prop] === false) {
+            this.icon = 'check_box_outline_blank';
+        }
+    }
+}
+DataGridCellBooleanComponent.ɵfac = function DataGridCellBooleanComponent_Factory(t) { return new (t || DataGridCellBooleanComponent)(); };
+DataGridCellBooleanComponent.ɵcmp = ɵɵdefineComponent({ type: DataGridCellBooleanComponent, selectors: [["ma-data-grid-cell-boolean"]], inputs: { data: "data", col: "col" }, decls: 3, vars: 1, consts: [[2, "text-align", "center"], [1, "tiny", "material-icons"]], template: function DataGridCellBooleanComponent_Template(rf, ctx) { if (rf & 1) {
+        ɵɵelementStart(0, "div", 0);
+        ɵɵelementStart(1, "i", 1);
+        ɵɵtext(2);
+        ɵɵelementEnd();
+        ɵɵelementEnd();
+    } if (rf & 2) {
+        ɵɵadvance(2);
+        ɵɵtextInterpolate(ctx.icon);
+    } }, encapsulation: 2 });
+/*@__PURE__*/ (function () { ɵsetClassMetadata(DataGridCellBooleanComponent, [{
+        type: Component,
+        args: [{
+                selector: 'ma-data-grid-cell-boolean',
+                template: '<div style="text-align: center"><i class="tiny material-icons">{{icon}}</i></div>'
+            }]
+    }], function () { return []; }, { data: [{
+            type: Input
+        }], col: [{
+            type: Input
+        }] }); })();
+
+class DataGridPipePipe {
+    transform(value, row, col) {
+        if (col.pipe) {
+            return col.pipe(value, row, col);
+        }
+        return value;
+    }
+}
+DataGridPipePipe.ɵfac = function DataGridPipePipe_Factory(t) { return new (t || DataGridPipePipe)(); };
+DataGridPipePipe.ɵpipe = ɵɵdefinePipe({ name: "maDataGridPipe", type: DataGridPipePipe, pure: true });
+/*@__PURE__*/ (function () { ɵsetClassMetadata(DataGridPipePipe, [{
+        type: Pipe,
+        args: [{
+                name: 'maDataGridPipe'
+            }]
+    }], null, null); })();
+
+function MaDataGridComponent_ma_data_grid_filter_0_Template(rf, ctx) { if (rf & 1) {
+    const _r12 = ɵɵgetCurrentView();
+    ɵɵelementStart(0, "ma-data-grid-filter", 15, 16);
+    ɵɵlistener("searchValueChange", function MaDataGridComponent_ma_data_grid_filter_0_Template_ma_data_grid_filter_searchValueChange_0_listener($event) { ɵɵrestoreView(_r12); const ctx_r11 = ɵɵnextContext(); return ctx_r11.searchValue = $event; })("filterChange", function MaDataGridComponent_ma_data_grid_filter_0_Template_ma_data_grid_filter_filterChange_0_listener($event) { ɵɵrestoreView(_r12); const ctx_r13 = ɵɵnextContext(); return ctx_r13._filterChange($event); });
+    ɵɵelementEnd();
+} if (rf & 2) {
+    const ctx_r0 = ɵɵnextContext();
+    ɵɵproperty("customCSS", ctx_r0.customCSS)("searchValue", ctx_r0.searchValue)("columns", ctx_r0.columns);
+} }
+function MaDataGridComponent_td_5_span_2_span_1_Template(rf, ctx) { if (rf & 1) {
+    ɵɵelementStart(0, "span", 21);
+    ɵɵtext(1, "swap_vert");
+    ɵɵelementEnd();
+} }
+function MaDataGridComponent_td_5_span_2_span_2_Template(rf, ctx) { if (rf & 1) {
+    ɵɵelementStart(0, "span", 21);
+    ɵɵtext(1, "arrow_drop_down");
+    ɵɵelementEnd();
+} }
+function MaDataGridComponent_td_5_span_2_span_3_Template(rf, ctx) { if (rf & 1) {
+    ɵɵelementStart(0, "span", 21);
+    ɵɵtext(1, "arrow_drop_up");
+    ɵɵelementEnd();
+} }
+function MaDataGridComponent_td_5_span_2_Template(rf, ctx) { if (rf & 1) {
+    const _r22 = ɵɵgetCurrentView();
+    ɵɵelementStart(0, "span", 19);
+    ɵɵlistener("click", function MaDataGridComponent_td_5_span_2_Template_span_click_0_listener() { ɵɵrestoreView(_r22); const col_r14 = ɵɵnextContext().$implicit; const ctx_r20 = ɵɵnextContext(); return ctx_r20.sortBy(col_r14); });
+    ɵɵtemplate(1, MaDataGridComponent_td_5_span_2_span_1_Template, 2, 0, "span", 20);
+    ɵɵtemplate(2, MaDataGridComponent_td_5_span_2_span_2_Template, 2, 0, "span", 20);
+    ɵɵtemplate(3, MaDataGridComponent_td_5_span_2_span_3_Template, 2, 0, "span", 20);
+    ɵɵelementEnd();
+} if (rf & 2) {
+    const col_r14 = ɵɵnextContext().$implicit;
+    const ctx_r16 = ɵɵnextContext();
+    ɵɵadvance(1);
+    ɵɵproperty("ngIf", ctx_r16.sortedField.field != col_r14.prop);
+    ɵɵadvance(1);
+    ɵɵproperty("ngIf", ctx_r16.sortedField.field === col_r14.prop && ctx_r16.sortedField.reverse);
+    ɵɵadvance(1);
+    ɵɵproperty("ngIf", ctx_r16.sortedField.field === col_r14.prop && !ctx_r16.sortedField.reverse);
+} }
+const _c0$2 = function (a0) { return { grid_cell_first: a0 }; };
+function MaDataGridComponent_td_5_Template(rf, ctx) { if (rf & 1) {
+    ɵɵelementStart(0, "td", 17);
+    ɵɵtext(1);
+    ɵɵtemplate(2, MaDataGridComponent_td_5_span_2_Template, 4, 3, "span", 18);
+    ɵɵelementEnd();
+} if (rf & 2) {
+    const col_r14 = ctx.$implicit;
+    const i_r15 = ctx.index;
+    const ctx_r1 = ɵɵnextContext();
+    ɵɵclassMapInterpolate2("", ctx_r1.customCSS, "grid_cell ", ctx_r1.customCSS, "grid_cell_title");
+    ɵɵproperty("ngClass", ɵɵpureFunction1(7, _c0$2, i_r15 == 0));
+    ɵɵadvance(1);
+    ɵɵtextInterpolate1(" ", col_r14.title, " ");
+    ɵɵadvance(1);
+    ɵɵproperty("ngIf", col_r14.isRowNumber !== true && col_r14.sorted === true);
+} }
+function MaDataGridComponent_tr_6_td_1_ma_data_grid_head_filter_1_Template(rf, ctx) { if (rf & 1) {
+    const _r30 = ɵɵgetCurrentView();
+    ɵɵelementStart(0, "ma-data-grid-head-filter", 23, 24);
+    ɵɵlistener("changeHeaderFilter", function MaDataGridComponent_tr_6_td_1_ma_data_grid_head_filter_1_Template_ma_data_grid_head_filter_changeHeaderFilter_0_listener($event) { ɵɵrestoreView(_r30); const ctx_r29 = ɵɵnextContext(3); return ctx_r29._changeHeaderFilter($event); });
+    ɵɵelementEnd();
+} if (rf & 2) {
+    const col_r25 = ɵɵnextContext().$implicit;
+    ɵɵproperty("col", col_r25);
+} }
+function MaDataGridComponent_tr_6_td_1_Template(rf, ctx) { if (rf & 1) {
+    ɵɵelementStart(0, "td", 17);
+    ɵɵtemplate(1, MaDataGridComponent_tr_6_td_1_ma_data_grid_head_filter_1_Template, 2, 1, "ma-data-grid-head-filter", 22);
+    ɵɵelementEnd();
+} if (rf & 2) {
+    const col_r25 = ctx.$implicit;
+    const i_r26 = ctx.index;
+    const ctx_r24 = ɵɵnextContext(2);
+    ɵɵclassMapInterpolate2("", ctx_r24.customCSS, "grid_cell ", ctx_r24.customCSS, "grid_cell_title");
+    ɵɵproperty("ngClass", ɵɵpureFunction1(6, _c0$2, i_r26 == 0));
+    ɵɵadvance(1);
+    ɵɵproperty("ngIf", col_r25.dataType || col_r25.headFilter);
+} }
+function MaDataGridComponent_tr_6_Template(rf, ctx) { if (rf & 1) {
+    ɵɵelementStart(0, "tr");
+    ɵɵtemplate(1, MaDataGridComponent_tr_6_td_1_Template, 2, 8, "td", 4);
+    ɵɵelementEnd();
+} if (rf & 2) {
+    const ctx_r2 = ɵɵnextContext();
+    ɵɵclassMapInterpolate1("", ctx_r2.customCSS, "grid_row");
+    ɵɵadvance(1);
+    ɵɵproperty("ngForOf", ctx_r2.columns);
+} }
+function MaDataGridComponent_tr_7_td_1_datagrid_cell_element_2_Template(rf, ctx) { if (rf & 1) {
+    ɵɵelementStart(0, "datagrid-cell-element");
+    ɵɵtext(1);
+    ɵɵelementEnd();
+} if (rf & 2) {
+    const i_r35 = ɵɵnextContext(2).index;
+    ɵɵadvance(1);
+    ɵɵtextInterpolate(i_r35);
+} }
+function MaDataGridComponent_tr_7_td_1_datagrid_cell_element_3_Template(rf, ctx) { if (rf & 1) {
+    ɵɵelementStart(0, "datagrid-cell-element");
+    ɵɵelement(1, "span", 29);
+    ɵɵelementEnd();
+} if (rf & 2) {
+    const col_r38 = ɵɵnextContext().$implicit;
+    const row_r32 = ɵɵnextContext().$implicit;
+    ɵɵadvance(1);
+    ɵɵproperty("innerHTML", row_r32[col_r38.prop], ɵɵsanitizeHtml);
+} }
+function MaDataGridComponent_tr_7_td_1_datagrid_cell_element_4_Template(rf, ctx) { if (rf & 1) {
+    ɵɵelementStart(0, "datagrid-cell-element");
+    ɵɵelement(1, "ma-data-grid-template-cell-t1", 30);
+    ɵɵelementEnd();
+} if (rf & 2) {
+    const col_r38 = ɵɵnextContext().$implicit;
+    const row_r32 = ɵɵnextContext().$implicit;
+    ɵɵadvance(1);
+    ɵɵproperty("template", col_r38.useTemplate)("data", row_r32);
+} }
+function MaDataGridComponent_tr_7_td_1_datagrid_cell_element_5_Template(rf, ctx) { if (rf & 1) {
+    ɵɵelementStart(0, "datagrid-cell-element");
+    ɵɵelement(1, "ma-data-grid-cell-boolean", 31);
+    ɵɵelementEnd();
+} if (rf & 2) {
+    const col_r38 = ɵɵnextContext().$implicit;
+    const row_r32 = ɵɵnextContext().$implicit;
+    ɵɵadvance(1);
+    ɵɵproperty("template", col_r38.useTemplate)("col", col_r38)("data", row_r32);
+} }
+function MaDataGridComponent_tr_7_td_1_datagrid_cell_element_6_Template(rf, ctx) { if (rf & 1) {
+    ɵɵelementStart(0, "datagrid-cell-element");
+    ɵɵtext(1);
+    ɵɵpipe(2, "maDataGridPipe");
+    ɵɵelementEnd();
+} if (rf & 2) {
+    const col_r38 = ɵɵnextContext().$implicit;
+    const row_r32 = ɵɵnextContext().$implicit;
+    ɵɵadvance(1);
+    ɵɵtextInterpolate(ɵɵpipeBind3(2, 1, row_r32[col_r38.prop], row_r32, col_r38));
+} }
+const _c1$1 = function (a0, a1, a2) { return { "grid_cell_selected": a0, "grid_cell_end": a1, "grid_cell_first": a2 }; };
+function MaDataGridComponent_tr_7_td_1_Template(rf, ctx) { if (rf & 1) {
+    const _r59 = ɵɵgetCurrentView();
+    ɵɵelementStart(0, "td", 25);
+    ɵɵlistener("click", function MaDataGridComponent_tr_7_td_1_Template_td_click_0_listener() { ɵɵrestoreView(_r59); const col_r38 = ctx.$implicit; const ctx_r58 = ɵɵnextContext(); const i_r35 = ctx_r58.index; const row_r32 = ctx_r58.$implicit; const ctx_r57 = ɵɵnextContext(); return ctx_r57.SelectCell(i_r35, row_r32, col_r38); });
+    ɵɵelementStart(1, "datagrid-cell-container", 26);
+    ɵɵtemplate(2, MaDataGridComponent_tr_7_td_1_datagrid_cell_element_2_Template, 2, 1, "datagrid-cell-element", 27);
+    ɵɵtemplate(3, MaDataGridComponent_tr_7_td_1_datagrid_cell_element_3_Template, 2, 1, "datagrid-cell-element", 27);
+    ɵɵtemplate(4, MaDataGridComponent_tr_7_td_1_datagrid_cell_element_4_Template, 2, 2, "datagrid-cell-element", 27);
+    ɵɵtemplate(5, MaDataGridComponent_tr_7_td_1_datagrid_cell_element_5_Template, 2, 3, "datagrid-cell-element", 27);
+    ɵɵtemplate(6, MaDataGridComponent_tr_7_td_1_datagrid_cell_element_6_Template, 3, 5, "datagrid-cell-element", 28);
+    ɵɵelementEnd();
+    ɵɵelementEnd();
+} if (rf & 2) {
+    const col_r38 = ctx.$implicit;
+    const isFirstCol_r41 = ctx.first;
+    const isLastCol_r42 = ctx.last;
+    const i_r35 = ɵɵnextContext().index;
+    const ctx_r37 = ɵɵnextContext();
+    ɵɵclassMapInterpolate2("", ctx_r37.customCSS, "grid_cell ", col_r38.cssClass, "");
+    ɵɵproperty("ngClass", ɵɵpureFunction3(10, _c1$1, i_r35 == ctx_r37.row_selected && col_r38.prop == ctx_r37.cell_selected, isLastCol_r42, isFirstCol_r41));
+    ɵɵadvance(1);
+    ɵɵproperty("ngSwitch", true);
+    ɵɵadvance(1);
+    ɵɵproperty("ngSwitchCase", col_r38.isRowNumber === true);
+    ɵɵadvance(1);
+    ɵɵproperty("ngSwitchCase", col_r38.isRowHTML === true);
+    ɵɵadvance(1);
+    ɵɵproperty("ngSwitchCase", col_r38.useTemplate != null);
+    ɵɵadvance(1);
+    ɵɵproperty("ngSwitchCase", col_r38.dataType == "boolean");
+} }
+const _c2 = function (a0, a1, a2, a3, a4) { return { "grid_row_selected": a0, "CSSclassEven": a1, "CSSclassOdd": a2, "grid_row_first": a3, "grid_row_end": a4 }; };
+function MaDataGridComponent_tr_7_Template(rf, ctx) { if (rf & 1) {
+    const _r62 = ɵɵgetCurrentView();
+    ɵɵelementStart(0, "tr", 25);
+    ɵɵlistener("click", function MaDataGridComponent_tr_7_Template_tr_click_0_listener() { ɵɵrestoreView(_r62); const i_r35 = ctx.index; const row_r32 = ctx.$implicit; const ctx_r61 = ɵɵnextContext(); return ctx_r61.SelectRow(i_r35, row_r32); });
+    ɵɵtemplate(1, MaDataGridComponent_tr_7_td_1_Template, 7, 14, "td", 6);
+    ɵɵelementEnd();
+} if (rf & 2) {
+    const isLastRow_r33 = ctx.last;
+    const pair_r34 = ctx.even;
+    const i_r35 = ctx.index;
+    const isFirstRow_r36 = ctx.first;
+    const ctx_r3 = ɵɵnextContext();
+    ɵɵclassMapInterpolate1("", ctx_r3.customCSS, "grid_row");
+    ɵɵproperty("ngClass", ɵɵpureFunction5(5, _c2, i_r35 == ctx_r3.row_selected && !ctx_r3.cell_selected, pair_r34, !pair_r34, isFirstRow_r36, isLastRow_r33));
+    ɵɵadvance(1);
+    ɵɵproperty("ngForOf", ctx_r3.columns);
+} }
+function MaDataGridComponent_span_12_Template(rf, ctx) { if (rf & 1) {
+    ɵɵelementStart(0, "span");
+    ɵɵtext(1, "s");
+    ɵɵelementEnd();
+} }
+const _c3 = function (a0, a1) { return { "disabled": a0, "": a1 }; };
+function MaDataGridComponent_li_15_Template(rf, ctx) { if (rf & 1) {
+    const _r64 = ɵɵgetCurrentView();
+    ɵɵelementStart(0, "li", 25);
+    ɵɵlistener("click", function MaDataGridComponent_li_15_Template_li_click_0_listener() { ɵɵrestoreView(_r64); const ctx_r63 = ɵɵnextContext(); return ctx_r63.FastDecrementPage(); });
+    ɵɵelementStart(1, "a", 32);
+    ɵɵelementStart(2, "i", 33);
+    ɵɵtext(3, "fast_rewind");
+    ɵɵelementEnd();
+    ɵɵelementEnd();
+    ɵɵelementEnd();
+} if (rf & 2) {
+    const ctx_r5 = ɵɵnextContext();
+    ɵɵproperty("ngClass", ɵɵpureFunction2(1, _c3, ctx_r5.current_page == 0, ctx_r5.current_page != 0));
+} }
+function MaDataGridComponent_li_16_Template(rf, ctx) { if (rf & 1) {
+    const _r66 = ɵɵgetCurrentView();
+    ɵɵelementStart(0, "li", 25);
+    ɵɵlistener("click", function MaDataGridComponent_li_16_Template_li_click_0_listener() { ɵɵrestoreView(_r66); const ctx_r65 = ɵɵnextContext(); return ctx_r65.DecrementPage(); });
+    ɵɵelementStart(1, "a", 32);
+    ɵɵelementStart(2, "i", 33);
+    ɵɵtext(3, "chevron_left");
+    ɵɵelementEnd();
+    ɵɵelementEnd();
+    ɵɵelementEnd();
+} if (rf & 2) {
+    const ctx_r6 = ɵɵnextContext();
+    ɵɵproperty("ngClass", ɵɵpureFunction2(1, _c3, ctx_r6.current_page == 0, ctx_r6.current_page != 0));
+} }
+const _c4 = function (a0, a1) { return { "active": a0, "": a1 }; };
+function MaDataGridComponent_li_17_Template(rf, ctx) { if (rf & 1) {
+    const _r69 = ɵɵgetCurrentView();
+    ɵɵelementStart(0, "li", 25);
+    ɵɵlistener("click", function MaDataGridComponent_li_17_Template_li_click_0_listener() { ɵɵrestoreView(_r69); const n_page_r67 = ctx.$implicit; const ctx_r68 = ɵɵnextContext(); return ctx_r68._changePage(n_page_r67); });
+    ɵɵelementStart(1, "a", 34);
+    ɵɵtext(2);
+    ɵɵelementEnd();
+    ɵɵelementEnd();
+} if (rf & 2) {
+    const n_page_r67 = ctx.$implicit;
+    const ctx_r7 = ɵɵnextContext();
+    ɵɵproperty("ngClass", ɵɵpureFunction2(2, _c4, ctx_r7.current_page == n_page_r67, ctx_r7.current_page != n_page_r67));
+    ɵɵadvance(2);
+    ɵɵtextInterpolate(n_page_r67 + 1);
+} }
+function MaDataGridComponent_li_18_Template(rf, ctx) { if (rf & 1) {
+    const _r71 = ɵɵgetCurrentView();
+    ɵɵelementStart(0, "li", 25);
+    ɵɵlistener("click", function MaDataGridComponent_li_18_Template_li_click_0_listener() { ɵɵrestoreView(_r71); const ctx_r70 = ɵɵnextContext(); return ctx_r70.IncrementPage(); });
+    ɵɵelementStart(1, "a", 32);
+    ɵɵelementStart(2, "i", 33);
+    ɵɵtext(3, "chevron_right");
+    ɵɵelementEnd();
+    ɵɵelementEnd();
+    ɵɵelementEnd();
+} if (rf & 2) {
+    const ctx_r8 = ɵɵnextContext();
+    ɵɵproperty("ngClass", ɵɵpureFunction2(1, _c3, ctx_r8.current_page == ctx_r8.max_page, ctx_r8.current_page != ctx_r8.max_page));
+} }
+function MaDataGridComponent_li_19_Template(rf, ctx) { if (rf & 1) {
+    const _r73 = ɵɵgetCurrentView();
+    ɵɵelementStart(0, "li", 25);
+    ɵɵlistener("click", function MaDataGridComponent_li_19_Template_li_click_0_listener() { ɵɵrestoreView(_r73); const ctx_r72 = ɵɵnextContext(); return ctx_r72.FastIncrementPage(); });
+    ɵɵelementStart(1, "a", 32);
+    ɵɵelementStart(2, "i", 33);
+    ɵɵtext(3, "fast_forward");
+    ɵɵelementEnd();
+    ɵɵelementEnd();
+    ɵɵelementEnd();
+} if (rf & 2) {
+    const ctx_r9 = ɵɵnextContext();
+    ɵɵproperty("ngClass", ɵɵpureFunction2(1, _c3, ctx_r9.current_page == ctx_r9.max_page, ctx_r9.current_page != ctx_r9.max_page));
+} }
 // import { PipeLengthPipe } from 'src/app/pipes/pipe-length.pipe';
 class MaDataGridComponent {
     constructor() {
@@ -746,6 +1379,7 @@ class MaDataGridComponent {
         this.pagination = false;
         this.page = -1;
         this.count = 0;
+        this.customCSS = "";
         this.rows = [];
         this.change = new EventEmitter();
         this.select = new EventEmitter();
@@ -754,6 +1388,8 @@ class MaDataGridComponent {
         this.changePage = new EventEmitter();
         this.sort = new EventEmitter();
         this.canSelectChange = new EventEmitter();
+        this.grid_cell_first = this.customCSS + 'grid_cell_first';
+        this.grid_row_selected = this.customCSS + 'grid_row_selected';
         this.current_page = -1;
         this.max_page = 1;
         this.max_nb_page = 6;
@@ -771,6 +1407,7 @@ class MaDataGridComponent {
             reverse: true
         };
         this.timeout = null;
+        //console.log('YO')
     }
     resetSelection() {
         this.cell_selected = -1;
@@ -1003,150 +1640,158 @@ class MaDataGridComponent {
         }
     }
 }
-MaDataGridComponent.decorators = [
-    { type: Component, args: [{
+MaDataGridComponent.ɵfac = function MaDataGridComponent_Factory(t) { return new (t || MaDataGridComponent)(); };
+MaDataGridComponent.ɵcmp = ɵɵdefineComponent({ type: MaDataGridComponent, selectors: [["ma-data-grid"]], viewQuery: function MaDataGridComponent_Query(rf, ctx) { if (rf & 1) {
+        ɵɵstaticViewQuery(MaGridFilterComponent, true);
+        ɵɵviewQuery(DataGridHeadFilterComponent, true);
+    } if (rf & 2) {
+        var _t;
+        ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx.gridfilter = _t.first);
+        ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx.headerfilter = _t);
+    } }, inputs: { columns: "columns", limit: "limit", canSelect: "canSelect", extFilter: "extFilter", headFilter: "headFilter", pagination: "pagination", page: "page", count: "count", customCSS: "customCSS", rows: "rows" }, outputs: { change: "change", select: "select", extFilterChange: "extFilterChange", filterChange: "filterChange", changePage: "changePage", sort: "sort", canSelectChange: "canSelectChange" }, features: [ɵɵNgOnChangesFeature], decls: 20, vars: 14, consts: [[3, "customCSS", "searchValue", "columns", "searchValueChange", "filterChange", 4, "ngIf"], [1, "datagrid_page"], [1, "scroller"], [1, "grid_row"], [3, "class", "ngClass", 4, "ngFor", "ngForOf"], [3, "class", 4, "ngIf"], [3, "class", "ngClass", "click", 4, "ngFor", "ngForOf"], [1, "row", 2, "padding-top", "5px"], [1, "col", "s3"], [1, "page_number"], [4, "ngIf"], [1, "col", "s8", "div_pagination"], [1, "pagination"], [3, "ngClass", "click", 4, "ngIf"], [3, "ngClass", "click", 4, "ngFor", "ngForOf"], [3, "customCSS", "searchValue", "columns", "searchValueChange", "filterChange"], ["gridfilter", ""], [3, "ngClass"], [3, "click", 4, "ngIf"], [3, "click"], ["class", "grid_sort tiny material-icons", 4, "ngIf"], [1, "grid_sort", "tiny", "material-icons"], [3, "col", "changeHeaderFilter", 4, "ngIf"], [3, "col", "changeHeaderFilter"], ["headerfilter", ""], [3, "ngClass", "click"], [3, "ngSwitch"], [4, "ngSwitchCase"], [4, "ngSwitchDefault"], [3, "innerHTML"], [3, "template", "data"], [3, "template", "col", "data"], [1, "pointer"], [1, "material-icons", "small"], [1, "a_pagination", "small"]], template: function MaDataGridComponent_Template(rf, ctx) { if (rf & 1) {
+        ɵɵtemplate(0, MaDataGridComponent_ma_data_grid_filter_0_Template, 2, 3, "ma-data-grid-filter", 0);
+        ɵɵelementStart(1, "div", 1);
+        ɵɵelementStart(2, "div", 2);
+        ɵɵelementStart(3, "table");
+        ɵɵelementStart(4, "tr", 3);
+        ɵɵtemplate(5, MaDataGridComponent_td_5_Template, 3, 9, "td", 4);
+        ɵɵelementEnd();
+        ɵɵtemplate(6, MaDataGridComponent_tr_6_Template, 2, 4, "tr", 5);
+        ɵɵtemplate(7, MaDataGridComponent_tr_7_Template, 2, 11, "tr", 6);
+        ɵɵelementEnd();
+        ɵɵelementEnd();
+        ɵɵelementStart(8, "div", 7);
+        ɵɵelementStart(9, "div", 8);
+        ɵɵelementStart(10, "div", 9);
+        ɵɵtext(11);
+        ɵɵtemplate(12, MaDataGridComponent_span_12_Template, 2, 0, "span", 10);
+        ɵɵelementEnd();
+        ɵɵelementEnd();
+        ɵɵelementStart(13, "div", 11);
+        ɵɵelementStart(14, "ul", 12);
+        ɵɵtemplate(15, MaDataGridComponent_li_15_Template, 4, 4, "li", 13);
+        ɵɵtemplate(16, MaDataGridComponent_li_16_Template, 4, 4, "li", 13);
+        ɵɵtemplate(17, MaDataGridComponent_li_17_Template, 3, 5, "li", 14);
+        ɵɵtemplate(18, MaDataGridComponent_li_18_Template, 4, 4, "li", 13);
+        ɵɵtemplate(19, MaDataGridComponent_li_19_Template, 4, 4, "li", 13);
+        ɵɵelementEnd();
+        ɵɵelementEnd();
+        ɵɵelementEnd();
+        ɵɵelementEnd();
+    } if (rf & 2) {
+        ɵɵproperty("ngIf", ctx.extFilter);
+        ɵɵadvance(3);
+        ɵɵclassMapInterpolate1("", ctx.customCSS, "grid_table");
+        ɵɵadvance(2);
+        ɵɵproperty("ngForOf", ctx.columns);
+        ɵɵadvance(1);
+        ɵɵproperty("ngIf", ctx.headFilter);
+        ɵɵadvance(1);
+        ɵɵproperty("ngForOf", ctx.rows_displayed);
+        ɵɵadvance(4);
+        ɵɵtextInterpolate1("#", ctx.nb_record, " record");
+        ɵɵadvance(1);
+        ɵɵproperty("ngIf", ctx.nb_record > 1);
+        ɵɵadvance(3);
+        ɵɵproperty("ngIf", ctx.max_page >= 9);
+        ɵɵadvance(1);
+        ɵɵproperty("ngIf", ctx.nb_record > 0);
+        ɵɵadvance(1);
+        ɵɵproperty("ngForOf", ctx.pages);
+        ɵɵadvance(1);
+        ɵɵproperty("ngIf", ctx.nb_record > 0);
+        ɵɵadvance(1);
+        ɵɵproperty("ngIf", ctx.max_page >= 9);
+    } }, directives: [NgIf, NgForOf, MaGridFilterComponent, NgClass, DataGridHeadFilterComponent, NgSwitch, NgSwitchCase, NgSwitchDefault, DataGridTemplateCellComponent, DataGridCellBooleanComponent], pipes: [DataGridPipePipe], styles: ["[_nghost-%COMP%]{--color-border:#667;--color-defaut:#667}.datagrid_page[_ngcontent-%COMP%]   .CSSclassOdd[_ngcontent-%COMP%]{background-color:#ddd}.datagrid_page[_ngcontent-%COMP%]{height:100%;width:100%}.div_pagination[_ngcontent-%COMP%]   .pointer[_ngcontent-%COMP%]{cursor:default}.div_pagination[_ngcontent-%COMP%]   .page_number[_ngcontent-%COMP%]{color:var(--color-defaut);font-size:1rem;padding:0 10px}.datagrid_page[_ngcontent-%COMP%]   .div_pagination[_ngcontent-%COMP%]{display:-ms-inline-grid;display:inline-grid;justify-content:flex-end}.a_pagination[_ngcontent-%COMP%]:hover, .div_pagination[_ngcontent-%COMP%]   .a_pagination[_ngcontent-%COMP%]{color:var(--color-border);display:inline-block;font-size:1rem;line-height:30px;padding:0 10px;text-decoration:none}.datagrid_page[_ngcontent-%COMP%]   .scroller[_ngcontent-%COMP%]{-ms-grid-row-align:center;align-self:center;background-color:#fefefe;overflow:auto;scrollbar-color:var(--color-border) #fefefe;scrollbar-width:auto;width:100%}.grid_table[_ngcontent-%COMP%]   .grid_row_selected[_ngcontent-%COMP%]{background-color:#667;color:#ddd}.grid_table[_ngcontent-%COMP%]   .grid_sort[_ngcontent-%COMP%]{cursor:pointer}.datagrid_page[_ngcontent-%COMP%]   .grid_table[_ngcontent-%COMP%]{width:100%}.grid_table[_ngcontent-%COMP%]   .grid_cell_title[_ngcontent-%COMP%]{border-top:1px solid var(--color-border);color:var(--color-defaut);font-weight:700;text-align:center}.grid_table[_ngcontent-%COMP%]   .grid_cell_selected[_ngcontent-%COMP%]{background-color:#667;color:#ddd}.grid_table[_ngcontent-%COMP%]   .grid_cell_first[_ngcontent-%COMP%]{border-left:10px solid var(--color-border)}.grid_table[_ngcontent-%COMP%]   .grid_cell_end[_ngcontent-%COMP%]{border-right:0 solid var(--color-border)}.grid_table[_ngcontent-%COMP%]   .grid_cell[_ngcontent-%COMP%]{border-right:1px solid var(--color-border)}.grid_table[_ngcontent-%COMP%]   .grid_row_first[_ngcontent-%COMP%]{border-bottom:1px solid var(--color-border)}.grid_table[_ngcontent-%COMP%]   .grid_row_last[_ngcontent-%COMP%]{border-bottom:0 solid var(--color-border)}.grid_table[_ngcontent-%COMP%]   .grid_row[_ngcontent-%COMP%]{border-bottom:1px solid var(--color-border)}"] });
+/*@__PURE__*/ (function () { ɵsetClassMetadata(MaDataGridComponent, [{
+        type: Component,
+        args: [{
                 selector: 'ma-data-grid',
                 //providers: [PipeLengthPipe],
-                template: "<!-- #gridfilter *ngIf=\"extFilter\" -->\r\n<ma-data-grid-filter #gridfilter *ngIf=\"extFilter\"  [(searchValue)]=\"searchValue\" [columns]=\"columns\"  (filterChange)=\"_filterChange($event)\"></ma-data-grid-filter>\r\n<div class=\"datagrid_page\">\r\n    <div class=\"scroller\">\r\n        <table class=\"grid_table\">\r\n            <!-- HEADER -->\r\n            <tr class=\"grid_row\">\r\n                <td class=\"grid_cell grid_cell_title\"  [ngClass]=\"{'grid_cell_first': i==0}\" *ngFor=\"let col of columns;index as i; \">\r\n                    {{col.title}} \r\n                    <span *ngIf=\"col.isRowNumber !== true && col.sorted === true\" (click)=\"sortBy(col)\">\r\n                        <span *ngIf=\"sortedField.field != col.prop\" class=\"grid_sort tiny material-icons\">swap_vert</span>\r\n                        <span *ngIf=\"sortedField.field === col.prop && sortedField.reverse\" class=\"grid_sort tiny material-icons\">arrow_drop_down</span>\r\n                        <span *ngIf=\"sortedField.field === col.prop && !sortedField.reverse\" class=\"grid_sort tiny material-icons\">arrow_drop_up</span>\r\n                    </span> \r\n                </td>\r\n            </tr>\r\n            <!-- Head Filter -->\r\n            <tr class=\"grid_row\" *ngIf=\"headFilter\">\r\n                <td class=\"grid_cell grid_cell_title\"  [ngClass]=\"{'grid_cell_first': i==0}\" *ngFor=\"let col of columns;index as i; \">\r\n                    <ma-data-grid-head-filter #headerfilter *ngIf=\"col.dataType || col.headFilter\" [col]=\"col\" (changeHeaderFilter)=\"_changeHeaderFilter($event)\"></ma-data-grid-head-filter>\r\n                </td>\r\n            </tr>\r\n            <!-- DATA -->\r\n            <tr class=\"grid_row\" *ngFor=\"let row of rows_displayed; \r\n                    last as isLastRow; \r\n                    even as pair; \r\n                    index as i; \r\n                    first as isFirstRow\"\r\n                (click)=\"SelectRow(i,row)\" [ngClass]=\"{'grid_row_selected': i == row_selected && !cell_selected, 'CSSclassEven': pair,'CSSclassOdd': !pair, 'grid_row_first': isFirstRow, 'grid_row_end': isLastRow}\">\r\n    \r\n                <td class=\"grid_cell {{col.cssClass}}\" *ngFor=\"let col of columns; \r\n                    index as ncol; \r\n                    count as maxcol; \r\n                    first as isFirstCol\r\n                    last as isLastCol;\" \r\n                    \r\n                    [ngClass]=\"{'grid_cell_selected': i == row_selected && col.prop == cell_selected, 'grid_cell_end': isLastCol,'grid_cell_first': isFirstCol}\"\r\n                    (click)=\"SelectCell(i,row,col)\">\r\n                    <!--  {{col.prop}} repr\u00E9sente le nom de colonne d'un \u00E9l\u00E9ment contenu dans 'colmuns' -- >\r\n                    <div *ngIf=\"col.isRowNumber === true; then RowNumberBlock else dataBlock\"></div>\r\n                    <ng-template #RowNumberBlock>{{i}}</ng-template>\r\n                    <ng-template #dataBlock> {{u[col.prop] | dataGridPipe :u :c}}</ng-template>\r\n                    -->\r\n                    <datagrid-cell-container [ngSwitch]=\"true\"  >\r\n                        <datagrid-cell-element *ngSwitchCase=\"col.isRowNumber === true\">{{i}}</datagrid-cell-element>\r\n                        <datagrid-cell-element *ngSwitchCase=\"col.isRowHTML === true\"><span [innerHTML]=\"row[col.prop]\"></span></datagrid-cell-element>\r\n                        <datagrid-cell-element *ngSwitchCase=\"col.useTemplate != null\"><ma-data-grid-template-cell-t1 [template]=\"col.useTemplate\" [data]=\"row\"></ma-data-grid-template-cell-t1></datagrid-cell-element>\r\n                        <datagrid-cell-element *ngSwitchCase=\"col.dataType == 'boolean'\"><ma-data-grid-cell-boolean [template]=\"col.useTemplate\" [col]=\"col\" [data]=\"row\"></ma-data-grid-cell-boolean></datagrid-cell-element>\r\n                        <datagrid-cell-element *ngSwitchDefault>{{row[col.prop] | maDataGridPipe :row :col}}</datagrid-cell-element>\r\n                    </datagrid-cell-container>\r\n                </td>\r\n        \r\n            </tr>\r\n        </table>\r\n        \r\n    </div>\r\n    <div class=\"row\" style=\"padding-top: 5px;\">\r\n        <div class=\"col s3 \">\r\n            <div class=\"page_number\">#{{nb_record}} record<span *ngIf=\"nb_record > 1\">s</span></div>\r\n        </div>\r\n        <div class=\"col s8 div_pagination\">\r\n           \r\n            <ul class=\"pagination\">\r\n                <li *ngIf=\"max_page >= 9\" (click)=\"FastDecrementPage()\" [ngClass]=\"{'disabled': current_page == 0,'': current_page != 0}\"><a  class=\"pointer\"><i class=\"material-icons small\">fast_rewind</i></a></li>\r\n                <li *ngIf=\"nb_record > 0\" (click)=\"DecrementPage()\" [ngClass]=\"{'disabled': current_page == 0,'': current_page != 0}\"><a  class=\"pointer\"><i class=\"material-icons small\">chevron_left</i></a></li>\r\n                <li *ngFor=\"let n_page of pages\" (click)=\"_changePage(n_page)\" [ngClass]=\"{'active': current_page == n_page,'': current_page != n_page}\" ><a class=\"pointer\" class=\"a_pagination small \">{{(n_page+1)}}</a></li>\r\n                <li *ngIf=\"nb_record > 0\" (click)=\"IncrementPage()\" [ngClass]=\"{'disabled': current_page == max_page,'': current_page != max_page}\"><a  class=\"pointer\"><i class=\"material-icons small\">chevron_right</i></a></li>\r\n                <li *ngIf=\"max_page >= 9\" (click)=\"FastIncrementPage()\" [ngClass]=\"{'disabled': current_page == max_page,'': current_page != max_page}\"><a class=\"pointer\"><i class=\"material-icons small\">fast_forward</i></a></li>\r\n            </ul>\r\n       \r\n        </div>\r\n    </div>\r\n</div>\r\n    \r\n    ",
-                styles: [".datagrid_page .CSSclassOdd{background-color:#ddd}.datagrid_page{height:100%;width:100%}.div_pagination .pointer{cursor:default}.div_pagination .page_number{color:#667;font-size:1rem;padding:0 10px}.datagrid_page .div_pagination{display:-ms-inline-grid;display:inline-grid;justify-content:flex-end}.a_pagination:hover,.div_pagination .a_pagination{color:#667;display:inline-block;font-size:1rem;line-height:30px;padding:0 10px;text-decoration:none}.datagrid_page .scroller{-ms-grid-row-align:center;align-self:center;background-color:#fefefe;overflow:auto;scrollbar-color:#667 #fefefe;scrollbar-width:auto;width:100%}.grid_table .grid_row_selected{background-color:#667;color:#ddd}.grid_table .grid_sort{cursor:pointer}.datagrid_page .grid_table{width:100%}.grid_table .grid_cell_title{border-top:1px solid #667;color:#667;font-weight:700;text-align:center}.grid_table .grid_cell_selected{background-color:#667;color:#ddd}.grid_table .grid_cell_first{border-left:10px solid #667}.grid_table .grid_cell_end{border-right:0 solid #667}.grid_table .grid_cell{border-right:1px solid #667;margin:0;padding:0 0 0 5px}.grid_table .grid_row_first{border-bottom:1px solid #667}.grid_table .grid_row_last{border-bottom:0 solid #667}.grid_table .grid_row{border-bottom:1px solid #667}"]
-            },] }
-];
-MaDataGridComponent.ctorParameters = () => [];
-MaDataGridComponent.propDecorators = {
-    columns: [{ type: Input }],
-    limit: [{ type: Input }],
-    canSelect: [{ type: Input }],
-    extFilter: [{ type: Input }],
-    headFilter: [{ type: Input }],
-    pagination: [{ type: Input }],
-    page: [{ type: Input }],
-    count: [{ type: Input }],
-    rows: [{ type: Input }],
-    change: [{ type: Output }],
-    select: [{ type: Output }],
-    extFilterChange: [{ type: Output }],
-    filterChange: [{ type: Output }],
-    changePage: [{ type: Output }],
-    sort: [{ type: Output }],
-    canSelectChange: [{ type: Output }],
-    gridfilter: [{ type: ViewChild, args: [MaGridFilterComponent, { static: true },] }],
-    headerfilter: [{ type: ViewChildren, args: [DataGridHeadFilterComponent,] }]
-};
+                templateUrl: './ma-data-grid.component.html',
+                styleUrls: ['./ma-data-grid.component.css'],
+            }]
+    }], function () { return []; }, { columns: [{
+            type: Input
+        }], limit: [{
+            type: Input
+        }], canSelect: [{
+            type: Input
+        }], extFilter: [{
+            type: Input
+        }], headFilter: [{
+            type: Input
+        }], pagination: [{
+            type: Input
+        }], page: [{
+            type: Input
+        }], count: [{
+            type: Input
+        }], customCSS: [{
+            type: Input
+        }], rows: [{
+            type: Input
+        }], change: [{
+            type: Output
+        }], select: [{
+            type: Output
+        }], extFilterChange: [{
+            type: Output
+        }], filterChange: [{
+            type: Output
+        }], changePage: [{
+            type: Output
+        }], sort: [{
+            type: Output
+        }], canSelectChange: [{
+            type: Output
+        }], gridfilter: [{
+            type: ViewChild,
+            args: [MaGridFilterComponent, { static: true }]
+        }], headerfilter: [{
+            type: ViewChildren,
+            args: [DataGridHeadFilterComponent]
+        }] }); })();
 
 class MaAnchorGridCellDirective {
     constructor(viewContainerRef) {
         this.viewContainerRef = viewContainerRef;
     }
 }
-MaAnchorGridCellDirective.decorators = [
-    { type: Directive, args: [{
+MaAnchorGridCellDirective.ɵfac = function MaAnchorGridCellDirective_Factory(t) { return new (t || MaAnchorGridCellDirective)(ɵɵdirectiveInject(ViewContainerRef)); };
+MaAnchorGridCellDirective.ɵdir = ɵɵdefineDirective({ type: MaAnchorGridCellDirective, selectors: [["", "libMaAnchorGridCell", ""]] });
+/*@__PURE__*/ (function () { ɵsetClassMetadata(MaAnchorGridCellDirective, [{
+        type: Directive,
+        args: [{
                 selector: '[libMaAnchorGridCell]'
-            },] }
-];
-MaAnchorGridCellDirective.ctorParameters = () => [
-    { type: ViewContainerRef }
-];
-
-class MaGridCellTemplateDirective {
-    constructor(viewContainerRef) {
-        this.viewContainerRef = viewContainerRef;
-    }
-}
-MaGridCellTemplateDirective.decorators = [
-    { type: Directive, args: [{
-                selector: '[libMaGridCellTemplate]'
-            },] }
-];
-MaGridCellTemplateDirective.ctorParameters = () => [
-    { type: ViewContainerRef }
-];
-
-class DataGridCellItemComponent {
-    constructor(component, data) {
-        this.component = component;
-        this.data = data;
-    }
-}
-
-class DataGridTemplateCellComponent {
-    constructor(componentFactoryResolver) {
-        this.componentFactoryResolver = componentFactoryResolver;
-        // console.log('DataGridTemplateCellComponent c',this.template);
-    }
-    ngOnInit() {
-        // 
-        if (!this.template) {
-            return;
-        }
-        const component = new DataGridCellItemComponent(this.template, this.data);
-        const componentFactory = this.componentFactoryResolver.resolveComponentFactory(component.component);
-        if (!this.libMaGridCellTemplate) {
-            return;
-        }
-        const viewContainerRef = this.libMaGridCellTemplate.viewContainerRef;
-        const componentRef = viewContainerRef.createComponent(componentFactory);
-        componentRef.instance.data = component.data;
-    }
-}
-DataGridTemplateCellComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'ma-data-grid-template-cell-t1',
-                template: '<ng-template libMaGridCellTemplate></ng-template>'
-            },] }
-];
-DataGridTemplateCellComponent.ctorParameters = () => [
-    { type: ComponentFactoryResolver }
-];
-DataGridTemplateCellComponent.propDecorators = {
-    data: [{ type: Input }],
-    template: [{ type: Input }],
-    libMaGridCellTemplate: [{ type: ViewChild, args: [MaGridCellTemplateDirective, { static: true },] }]
-};
-
-class DataGridPipePipe {
-    transform(value, row, col) {
-        if (col.pipe) {
-            return col.pipe(value, row, col);
-        }
-        return value;
-    }
-}
-DataGridPipePipe.decorators = [
-    { type: Pipe, args: [{
-                name: 'maDataGridPipe'
-            },] }
-];
-
-class DataGridCellBooleanComponent {
-    constructor() {
-        this.icon = '';
-    }
-    ngOnInit() {
-        // console.log(this.data[this.col.prop]);
-        if (this.data[this.col.prop] === true) {
-            this.icon = 'check_box';
-        }
-        else if (this.data[this.col.prop] === false) {
-            this.icon = 'check_box_outline_blank';
-        }
-    }
-}
-DataGridCellBooleanComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'ma-data-grid-cell-boolean',
-                template: '<div style="text-align: center"><i class="tiny material-icons">{{icon}}</i></div>'
-            },] }
-];
-DataGridCellBooleanComponent.ctorParameters = () => [];
-DataGridCellBooleanComponent.propDecorators = {
-    data: [{ type: Input }],
-    col: [{ type: Input }]
-};
+            }]
+    }], function () { return [{ type: ViewContainerRef }]; }, null); })();
 
 class MaDataGridModule {
 }
-MaDataGridModule.decorators = [
-    { type: NgModule, args: [{
+MaDataGridModule.ɵmod = ɵɵdefineNgModule({ type: MaDataGridModule });
+MaDataGridModule.ɵinj = ɵɵdefineInjector({ factory: function MaDataGridModule_Factory(t) { return new (t || MaDataGridModule)(); }, imports: [[
+            CommonModule,
+            FormsModule
+        ]] });
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && ɵɵsetNgModuleScope(MaDataGridModule, { declarations: [MaDataGridComponent,
+        MaAnchorGridCellDirective,
+        DataGridTemplateCellComponent,
+        DataGridPipePipe,
+        MaGridFilterComponent,
+        DataGridHeadFilterComponent,
+        DataGridOpFilterComponent,
+        DataGridPickerDateComponent,
+        DataGridCellBooleanComponent,
+        MaGridCellTemplateDirective], imports: [CommonModule,
+        FormsModule], exports: [
+        /* Ajouter CommonModule pour éviter les erreurs
+            Can't bind to 'ngClass' since it isn't a known property */
+        MaDataGridComponent,
+        MaGridFilterComponent] }); })();
+/*@__PURE__*/ (function () { ɵsetClassMetadata(MaDataGridModule, [{
+        type: NgModule,
+        args: [{
                 declarations: [
                     MaDataGridComponent,
                     MaAnchorGridCellDirective,
@@ -1169,8 +1814,8 @@ MaDataGridModule.decorators = [
                     MaDataGridComponent,
                     MaGridFilterComponent
                 ]
-            },] }
-];
+            }]
+    }], null, null); })();
 
 /*
  * Public API Surface of ma-data-grid
@@ -1180,5 +1825,5 @@ MaDataGridModule.decorators = [
  * Generated bundle index. Do not edit.
  */
 
-export { MaDataGridComponent, MaDataGridModule, MaGridFilterComponent, options_header_boolean, options_header_date, options_header_number, options_header_string, DataGridHeadFilterComponent as ɵa, DataGridOpFilterComponent as ɵb, DataGridPickerDateComponent as ɵc, MaAnchorGridCellDirective as ɵd, DataGridTemplateCellComponent as ɵe, MaGridCellTemplateDirective as ɵf, DataGridPipePipe as ɵg, DataGridCellBooleanComponent as ɵh };
+export { MaDataGridComponent, MaDataGridModule, MaGridFilterComponent, options_header_boolean, options_header_date, options_header_number, options_header_string };
 //# sourceMappingURL=amn31-ma-data-grid.js.map
