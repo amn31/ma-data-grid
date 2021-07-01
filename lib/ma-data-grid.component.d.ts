@@ -4,7 +4,6 @@ import { DataGridHeadFilterComponent } from './components/data-grid-head-filter/
 import { MaDataGridFilterEvent, MaDataGridColumnOptions, MaDataGridSelectMethod, MaDataGridSelectEvent } from './interfaces/ma-data-grid-options';
 import { MaGridFilterComponent } from './ma-grid-filter.component';
 import { FilterConditions } from "@amn31/filter-multiple-conditions";
-import * as i0 from "@angular/core";
 export declare class MaDataGridComponent implements OnInit, OnChanges {
     columns: MaDataGridColumnOptions[];
     limit: number;
@@ -61,7 +60,4 @@ export declare class MaDataGridComponent implements OnInit, OnChanges {
     timeout: any;
     private _changeHeaderFilter;
     private _delayChangeHeaderFilter;
-    static ɵfac: i0.ɵɵFactoryDef<MaDataGridComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDefWithMeta<MaDataGridComponent, "ma-data-grid", never, { "columns": "columns"; "limit": "limit"; "canSelect": "canSelect"; "extFilter": "extFilter"; "headFilter": "headFilter"; "pagination": "pagination"; "page": "page"; "count": "count"; "customCSS": "customCSS"; "rows": "rows"; }, { "change": "change"; "select": "select"; "extFilterChange": "extFilterChange"; "filterChange": "filterChange"; "changePage": "changePage"; "sort": "sort"; "canSelectChange": "canSelectChange"; }, never, never>;
 }
-//# sourceMappingURL=ma-data-grid.component.d.ts.map

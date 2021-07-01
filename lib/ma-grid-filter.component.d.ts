@@ -1,6 +1,5 @@
 import { EventEmitter, OnInit, SimpleChanges } from '@angular/core';
 import { MaDataGridFilterEvent, MaDataGridColumnOptions } from './interfaces/ma-data-grid-options';
-import * as i0 from "@angular/core";
 export declare class MaGridFilterComponent implements OnInit {
     constructor();
     placeholder: string;
@@ -18,7 +17,4 @@ export declare class MaGridFilterComponent implements OnInit {
     clickChekbox(col: any): void;
     enableFocus(): void;
     updateFilter(event: any): void;
-    static ɵfac: i0.ɵɵFactoryDef<MaGridFilterComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDefWithMeta<MaGridFilterComponent, "ma-data-grid-filter", never, { "searchValue": "searchValue"; "customCSS": "customCSS"; "columns": "columns"; }, { "searchValueChange": "searchValueChange"; "filterChange": "filterChange"; }, never, never>;
 }
-//# sourceMappingURL=ma-grid-filter.component.d.ts.map

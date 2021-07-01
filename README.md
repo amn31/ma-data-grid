@@ -305,7 +305,6 @@ In the "pagination enabled" data have to be manages by the backend server and [@
       [columns]="columns"     define columns to display
       [headFilter]="true"     the header filter will be shown
       
-      
       [limit]="10"            Max number of rows to display
       [canSelect]="{row|cell}" Define if row or cell can be selected
       (select)=""             Method which will receive selecting event
@@ -317,8 +316,6 @@ In the "pagination enabled" data have to be manages by the backend server and [@
       [page]="page"           represents the current page
       (changePage)="changePage($event)"   Method which will called when page is setted
       (sort)="sortBy($event)"             Method which will called when user will sort a column
-      
-      customCSS="mycss_"   to specific and create my own CSS
       
     -->
     <ma-data-grid #datagrid

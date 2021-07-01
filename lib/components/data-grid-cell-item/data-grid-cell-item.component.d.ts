@@ -4,4 +4,3 @@ export declare class DataGridCellItemComponent {
     data: any;
     constructor(component: Type<any>, data: any);
 }
-//# sourceMappingURL=data-grid-cell-item.component.d.ts.map

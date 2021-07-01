@@ -20,7 +20,7 @@ export interface MaDataGridColumnOptions {
     prop: string;
     sorted?: boolean;
     extFilter?: boolean;
-    dataType?: 'boolean' | 'number' | 'date' | 'string' | 'datetime' | 'time';
+    dataType?: 'boolean' | 'bool' | 'number' | 'date' | 'string' | 'datetime' | 'time';
     headFilter?: MaDataGridHeadFilter[];
     opDefautFilter?: string;
     extFilterSelected?: boolean;
@@ -33,6 +33,7 @@ export interface MaDataGridHeadFilter {
     label?: string;
 }
 export declare const options_header_boolean: MaDataGridHeadFilter[];
+export declare const options_header_bool: MaDataGridHeadFilter[];
 export declare const options_header_string: MaDataGridHeadFilter[];
 export declare const options_header_number: MaDataGridHeadFilter[];
 export declare const options_header_date: MaDataGridHeadFilter[];
@@ -40,4 +41,3 @@ export interface MaDataGridFilterEvent {
     text: string;
     fields: string[];
 }
-//# sourceMappingURL=ma-data-grid-options.d.ts.map
