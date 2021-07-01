@@ -404,7 +404,6 @@ class DataGridOpFilterComponent {
         this._changeOperator();
     }
     getConditions(filter_value) {
-        console.log("GET-COND", this.values, this.col);
         if (this.multiple == false) {
             let o = this.getOperator();
             // console.log('getFilter ' + this.col.prop + " o", o)
@@ -429,7 +428,6 @@ class DataGridOpFilterComponent {
                         conditions.push('or');
                     }
                 }
-                console.log("COND", conditions);
                 return conditions;
             }
         }
