@@ -17,10 +17,11 @@ export interface MaDataGridColumnOptions {
     cssClass?: string;
     isRowNumber?: boolean;
     isRowHTML?: boolean;
+    canEdit?: boolean;
     prop: string;
     sorted?: boolean;
     extFilter?: boolean;
-    dataType?: 'boolean' | 'bool' | 'number' | 'date' | 'string' | 'datetime' | 'time';
+    dataType?: 'boolean' | 'bool' | 'number' | 'date' | 'string' | 'datetime' | 'time' | 'float' | 'selector';
     headFilter?: MaDataGridHeadFilter[];
     opDefautFilter?: string;
     extFilterSelected?: boolean;

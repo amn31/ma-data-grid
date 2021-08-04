@@ -14,6 +14,7 @@ export declare class MaDataGridComponent implements OnInit, OnChanges {
     page: number;
     count: number;
     customCSS: string;
+    myGrid: this;
     rows: any;
     change: EventEmitter<any>;
     select: EventEmitter<MaDataGridSelectEvent>;
@@ -22,6 +23,8 @@ export declare class MaDataGridComponent implements OnInit, OnChanges {
     changePage: EventEmitter<any>;
     sort: EventEmitter<any>;
     canSelectChange: EventEmitter<MaDataGridSelectMethod>;
+    rowsChange: EventEmitter<any>;
+    rowsSelect: EventEmitter<any>;
     gridfilter: MaGridFilterComponent;
     headerfilter: QueryList<DataGridHeadFilterComponent>;
     grid_cell_first: string;
@@ -49,6 +52,8 @@ export declare class MaDataGridComponent implements OnInit, OnChanges {
     IncrementPage(): void;
     DecrementPage(): void;
     FastIncrementPage(): void;
+    _dataChange(evt: any): void;
+    _dataSelector(evt: any, prop: any): void;
     FastDecrementPage(): void;
     private _changePage;
     ngOnInit(): void;

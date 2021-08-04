@@ -371,11 +371,14 @@
                 this.multiple = true;
                 this.options = options_header_bool;
             }
-            if (this.col.dataType == 'number') {
+            if (this.col.dataType == 'number' || this.col.dataType == 'float') {
                 this.options = options_header_number;
             }
             if (this.col.dataType == 'date') {
                 this.options = options_header_date;
+            }
+            if (this.col.dataType == 'selector') {
+                this.options = [];
             }
             if (this.col.headFilter) {
                 this.options = this.col.headFilter;
@@ -1109,6 +1112,7 @@
             this.page = -1;
             this.count = 0;
             this.customCSS = "";
+            this.myGrid = this;
             this.rows = [];
             this.change = new core.EventEmitter();
             this.select = new core.EventEmitter();
@@ -1117,6 +1121,8 @@
             this.changePage = new core.EventEmitter();
             this.sort = new core.EventEmitter();
             this.canSelectChange = new core.EventEmitter();
+            this.rowsChange = new core.EventEmitter();
+            this.rowsSelect = new core.EventEmitter();
             this.grid_cell_first = this.customCSS + 'grid_cell_first';
             this.grid_row_selected = this.customCSS + 'grid_row_selected';
             this.current_page = -1;
@@ -1144,7 +1150,7 @@
         };
         MaDataGridComponent.prototype.ngOnChanges = function (changes) {
             // console.log("this.searchValue: " + this.searchValue)
-            // console.log('ngOnChanges ', changes);
+            console.log('ngOnChanges ', changes);
             if (changes.page && changes.page.currentValue >= 0) {
             }
             if (changes.canSelect && changes.canSelect.currentValue) {
@@ -1170,6 +1176,14 @@
         MaDataGridComponent.prototype.FastIncrementPage = function () {
             var p = this.current_page + 5; //Math.round(this.max_page / 50);
             this._changePage(p, this.temp);
+        };
+        MaDataGridComponent.prototype._dataChange = function (evt) {
+            console.log("_dataChange", evt);
+            this.rowsChange.emit(evt);
+        };
+        MaDataGridComponent.prototype._dataSelector = function (evt, prop) {
+            console.log("_dataSelector", evt, prop);
+            this.rowsSelect.emit(evt);
         };
         MaDataGridComponent.prototype.FastDecrementPage = function () {
             var p = this.current_page - 5; //Math.round(this.max_page / 50);;
@@ -1376,7 +1390,7 @@
         { type: core.Component, args: [{
                     selector: 'ma-data-grid',
                     //providers: [PipeLengthPipe],
-                    template: "<!-- #gridfilter *ngIf=\"extFilter\" -->\r\n<ma-data-grid-filter #gridfilter *ngIf=\"extFilter\" [customCSS]=\"customCSS\"  [(searchValue)]=\"searchValue\" [columns]=\"columns\"  (filterChange)=\"_filterChange($event)\"></ma-data-grid-filter>\r\n<div class=\"datagrid_page\">\r\n    <div class=\"scroller\">\r\n        <table class=\"{{customCSS}}grid_table\">\r\n            <!-- HEADER -->\r\n            <tr class=\"grid_row\">\r\n                <td class=\"{{customCSS}}grid_cell {{customCSS}}grid_cell_title\"  [ngClass]=\"{grid_cell_first: i==0}\" *ngFor=\"let col of columns;index as i; \">\r\n                    {{col.title}} \r\n                    <span *ngIf=\"col.isRowNumber !== true && col.sorted === true\" (click)=\"sortBy(col)\">\r\n                        <span *ngIf=\"sortedField.field != col.prop\" class=\"grid_sort tiny material-icons\">swap_vert</span>\r\n                        <span *ngIf=\"sortedField.field === col.prop && sortedField.reverse\" class=\"grid_sort tiny material-icons\">arrow_drop_down</span>\r\n                        <span *ngIf=\"sortedField.field === col.prop && !sortedField.reverse\" class=\"grid_sort tiny material-icons\">arrow_drop_up</span>\r\n                    </span> \r\n                </td>\r\n            </tr>\r\n            <!-- Head Filter -->\r\n            <tr class=\"{{customCSS}}grid_row\" *ngIf=\"headFilter\">\r\n                <td class=\"{{customCSS}}grid_cell {{customCSS}}grid_cell_title\"  [ngClass]=\"{grid_cell_first: i==0}\" *ngFor=\"let col of columns;index as i; \">\r\n                    <ma-data-grid-head-filter #headerfilter *ngIf=\"col.dataType || col.headFilter\" [col]=\"col\" (changeHeaderFilter)=\"_changeHeaderFilter($event)\"></ma-data-grid-head-filter>\r\n                </td>\r\n            </tr>\r\n            <!-- DATA -->\r\n            <tr class=\"{{customCSS}}grid_row\" *ngFor=\"let row of rows_displayed; \r\n                    last as isLastRow; \r\n                    even as pair; \r\n                    index as i; \r\n                    first as isFirstRow\"\r\n                (click)=\"SelectRow(i,row)\" [ngClass]=\"{'grid_row_selected': i == row_selected && !cell_selected, 'CSSclassEven': pair,'CSSclassOdd': !pair, 'grid_row_first': isFirstRow, 'grid_row_end': isLastRow}\">\r\n    \r\n                <td class=\"{{customCSS}}grid_cell {{col.cssClass}}\" *ngFor=\"let col of columns; \r\n                    index as ncol; \r\n                    count as maxcol; \r\n                    first as isFirstCol\r\n                    last as isLastCol;\" \r\n                    \r\n                    [ngClass]=\"{'grid_cell_selected': i == row_selected && col.prop == cell_selected, 'grid_cell_end': isLastCol,'grid_cell_first': isFirstCol}\"\r\n                    (click)=\"SelectCell(i,row,col)\">\r\n                    <!--  {{col.prop}} repr\u00E9sente le nom de colonne d'un \u00E9l\u00E9ment contenu dans 'colmuns' -- >\r\n                    <div *ngIf=\"col.isRowNumber === true; then RowNumberBlock else dataBlock\"></div>\r\n                    <ng-template #RowNumberBlock>{{i}}</ng-template>\r\n                    <ng-template #dataBlock> {{u[col.prop] | dataGridPipe :u :c}}</ng-template>\r\n                    -->\r\n                    <datagrid-cell-container [ngSwitch]=\"true\"  >\r\n                        <datagrid-cell-element *ngSwitchCase=\"col.isRowNumber === true\">{{i}}</datagrid-cell-element>\r\n                        <datagrid-cell-element *ngSwitchCase=\"col.isRowHTML === true\"><span [innerHTML]=\"row[col.prop]\"></span></datagrid-cell-element>\r\n                        <datagrid-cell-element *ngSwitchCase=\"col.useTemplate != null\"><ma-data-grid-template-cell-t1 [template]=\"col.useTemplate\" [data]=\"row\"></ma-data-grid-template-cell-t1></datagrid-cell-element>\r\n                        <datagrid-cell-element *ngSwitchCase=\"col.dataType == 'boolean' || col.dataType == 'bool'\"><ma-data-grid-cell-boolean [template]=\"col.useTemplate\" [col]=\"col\" [data]=\"row\"></ma-data-grid-cell-boolean></datagrid-cell-element>\r\n                        <datagrid-cell-element *ngSwitchDefault>{{row[col.prop] | maDataGridPipe :row :col}}</datagrid-cell-element>\r\n                    </datagrid-cell-container>\r\n                </td>\r\n        \r\n            </tr>\r\n        </table>\r\n        \r\n    </div>\r\n    <div class=\"row\" style=\"padding-top: 5px;\">\r\n        <div class=\"col s3 \">\r\n            <div class=\"page_number\">#{{nb_record}} record<span *ngIf=\"nb_record > 1\">s</span></div>\r\n        </div>\r\n        <div class=\"col s8 div_pagination\">\r\n           \r\n            <ul class=\"pagination\">\r\n                <li *ngIf=\"max_page >= 9\" (click)=\"FastDecrementPage()\" [ngClass]=\"{'disabled': current_page == 0,'': current_page != 0}\"><a  class=\"pointer\"><i class=\"material-icons small\">fast_rewind</i></a></li>\r\n                <li *ngIf=\"nb_record > 0\" (click)=\"DecrementPage()\" [ngClass]=\"{'disabled': current_page == 0,'': current_page != 0}\"><a  class=\"pointer\"><i class=\"material-icons small\">chevron_left</i></a></li>\r\n                <li *ngFor=\"let n_page of pages\" (click)=\"_changePage(n_page)\" [ngClass]=\"{'active': current_page == n_page,'': current_page != n_page}\" ><a class=\"pointer\" class=\"a_pagination small \">{{(n_page+1)}}</a></li>\r\n                <li *ngIf=\"nb_record > 0\" (click)=\"IncrementPage()\" [ngClass]=\"{'disabled': current_page == max_page,'': current_page != max_page}\"><a  class=\"pointer\"><i class=\"material-icons small\">chevron_right</i></a></li>\r\n                <li *ngIf=\"max_page >= 9\" (click)=\"FastIncrementPage()\" [ngClass]=\"{'disabled': current_page == max_page,'': current_page != max_page}\"><a class=\"pointer\"><i class=\"material-icons small\">fast_forward</i></a></li>\r\n            </ul>\r\n       \r\n        </div>\r\n    </div>\r\n</div>\r\n    \r\n    ",
+                    template: "<!-- #gridfilter *ngIf=\"extFilter\" -->\r\n<ma-data-grid-filter #gridfilter *ngIf=\"extFilter\" [customCSS]=\"customCSS\"  [(searchValue)]=\"searchValue\" [columns]=\"columns\"  (filterChange)=\"_filterChange($event)\"></ma-data-grid-filter>\r\n<div class=\"datagrid_page\">\r\n    <div class=\"scroller\">\r\n        <table class=\"{{customCSS}}grid_table\">\r\n            <!-- HEADER -->\r\n            <tr class=\"grid_row\">\r\n                <td class=\"{{customCSS}}grid_cell {{customCSS}}grid_cell_title\"  [ngClass]=\"{grid_cell_first: i==0}\" *ngFor=\"let col of columns;index as i; \">\r\n                    <datagrid-cellheader-container [ngSwitch]=\"true\"  >\r\n                        <datagrid-cell-element *ngSwitchCase=\"col.dataType == 'selector'\"><ma-data-grid-cell-selector [prop]=\"col.prop\" [isHeader]=\"true\" [col]=\"col\" [myGrid]=\"myGrid\" [data]=\"rows_displayed\"></ma-data-grid-cell-selector><span>{{col.title}}</span></datagrid-cell-element>\r\n                        <datagrid-cell-element *ngSwitchDefault >{{col.title}}</datagrid-cell-element>\r\n                    </datagrid-cellheader-container>\r\n                    \r\n                    <span *ngIf=\"col.dataType != 'selector' && col.isRowNumber !== true && col.sorted === true\" (click)=\"sortBy(col)\">\r\n                        <span *ngIf=\"sortedField.field != col.prop\" class=\"grid_sort tiny material-icons\">swap_vert</span>\r\n                        <span *ngIf=\"sortedField.field === col.prop && sortedField.reverse\" class=\"grid_sort tiny material-icons\">arrow_drop_down</span>\r\n                        <span *ngIf=\"sortedField.field === col.prop && !sortedField.reverse\" class=\"grid_sort tiny material-icons\">arrow_drop_up</span>\r\n                    </span> \r\n                </td>\r\n            </tr>\r\n            <!-- Head Filter -->\r\n            <tr class=\"{{customCSS}}grid_row\" *ngIf=\"headFilter\">\r\n                <td class=\"{{customCSS}}grid_cell {{customCSS}}grid_cell_title\"  [ngClass]=\"{grid_cell_first: i==0}\" *ngFor=\"let col of columns;index as i; \">\r\n                    <ma-data-grid-head-filter #headerfilter *ngIf=\"(col.dataType && col.dataType != 'selector' ) || col.headFilter\" [col]=\"col\" (changeHeaderFilter)=\"_changeHeaderFilter($event)\"></ma-data-grid-head-filter>\r\n                </td>\r\n            </tr>\r\n            <!-- DATA -->\r\n            <tr class=\"{{customCSS}}grid_row\" *ngFor=\"let row of rows_displayed; \r\n                    last as isLastRow; \r\n                    even as pair; \r\n                    index as i; \r\n                    first as isFirstRow\"\r\n                (click)=\"SelectRow(i,row)\" [ngClass]=\"{'grid_row_selected': i == row_selected && !cell_selected, 'CSSclassEven': pair,'CSSclassOdd': !pair, 'grid_row_first': isFirstRow, 'grid_row_end': isLastRow}\">\r\n    \r\n                <td class=\"{{customCSS}}grid_cell {{col.cssClass}}\" *ngFor=\"let col of columns; \r\n                    index as ncol; \r\n                    count as maxcol; \r\n                    first as isFirstCol\r\n                    last as isLastCol;\" \r\n                    \r\n                    [ngClass]=\"{'grid_cell_selected': i == row_selected && col.prop == cell_selected, 'grid_cell_end': isLastCol,'grid_cell_first': isFirstCol}\"\r\n                    (click)=\"SelectCell(i,row,col)\">\r\n                    <!--  {{col.prop}} repr\u00E9sente le nom de colonne d'un \u00E9l\u00E9ment contenu dans 'colmuns' -- >\r\n                    <div *ngIf=\"col.isRowNumber === true; then RowNumberBlock else dataBlock\"></div>\r\n                    <ng-template #RowNumberBlock>{{i}}</ng-template>\r\n                    <ng-template #dataBlock> {{u[col.prop] | dataGridPipe :u :c}}</ng-template>\r\n                    -->\r\n                    <datagrid-cell-container [ngSwitch]=\"true\"  >\r\n                        <datagrid-cell-element *ngSwitchCase=\"col.dataType == 'selector'\" ngSwitchBreak><ma-data-grid-cell-selector [prop]=\"col.prop\" [col]=\"col\" [myGrid]=\"myGrid\" [data]=\"row\"></ma-data-grid-cell-selector></datagrid-cell-element>\r\n                        <datagrid-cell-element *ngSwitchCase=\"col.useTemplate != null\" ngSwitchBreak><ma-data-grid-template-cell-t1 [template]=\"col.useTemplate\" [prop]=\"col.prop\" [col]=\"col\" [myGrid]=\"myGrid\" [data]=\"row\"></ma-data-grid-template-cell-t1></datagrid-cell-element>\r\n                        <datagrid-cell-element *ngSwitchCase=\"col.canEdit === true\" ngSwitchBreak><ma-data-grid-celledit-item [prop]=\"col.prop\" [col]=\"col\" [myGrid]=\"myGrid\" [data]=\"row\"></ma-data-grid-celledit-item></datagrid-cell-element>\r\n                        <datagrid-cell-element *ngSwitchCase=\"col.isRowNumber === true\" ngSwitchBreak>{{i}}</datagrid-cell-element>\r\n                        <datagrid-cell-element *ngSwitchCase=\"col.isRowHTML === true\" ngSwitchBreak><span [innerHTML]=\"row[col.prop]\"></span></datagrid-cell-element>\r\n                        <datagrid-cell-element *ngSwitchCase=\"col.useTemplate == null && col.canEdit !== true && (col.dataType == 'boolean' || col.dataType == 'bool')\" ngSwitchBreak><ma-data-grid-cell-boolean [col]=\"col\" [data]=\"row\"></ma-data-grid-cell-boolean></datagrid-cell-element>\r\n                        <datagrid-cell-element *ngSwitchDefault>{{row[col.prop] | maDataGridPipe :row :col}}</datagrid-cell-element>\r\n                    </datagrid-cell-container>\r\n                </td>\r\n        \r\n            </tr>\r\n        </table>\r\n        \r\n    </div>\r\n    <div class=\"row\" style=\"padding-top: 5px;\">\r\n        <div class=\"col s3 \">\r\n            <div class=\"page_number\">#{{nb_record}} record<span *ngIf=\"nb_record > 1\">s</span></div>\r\n        </div>\r\n        <div class=\"col s8 div_pagination\">\r\n           \r\n            <ul class=\"pagination\">\r\n                <li *ngIf=\"max_page >= 9\" (click)=\"FastDecrementPage()\" [ngClass]=\"{'disabled': current_page == 0,'': current_page != 0}\"><a  class=\"pointer\"><i class=\"material-icons small\">fast_rewind</i></a></li>\r\n                <li *ngIf=\"nb_record > 0\" (click)=\"DecrementPage()\" [ngClass]=\"{'disabled': current_page == 0,'': current_page != 0}\"><a  class=\"pointer\"><i class=\"material-icons small\">chevron_left</i></a></li>\r\n                <li *ngFor=\"let n_page of pages\" (click)=\"_changePage(n_page)\" [ngClass]=\"{'active': current_page == n_page,'': current_page != n_page}\" ><a class=\"pointer\" class=\"a_pagination small \">{{(n_page+1)}}</a></li>\r\n                <li *ngIf=\"nb_record > 0\" (click)=\"IncrementPage()\" [ngClass]=\"{'disabled': current_page == max_page,'': current_page != max_page}\"><a  class=\"pointer\"><i class=\"material-icons small\">chevron_right</i></a></li>\r\n                <li *ngIf=\"max_page >= 9\" (click)=\"FastIncrementPage()\" [ngClass]=\"{'disabled': current_page == max_page,'': current_page != max_page}\"><a class=\"pointer\"><i class=\"material-icons small\">fast_forward</i></a></li>\r\n            </ul>\r\n       \r\n        </div>\r\n    </div>\r\n</div>\r\n    \r\n    ",
                     styles: [":host{--color-border:#667;--color-defaut:#667}.datagrid_page .CSSclassOdd{background-color:#ddd}.datagrid_page{height:100%;width:100%}.div_pagination .pointer{cursor:default}.div_pagination .page_number{color:var(--color-defaut);font-size:1rem;padding:0 10px}.datagrid_page .div_pagination{display:-ms-inline-grid;display:inline-grid;justify-content:flex-end}.a_pagination:hover,.div_pagination .a_pagination{color:var(--color-border);display:inline-block;font-size:1rem;line-height:30px;padding:0 10px;text-decoration:none}.datagrid_page .scroller{-ms-grid-row-align:center;align-self:center;background-color:#fefefe;overflow:auto;scrollbar-color:var(--color-border) #fefefe;scrollbar-width:auto;width:100%}.grid_table .grid_row_selected{background-color:#667;color:#ddd}.grid_table .grid_sort{cursor:pointer}.datagrid_page .grid_table{width:100%}.grid_table .grid_cell_title{border-top:1px solid var(--color-border);color:var(--color-defaut);font-weight:700;text-align:center}.grid_table .grid_cell_selected{background-color:#667;color:#ddd}.grid_table .grid_cell_first{border-left:10px solid var(--color-border)}.grid_table .grid_cell_end{border-right:0 solid var(--color-border)}.grid_table .grid_cell{border-right:1px solid var(--color-border)}.grid_table .grid_row_first{border-bottom:1px solid var(--color-border)}.grid_table .grid_row_last{border-bottom:0 solid var(--color-border)}.grid_table .grid_row{border-bottom:1px solid var(--color-border)}"]
                 },] }
     ];
@@ -1391,6 +1405,7 @@
         page: [{ type: core.Input }],
         count: [{ type: core.Input }],
         customCSS: [{ type: core.Input }],
+        myGrid: [{ type: core.Input }],
         rows: [{ type: core.Input }],
         change: [{ type: core.Output }],
         select: [{ type: core.Output }],
@@ -1399,6 +1414,8 @@
         changePage: [{ type: core.Output }],
         sort: [{ type: core.Output }],
         canSelectChange: [{ type: core.Output }],
+        rowsChange: [{ type: core.Output }],
+        rowsSelect: [{ type: core.Output }],
         gridfilter: [{ type: core.ViewChild, args: [MaGridFilterComponent, { static: true },] }],
         headerfilter: [{ type: core.ViewChildren, args: [DataGridHeadFilterComponent,] }]
     };
@@ -1434,9 +1451,13 @@
     ]; };
 
     var DataGridCellItemComponent = /** @class */ (function () {
-        function DataGridCellItemComponent(component, data) {
+        //dataChange = new EventEmitter<any>()
+        function DataGridCellItemComponent(component, data, col, prop, myGrid) {
             this.component = component;
             this.data = data;
+            this.col = col;
+            this.prop = prop;
+            this.myGrid = myGrid;
         }
         return DataGridCellItemComponent;
     }());
@@ -1444,14 +1465,15 @@
     var DataGridTemplateCellComponent = /** @class */ (function () {
         function DataGridTemplateCellComponent(componentFactoryResolver) {
             this.componentFactoryResolver = componentFactoryResolver;
-            // console.log('DataGridTemplateCellComponent c',this.template);
+            // console.log('DataGridTemplateCellComponent c',this.template, this.prop);
         }
         DataGridTemplateCellComponent.prototype.ngOnInit = function () {
+            var _a;
             // 
             if (!this.template) {
                 return;
             }
-            var component = new DataGridCellItemComponent(this.template, this.data);
+            var component = new DataGridCellItemComponent(this.template, this.data, this.col, this.prop, this.myGrid);
             var componentFactory = this.componentFactoryResolver.resolveComponentFactory(component.component);
             if (!this.libMaGridCellTemplate) {
                 return;
@@ -1459,6 +1481,16 @@
             var viewContainerRef = this.libMaGridCellTemplate.viewContainerRef;
             var componentRef = viewContainerRef.createComponent(componentFactory);
             componentRef.instance.data = component.data;
+            componentRef.instance.prop = component.prop;
+            componentRef.instance.col = component.col;
+            componentRef.instance.dataChange = new core.EventEmitter();
+            componentRef.instance.myGrid = component.myGrid;
+            (_a = componentRef.instance.dataChange) === null || _a === void 0 ? void 0 : _a.subscribe(function (d) {
+                // console.log("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD", d);
+                if (componentRef.instance.myGrid != null) {
+                    componentRef.instance.myGrid._dataChange(d);
+                }
+            });
         };
         return DataGridTemplateCellComponent;
     }());
@@ -1473,7 +1505,11 @@
     ]; };
     DataGridTemplateCellComponent.propDecorators = {
         data: [{ type: core.Input }],
+        prop: [{ type: core.Input }],
+        col: [{ type: core.Input }],
         template: [{ type: core.Input }],
+        myGrid: [{ type: core.Input }],
+        dataChange: [{ type: core.Output }],
         libMaGridCellTemplate: [{ type: core.ViewChild, args: [MaGridCellTemplateDirective, { static: true },] }]
     };
 
@@ -1500,25 +1536,189 @@
         }
         DataGridCellBooleanComponent.prototype.ngOnInit = function () {
             // console.log(this.data[this.col.prop]);
-            if (this.data[this.col.prop] === true) {
-                this.icon = 'check_box';
-            }
-            else if (this.data[this.col.prop] === false) {
-                this.icon = 'check_box_outline_blank';
-            }
+            // if (this.data[this.col.prop] === true) {
+            //   this.icon = 'check_box'
+            // } else if (this.data[this.col.prop] === false) {
+            //   this.icon = 'check_box_outline_blank'
+            // }
         };
         return DataGridCellBooleanComponent;
     }());
     DataGridCellBooleanComponent.decorators = [
         { type: core.Component, args: [{
                     selector: 'ma-data-grid-cell-boolean',
-                    template: '<div style="text-align: center"><i class="tiny material-icons">{{icon}}</i></div>'
+                    //template: '<div style="text-align: center"><i class="tiny material-icons">{{icon}}</i></div>'
+                    template: '<div style="text-align: center"><i *ngIf="data[col.prop] === true" class="tiny material-icons">check_box</i><i *ngIf="data[col.prop] === false" class="tiny material-icons">check_box_outline_blank</i></div>'
                 },] }
     ];
     DataGridCellBooleanComponent.ctorParameters = function () { return []; };
     DataGridCellBooleanComponent.propDecorators = {
         data: [{ type: core.Input }],
         col: [{ type: core.Input }]
+    };
+
+    var DataGridCelleditItemComponent = /** @class */ (function () {
+        function DataGridCelleditItemComponent() {
+            this.value = '';
+            this.dataChange = new core.EventEmitter();
+        }
+        DataGridCelleditItemComponent.prototype.ngOnInit = function () {
+            if (this.col && this.col.dataType == 'boolean') {
+                if (this.data && (this.data[this.prop] == true || this.data[this.prop] == 1 || this.data[this.prop] == "on")) {
+                    this.data[this.prop] = true;
+                }
+            }
+        };
+        DataGridCelleditItemComponent.prototype.onPress = function (evt) {
+            console.log(evt);
+            if (evt.Key == 'Enter') {
+                this.onChange();
+            }
+        };
+        DataGridCelleditItemComponent.prototype.onChange = function () {
+            // console.log('elem',this.myInput.nativeElement);
+            var emitEvent = true;
+            if (this.col && this.col.dataType == 'number') {
+                var s = this.myInput.nativeElement.value;
+                if (s.match(/^[0-9]+$/)) {
+                    this.data[this.prop] = parseInt(this.myInput.nativeElement.value);
+                }
+                else {
+                    emitEvent = false;
+                    this.myInput.nativeElement.value = this.data[this.prop];
+                }
+            }
+            else if (this.col && this.col.dataType == 'float') {
+                var s = this.myInput.nativeElement.value;
+                if (s.match(/^[0-9]+\.{0,1}[0-9]*$/)) {
+                    this.data[this.prop] = parseFloat(this.myInput.nativeElement.value);
+                }
+                else {
+                    emitEvent = false;
+                    this.myInput.nativeElement.value = this.data[this.prop];
+                }
+            }
+            else if (this.col && this.col.dataType == 'date') {
+                try {
+                    var d = new Date(this.myInput.nativeElement.value).toISOString().replace(/T.+/, '');
+                    this.data[this.prop] = d;
+                }
+                catch (e) {
+                    emitEvent = false;
+                    this.myInput.nativeElement.value = this.data[this.prop];
+                }
+            }
+            else if (this.col && (this.col.dataType == 'boolean' || this.col.dataType == 'bool')) {
+                this.data[this.prop] = this.myInput.nativeElement.checked;
+            }
+            else {
+                this.data[this.prop] = this.myInput.nativeElement.value;
+            }
+            if (emitEvent) {
+                console.log('EMIT dataChange', this.data);
+                this.dataChange.emit(this.data);
+                if (this.myGrid != null) {
+                    this.myGrid._dataChange(this.data);
+                }
+            }
+        };
+        DataGridCelleditItemComponent.prototype.onChangeCheckbox = function () {
+            // console.log('elem',this.myInputCheckbox.nativeElement);
+            this.data[this.prop] = this.myInputCheckbox.nativeElement.checked;
+            console.log('EMIT dataChange', this.data);
+            this.dataChange.emit(this.data);
+            if (this.myGrid != null) {
+                this.myGrid._dataChange(this.data);
+            }
+        };
+        DataGridCelleditItemComponent.prototype.ngOnChanges = function (changes) {
+            console.log('DataGridCelleditItem ngOnChanges', changes);
+        };
+        return DataGridCelleditItemComponent;
+    }());
+    DataGridCelleditItemComponent.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'ma-data-grid-celledit-item',
+                    template: "<div *ngIf=\"!col || col.dataType != 'boolean'\">\n    <!-- (keyup)=\"onChange()\" (keypress)=\"onPress($Event)\" -->\n    <input #myInput type=\"text\" [(value)]=\"data[prop]\" (keypress)=\"onPress($event)\" (change)=\"onChange()\">\n</div>\n<div *ngIf=\"col && col.dataType == 'boolean'\">\n    <label>\n        <input #myInputCheckbox type=\"checkbox\" [(ngModel)]=\"data[col.prop]\" (change)=\"onChangeCheckbox()\" />\n        <span></span>\n    </label>\n</div>",
+                    styles: [""]
+                },] }
+    ];
+    DataGridCelleditItemComponent.ctorParameters = function () { return []; };
+    DataGridCelleditItemComponent.propDecorators = {
+        myInput: [{ type: core.ViewChild, args: ["myInput", { static: false },] }],
+        myInputCheckbox: [{ type: core.ViewChild, args: ["myInputCheckbox", { static: false },] }],
+        dataChange: [{ type: core.Output }],
+        data: [{ type: core.Input }],
+        col: [{ type: core.Input }],
+        prop: [{ type: core.Input }],
+        myGrid: [{ type: core.Input }]
+    };
+
+    var DataGridCellSelectorComponent = /** @class */ (function () {
+        function DataGridCellSelectorComponent() {
+            this.title = '';
+            this.dataChange = new core.EventEmitter();
+            this.isHeader = false;
+        }
+        DataGridCellSelectorComponent.prototype.ngOnInit = function () {
+            /* Cas du header pas de prop */
+            if (this.isHeader) {
+                this.title = this.col.title;
+            }
+            else {
+                this.title = '';
+            }
+            if (this.data && (this.data[this.prop] == true || this.data[this.prop] == 1 || this.data[this.prop] == "on")) {
+                this.data[this.prop] = true;
+            }
+        };
+        DataGridCellSelectorComponent.prototype.onChangeCheckbox = function () {
+            var e_1, _a;
+            if (this.isHeader) {
+                try {
+                    for (var _b = __values(this.data), _c = _b.next(); !_c.done; _c = _b.next()) {
+                        var row = _c.value;
+                        row[this.prop] = this.myInputSelectorBox.nativeElement.checked;
+                    }
+                }
+                catch (e_1_1) { e_1 = { error: e_1_1 }; }
+                finally {
+                    try {
+                        if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+                    }
+                    finally { if (e_1) throw e_1.error; }
+                }
+            }
+            else {
+                this.data[this.prop] = this.myInputSelectorBox.nativeElement.checked;
+                console.log('EMIT SELECTOR dataChange', this.data);
+            }
+            this.dataChange.emit(this.data);
+            if (this.myGrid != null) {
+                this.myGrid._dataSelector(this.data, this.prop);
+            }
+        };
+        DataGridCellSelectorComponent.prototype.ngOnChanges = function (changes) {
+            console.log('SELECTOR ngOnChanges', changes);
+        };
+        return DataGridCellSelectorComponent;
+    }());
+    DataGridCellSelectorComponent.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'ma-data-grid-cell-selector',
+                    template: "<span>\n    <!--  [(ngModel)]=\"realValue\" [checked]=\"checked\" -->\n    <label>\n        <input [(ngModel)]=\"data[col.prop]\" #myInputSelectorBox type=\"checkbox\"  (change)=\"onChangeCheckbox()\" />\n        <span></span>\n    </label>\n</span>",
+                    styles: [""]
+                },] }
+    ];
+    DataGridCellSelectorComponent.ctorParameters = function () { return []; };
+    DataGridCellSelectorComponent.propDecorators = {
+        myInputSelectorBox: [{ type: core.ViewChild, args: ["myInputSelectorBox", { static: false },] }],
+        dataChange: [{ type: core.Output }],
+        data: [{ type: core.Input }],
+        isHeader: [{ type: core.Input }],
+        col: [{ type: core.Input }],
+        prop: [{ type: core.Input }],
+        myGrid: [{ type: core.Input }]
     };
 
     var MaDataGridModule = /** @class */ (function () {
@@ -1538,7 +1738,9 @@
                         DataGridOpFilterComponent,
                         DataGridPickerDateComponent,
                         DataGridCellBooleanComponent,
-                        MaGridCellTemplateDirective
+                        MaGridCellTemplateDirective,
+                        DataGridCelleditItemComponent,
+                        DataGridCellSelectorComponent
                     ],
                     imports: [
                         common.CommonModule,
@@ -1577,6 +1779,8 @@
     exports.ɵf = MaGridCellTemplateDirective;
     exports.ɵg = DataGridPipePipe;
     exports.ɵh = DataGridCellBooleanComponent;
+    exports.ɵi = DataGridCelleditItemComponent;
+    exports.ɵj = DataGridCellSelectorComponent;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

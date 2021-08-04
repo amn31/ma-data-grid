@@ -3,6 +3,8 @@
  */
 export * from './public-api';
 export { DataGridCellBooleanComponent as ɵh } from './lib/components/data-grid-cell-boolean/data-grid-cell-boolean.component';
+export { DataGridCellSelectorComponent as ɵj } from './lib/components/data-grid-cell-selector/data-grid-cell-selector.component';
+export { DataGridCelleditItemComponent as ɵi } from './lib/components/data-grid-celledit-item/data-grid-celledit-item.component';
 export { DataGridHeadFilterComponent as ɵa } from './lib/components/data-grid-head-filter/data-grid-head-filter.component';
 export { DataGridOpFilterComponent as ɵb } from './lib/components/data-grid-op-filter/data-grid-op-filter.component';
 export { DataGridPickerDateComponent as ɵc } from './lib/components/data-grid-picker-date/data-grid-picker-date.component';

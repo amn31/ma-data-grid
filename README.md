@@ -317,6 +317,12 @@ In the "pagination enabled" data have to be manages by the backend server and [@
       (changePage)="changePage($event)"   Method which will called when page is setted
       (sort)="sortBy($event)"             Method which will called when user will sort a column
       
+      If you want Edit :
+      - Remove [canSelect]=
+      Then you can add:
+        (rowsChange)="rowsChange($event)" Method which will called when data are changed
+        (rowsSelect)="rowsSelect($event)" Method which will called when selector is changed (Cf: 'selector')
+
     -->
     <ma-data-grid #datagrid
         [pagination]="true"
@@ -422,6 +428,25 @@ or change the sort of columns.
     this.loadPage(this.page);
   }
 
+  /**
+   * Call when data are changed
+   * @param event event
+   */
+  rowsChange(event) {
+    console.log('EFFECTIVE rowsChange', event);
+  }
+
+  /**
+   * Call when column(s) are select with the dataType 'selector'
+   * @param event Event
+   */
+  rowsSelect(event) {
+    if (!event.length) {
+      console.log('LINE SELECTOR ',event)
+    } else {
+      console.log('LINE(S) SELECTOR ',event)
+    }
+  }
 
 ````
 
@@ -451,7 +476,12 @@ A specific component for filtering can be used, to see it go to [https://amn31.g
 
 ```typescript
 columns: MaDataGridColumnOptions[] = [
-    
+    /* EDIT DATA:
+      For use selectiong line, use dataType: 'selector' 
+    { prop: '_selected', dataType: 'selector' },
+      // Edit Lat
+    { prop: 'lat', title: 'Lat', dataType: 'number', canEdit: true };
+    */
     { prop: 'commune', 
       title: 'City', sorted: true, ...
       extFilterSelected: true // allow externe filtering for that property 'City'
