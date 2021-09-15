@@ -14,6 +14,6 @@ export declare class DataGridHeadFilterComponent implements OnInit {
     ngOnInit(): void;
     getFilter(): any[];
     _changeEmptyOperator(): void;
-    _changeOperator(event: any): void;
+    _changeOperator(event: any, fromInputKey: any): void;
     _changeDate(date: any): void;
 }

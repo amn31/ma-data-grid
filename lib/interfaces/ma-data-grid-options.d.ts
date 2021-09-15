@@ -22,7 +22,7 @@ export interface MaDataGridColumnOptions {
     sorted?: boolean;
     extFilter?: boolean;
     dataType?: 'boolean' | 'bool' | 'number' | 'date' | 'string' | 'datetime' | 'time' | 'float' | 'selector';
-    headFilter?: MaDataGridHeadFilter[];
+    headFilter?: MaDataGridHeadFilter[] | false;
     opDefautFilter?: string;
     extFilterSelected?: boolean;
     pipe?: (value: any, row: any, col: any) => {};

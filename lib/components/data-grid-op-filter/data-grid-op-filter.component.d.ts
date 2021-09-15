@@ -17,9 +17,10 @@ export declare class DataGridOpFilterComponent implements OnInit {
     getFuncClickDocument(): () => void;
     toggleDiv(): void;
     ngOnInit(): void;
+    setFirstChoice(): void;
     getOperator(): any;
     changeValues(opt: any): void;
     getConditions(filter_value: any): any[];
-    changeValue(opt: any): void;
+    changeValue(opt: any, ignoreToggle?: boolean): void;
     _changeOperator(): void;
 }
