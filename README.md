@@ -163,6 +163,7 @@ columns: MaDataGridColumnOptions[] = [
             operator: ...
             label: ...
           }
+        PS: headFilter can be setted to false
       */
       headFilter: [
           { value: 'VDSL', operator: '=',  label: 'vdsl' },
