@@ -396,8 +396,9 @@
             //console.log('M',instances)
         };
         DataGridOpFilterComponent.prototype.setFirstChoice = function () {
-            console.log("setFirstChoice (1) " + this.value + ' ' + this.label);
-            //console.log("setFirstChoice ",this.value,this.label,this.options)
+            console.log("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
+            // console.log("setFirstChoice (1) "+this.value+' '+this.label);
+            // console.log("setFirstChoice ",this.value,this.label,this.options)
             if (this.multiple === false && this.label == '') {
                 for (var i in this.options) {
                     if (this.options[i].label != '') {
@@ -711,7 +712,7 @@
     DataGridHeadFilterComponent.decorators = [
         { type: core.Component, args: [{
                     selector: 'ma-data-grid-head-filter',
-                    template: "<table>\n    <tr>\n        <td class=\"header_filter_op\" >\n            <ma-data-grid-op-filter #op_filter [col]=\"col\" (changeEmptyOperator)=\"_changeEmptyOperator()\" (changeOperator)=\"_changeOperator($event,false)\"></ma-data-grid-op-filter>\n        </td>\n        <td class=\"header_filter\" *ngIf=\"col.dataType != 'date' && col.dataType != 'bool' && col.dataType != 'boolean' && (!col.headFilter || col.headFilter.length == 0)\">\n            <input class=\"header_filter\" [(ngModel)]=\"filter_value\" (keyup)=\"_changeOperator($event,true)\" />\n        </td>\n        <td class=\"header_filter\" [style]=\"astuce_datapicker\" >\n            <ma-data-grid-datepicker #madate_picker type=\"date\" (changePicker)=\"_changeDate($event)\"></ma-data-grid-datepicker>\n        </td>\n    </tr>\n</table>",
+                    template: "<table >\n    <tr>\n        <td class=\"header_filter_op\" *ngIf=\"col.filter !== false\">\n            <ma-data-grid-op-filter #op_filter [col]=\"col\" (changeEmptyOperator)=\"_changeEmptyOperator()\" (changeOperator)=\"_changeOperator($event,false)\"></ma-data-grid-op-filter>\n        </td>\n        <td class=\"header_filter\" *ngIf=\"col.filter !== false && col.dataType != 'date' && col.dataType != 'bool' && col.dataType != 'boolean' && (!col.headFilter || col.headFilter.length == 0)\">\n            <input class=\"header_filter\" [(ngModel)]=\"filter_value\" (keyup)=\"_changeOperator($event,true)\" />\n        </td>\n        <td class=\"header_filter\" *ngIf=\"col.filter !== false\" [style]=\"astuce_datapicker\" >\n            <ma-data-grid-datepicker #madate_picker type=\"date\" (changePicker)=\"_changeDate($event)\"></ma-data-grid-datepicker>\n        </td>\n    </tr>\n</table>",
                     styles: ["input.header_filter{background-color:#e8f5f8;border:1px inset #9e9e9e;height:1.2rem;margin:0 0 0 -5px}/deep/ .ma-data-grid-datepicker{height:1.2rem;max-height:1.2rem}td.header_filter{padding:1px 1px 1px 5px}td.header_filter_op{padding:1px 1px 1px 0}"]
                 },] }
     ];
@@ -1746,6 +1747,7 @@
         myGrid: [{ type: core.Input }]
     };
 
+    //export var  M;
     var MaDataGridModule = /** @class */ (function () {
         function MaDataGridModule() {
         }

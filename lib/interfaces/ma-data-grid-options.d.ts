@@ -13,6 +13,7 @@ export interface MaDataGridHeadFilterEvent {
     data?: [];
 }
 export interface MaDataGridColumnOptions {
+    filter?: boolean;
     title?: string;
     cssClass?: string;
     isRowNumber?: boolean;
@@ -20,7 +21,6 @@ export interface MaDataGridColumnOptions {
     canEdit?: boolean;
     prop: string;
     sorted?: boolean;
-    filter?: boolean;
     extFilter?: boolean;
     dataType?: 'boolean' | 'bool' | 'number' | 'date' | 'string' | 'datetime' | 'time' | 'float' | 'selector';
     headFilter?: MaDataGridHeadFilter[] | false;

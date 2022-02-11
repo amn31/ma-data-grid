@@ -1,8 +1,6 @@
 import { ElementRef, EventEmitter, OnInit } from '@angular/core';
 import { MaDataGridColumnOptions, MaDataGridHeadFilter } from '../../interfaces/ma-data-grid-options';
-import * as i0 from "@angular/core";
 export declare class DataGridOpFilterComponent implements OnInit {
-    private document;
     value: string;
     col: MaDataGridColumnOptions;
     elemToggle: ElementRef;
@@ -15,7 +13,7 @@ export declare class DataGridOpFilterComponent implements OnInit {
     values: MaDataGridHeadFilter[];
     label: string;
     popupPosition: any;
-    constructor(document: Document);
+    constructor();
     getFuncClickDocument(): () => void;
     toggleDiv(): void;
     ngOnInit(): void;
@@ -25,6 +23,4 @@ export declare class DataGridOpFilterComponent implements OnInit {
     getConditions(filter_value: any): any[];
     changeValue(opt: any, ignoreToggle?: boolean): void;
     _changeOperator(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<DataGridOpFilterComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<DataGridOpFilterComponent, "ma-data-grid-op-filter", never, { "value": "value"; "col": "col"; }, { "changeOperator": "changeOperator"; "changeEmptyOperator": "changeEmptyOperator"; }, never, never>;
 }

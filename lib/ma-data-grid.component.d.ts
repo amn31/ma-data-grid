@@ -4,10 +4,7 @@ import { DataGridHeadFilterComponent } from './components/data-grid-head-filter/
 import { MaDataGridFilterEvent, MaDataGridColumnOptions, MaDataGridSelectMethod, MaDataGridSelectEvent } from './interfaces/ma-data-grid-options';
 import { MaGridFilterComponent } from './ma-grid-filter.component';
 import { FilterConditions } from "@amn31/filter-multiple-conditions";
-import * as i0 from "@angular/core";
 export declare class MaDataGridComponent implements OnInit, OnChanges {
-    private platformId;
-    private document;
     columns: MaDataGridColumnOptions[];
     limit: number;
     canSelect: MaDataGridSelectMethod;
@@ -38,7 +35,6 @@ export declare class MaDataGridComponent implements OnInit, OnChanges {
     nb_page: number;
     startat: number;
     searchValue: string;
-    isBrowser: boolean;
     rows_displayed: any;
     pages: any[];
     conditions: FilterConditions;
@@ -50,7 +46,7 @@ export declare class MaDataGridComponent implements OnInit, OnChanges {
         field: string;
         reverse: boolean;
     };
-    constructor(platformId: object, document: Document);
+    constructor();
     resetSelection(): void;
     ngOnChanges(changes: SimpleChanges): void;
     IncrementPage(): void;
@@ -69,6 +65,4 @@ export declare class MaDataGridComponent implements OnInit, OnChanges {
     timeout: any;
     private _changeHeaderFilter;
     private _delayChangeHeaderFilter;
-    static ɵfac: i0.ɵɵFactoryDeclaration<MaDataGridComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<MaDataGridComponent, "ma-data-grid", never, { "columns": "columns"; "limit": "limit"; "canSelect": "canSelect"; "extFilter": "extFilter"; "headFilter": "headFilter"; "pagination": "pagination"; "page": "page"; "count": "count"; "customCSS": "customCSS"; "myGrid": "myGrid"; "rows": "rows"; }, { "change": "change"; "select": "select"; "extFilterChange": "extFilterChange"; "filterChange": "filterChange"; "changePage": "changePage"; "sort": "sort"; "canSelectChange": "canSelectChange"; "rowsChange": "rowsChange"; "rowsSelect": "rowsSelect"; }, never, never>;
 }
