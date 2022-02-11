@@ -1,15 +1,15 @@
 {
   "name": "@amn31/ma-data-grid",
-  "version": "1.0.8",
+  "version": "1.0.6",
   "peerDependencies": {
     "@angular/common": "^10.1.6",
-    "@angular/core": "^10.1.6"
-  },
-  "dependencies": {
-    "tslib": "^2.0.0",
+    "@angular/core": "^10.1.6",
     "@amn31/filter-multiple-conditions": "^1.0.2",
     "jquery": "^3.5.1",
     "materialize-css": "^1.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
   },
   "description": "@amn31/ma-data-grid is an Angular component for presenting large and complex data. The table was designed to be flexible and light package. The features regarding filtering, sorting or paging are already available without creating additional code.",
   "repository": {
@@ -31,12 +31,27 @@
     "url": "https://github.com/amn31/ma-data-grid/issues"
   },
   "homepage": "https://github.com/amn31/ma-data-grid#readme",
-  "main": "bundles/amn31-ma-data-grid.umd.js",
-  "module": "fesm2015/amn31-ma-data-grid.js",
-  "es2015": "fesm2015/amn31-ma-data-grid.js",
-  "esm2015": "esm2015/amn31-ma-data-grid.js",
-  "fesm2015": "fesm2015/amn31-ma-data-grid.js",
+  "module": "fesm2015/amn31-ma-data-grid.mjs",
+  "es2020": "fesm2020/amn31-ma-data-grid.mjs",
+  "esm2020": "esm2020/amn31-ma-data-grid.mjs",
+  "fesm2020": "fesm2020/amn31-ma-data-grid.mjs",
+  "fesm2015": "fesm2015/amn31-ma-data-grid.mjs",
   "typings": "amn31-ma-data-grid.d.ts",
-  "metadata": "amn31-ma-data-grid.metadata.json",
-  "sideEffects": false
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./amn31-ma-data-grid.d.ts",
+      "esm2020": "./esm2020/amn31-ma-data-grid.mjs",
+      "es2020": "./fesm2020/amn31-ma-data-grid.mjs",
+      "es2015": "./fesm2015/amn31-ma-data-grid.mjs",
+      "node": "./fesm2015/amn31-ma-data-grid.mjs",
+      "default": "./fesm2020/amn31-ma-data-grid.mjs"
+    }
+  },
+  "sideEffects": false,
+  "scripts": {
+    "prepublishOnly": "node --eval \"console.error('ERROR: Trying to publish a package that has been compiled by Ivy in full compilation mode. This is not allowed.\\nPlease delete and rebuild the package with Ivy partial compilation mode, before attempting to publish.\\n')\" && exit 1"
+  }
 }

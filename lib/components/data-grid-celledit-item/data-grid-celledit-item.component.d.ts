@@ -2,6 +2,7 @@ import { ElementRef, EventEmitter, OnChanges, OnInit, SimpleChanges } from '@ang
 import { MaDataGridCell } from '../../interfaces/ma-data-grid-cell';
 import { MaDataGridColumnOptions } from '../../interfaces/ma-data-grid-options';
 import { MaDataGridComponent } from '../../ma-data-grid.component';
+import * as i0 from "@angular/core";
 export declare class DataGridCelleditItemComponent implements MaDataGridCell, OnInit, OnChanges {
     myInput: ElementRef;
     myInputCheckbox: ElementRef;
@@ -17,4 +18,6 @@ export declare class DataGridCelleditItemComponent implements MaDataGridCell, On
     onChange(): void;
     onChangeCheckbox(): void;
     ngOnChanges(changes: SimpleChanges): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<DataGridCelleditItemComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<DataGridCelleditItemComponent, "ma-data-grid-celledit-item", never, { "data": "data"; "col": "col"; "prop": "prop"; "myGrid": "myGrid"; }, { "dataChange": "dataChange"; }, never, never>;
 }

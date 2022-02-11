@@ -141,6 +141,9 @@ columns: MaDataGridColumnOptions[] = [
       title: 'City', sorted: true, dataType: 'string', 
       cssClass: 'td_small'    // cssClass to use to display each cell 
     },
+    { prop: 'commune', 
+      title: 'S', dataType: 'string', filter: false // No filter for this column
+    },
     {
       prop: 'usage', title: 'Usage', sorted: true, dataType: 'number',
       useTemplate: CellUsageComponent     // It's possible to use another component to display cell

@@ -1,1 +1,0 @@
-{"version":3,"file":"ma-anchor-grid-cell.directive.d.ts","sourceRoot":"D:/MyHome/android/workspace/git/ma-ng-datagrid/projects/ma-data-grid/src/","sources":["lib/directives/ma-anchor-grid-cell.directive.ts"],"names":[],"mappings":"AAAA,OAAO,EAAa,gBAAgB,EAAE,MAAM,eAAe,CAAC;;AAE5D,qBAGa,yBAAyB;IAEjB,gBAAgB,EAAE,gBAAgB;gBAAlC,gBAAgB,EAAE,gBAAgB;iCAF1C,yBAAyB;2CAAzB,yBAAyB;CAIrC"}

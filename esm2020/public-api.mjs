@@ -1,0 +1,10 @@
+/*
+ * Public API Surface of ma-data-grid
+ */
+//export * from './lib/ma-data-grid.service';
+export * from './lib/ma-data-grid.component';
+export * from './lib/ma-data-grid.module';
+export * from './lib/interfaces/ma-data-grid-options';
+export * from './lib/interfaces/ma-data-grid-cell';
+export * from './lib/ma-grid-filter.component';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljLWFwaS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3Byb2plY3RzL21hLWRhdGEtZ3JpZC9zcmMvcHVibGljLWFwaS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7R0FFRztBQUVILDZDQUE2QztBQUM3QyxjQUFjLDhCQUE4QixDQUFDO0FBQzdDLGNBQWMsMkJBQTJCLENBQUM7QUFDMUMsY0FBYyx1Q0FBdUMsQ0FBQztBQUN0RCxjQUFjLG9DQUFvQyxDQUFDO0FBQ25ELGNBQWMsZ0NBQWdDLENBQUEiLCJzb3VyY2VzQ29udGVudCI6WyIvKlxuICogUHVibGljIEFQSSBTdXJmYWNlIG9mIG1hLWRhdGEtZ3JpZFxuICovXG5cbi8vZXhwb3J0ICogZnJvbSAnLi9saWIvbWEtZGF0YS1ncmlkLnNlcnZpY2UnO1xuZXhwb3J0ICogZnJvbSAnLi9saWIvbWEtZGF0YS1ncmlkLmNvbXBvbmVudCc7XG5leHBvcnQgKiBmcm9tICcuL2xpYi9tYS1kYXRhLWdyaWQubW9kdWxlJztcbmV4cG9ydCAqIGZyb20gJy4vbGliL2ludGVyZmFjZXMvbWEtZGF0YS1ncmlkLW9wdGlvbnMnO1xuZXhwb3J0ICogZnJvbSAnLi9saWIvaW50ZXJmYWNlcy9tYS1kYXRhLWdyaWQtY2VsbCc7XG5leHBvcnQgKiBmcm9tICcuL2xpYi9tYS1ncmlkLWZpbHRlci5jb21wb25lbnQnIl19
