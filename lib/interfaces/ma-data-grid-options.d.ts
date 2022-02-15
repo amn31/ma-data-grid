@@ -12,9 +12,23 @@ export interface MaDataGridHeadFilterEvent {
     where: FilterConditions;
     data?: [];
 }
+export interface MaDataGridSelectedFilter {
+    operator: string;
+    value: string | number;
+}
 export interface MaDataGridColumnOptions {
+    /**
+     * Display or not the head filter regarding this column
+     */
     filter?: boolean;
+    /**
+     * Title of column
+     */
     title?: string;
+    /**
+     * Defaut selected operator
+     */
+    selectedFilter?: MaDataGridSelectedFilter;
     cssClass?: string;
     isRowNumber?: boolean;
     isRowHTML?: boolean;
@@ -33,6 +47,7 @@ export interface MaDataGridHeadFilter {
     value: string;
     operator: string;
     label?: string;
+    checked?: boolean;
 }
 export declare const options_header_boolean: MaDataGridHeadFilter[];
 export declare const options_header_bool: MaDataGridHeadFilter[];

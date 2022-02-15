@@ -336,24 +336,34 @@ class DataGridOpFilterComponent {
             $(document).off('click', onClickDocument);
         }
     }
+    cloneOptions(opts) {
+        if (opts == null) {
+            return null;
+        }
+        let options = [];
+        for (let i = 0; i < opts.length; i++) {
+            options.push(Object.assign({}, opts[i]));
+        }
+        return options;
+    }
     ngOnInit() {
         this.isRowHTML = this.col.isRowHTML;
         if (this.col.dataType == 'string') {
-            this.options = options_header_string;
+            this.options = this.cloneOptions(options_header_string);
         }
         if (this.col.dataType == 'boolean') {
             this.multiple = true;
-            this.options = options_header_boolean;
+            this.options = this.cloneOptions(options_header_boolean);
         }
         if (this.col.dataType == 'bool') {
             this.multiple = true;
-            this.options = options_header_bool;
+            this.options = this.cloneOptions(options_header_bool);
         }
         if (this.col.dataType == 'number' || this.col.dataType == 'float') {
-            this.options = options_header_number;
+            this.options = this.cloneOptions(options_header_number);
         }
         if (this.col.dataType == 'date') {
-            this.options = options_header_date;
+            this.options = this.cloneOptions(options_header_date);
         }
         if (this.col.dataType == 'selector') {
             this.options = [];
@@ -364,14 +374,18 @@ class DataGridOpFilterComponent {
         }
         if (this.options == null)
             throw ('Bad definition to operator ' + this.col.prop);
-        //if (this.multiple) {
-        for (var i in this.options) {
-            this.options[i].checked = false;
+        // Pré-selection de l'operator
+        if (!this.multiple && this.col.selectedFilter) {
+            let selected = this.options.find((d) => d.operator === this.col.selectedFilter.operator);
+            if (selected) {
+                // console.log("SELECTED", this.col.prop, selected);
+                this.changeValue(selected, true);
+            }
         }
-        //}
-        //var elems = document.querySelectorAll('select');
-        //var instances = M.FormSelect.init(elems, {});
-        //console.log('M',instances)
+        for (var i in this.options) {
+            if (this.options[i].checked !== true)
+                this.options[i].checked = false;
+        }
     }
     setFirstChoice() {
         // console.log("setFirstChoice (1) "+this.value+' '+this.label);
@@ -398,7 +412,7 @@ class DataGridOpFilterComponent {
     changeValues(opt) {
         /* Changement de l'operateur dans la cas de valeurs multiples d'operateurs
             Ex: { value: "Apple", operator: "=", label: "Apple", checked: false } */
-        // console.log("CHANGES VALUES",opt)
+        //console.log("CHANGES VALUES", this.col.prop, opt)
         if (opt.checked) {
             // console.log("checked");
             opt.checked = false;
@@ -455,19 +469,11 @@ class DataGridOpFilterComponent {
         /* Changement de l'operateur dans la cas de valeurs simple (un seul choix)
             Ex: { value: "%${1}%", operator: "like", label: "contains", checked: false } */
         // 
-        console.log("CHANGES VALUES", opt);
+        // console.log("CHANGE VALUE", opt.operator, this.col.prop, opt)
         if (this.options.find((d) => d.checked === true)) {
             this.options.find((d) => d.checked === true).checked = false;
         }
-        if (opt.checked) {
-            // console.log("checked");
-            opt.checked = false;
-            //this.values.splice(this.values.find((a) => a.value === opt.value && a.operator === opt.operator),1);
-        }
-        else {
-            opt.checked = true;
-            //this.values.push(opt);
-        }
+        opt.checked = !opt.checked;
         if (opt.label.match(/^\s+$/)) {
             this.value = '';
             this.label = '';
@@ -486,7 +492,8 @@ class DataGridOpFilterComponent {
         }
     }
     _changeOperator() {
-        // console.log('EMIT OP', this.options)
+        // 
+        console.log('EMIT OP', this.col.prop, this.options.find((d) => d.checked === true), this.options);
         this.changeOperator.emit({
             prop: this.col,
         });
@@ -636,12 +643,21 @@ class DataGridHeadFilterComponent {
     constructor() {
         this.filter_value = '';
         this.changeHeaderFilter = new EventEmitter();
+        // Récupération de tous les filtres
+        // @ViewChildren('op_filter') op_filters:QueryList<DataGridOpFilterComponent>;
         this.astuce_datapicker = 'display: none';
     }
     ngOnInit() {
         if (this.col.dataType == 'date') {
             this.astuce_datapicker = 'display: block';
         }
+        if (this.col.selectedFilter && this.col.selectedFilter.value) {
+            this.filter_value = this.col.selectedFilter.value.toString();
+        }
+    }
+    ngAfterViewInit() {
+        // Récupération de tous les filtres
+        //console.log('op_filters',this.op_filters.toArray());
     }
     getFilter() {
         // console.log('getFilter',this.col)
@@ -662,10 +678,13 @@ class DataGridHeadFilterComponent {
         this.madate_picker.setDate(null);
     }
     _changeOperator(event, fromInputKey) {
+        // Récupération de tous les filtres
+        // for (let c of this.op_filters.toArray()) {
+        // }
         if (this.col.filter == false) {
             return;
         }
-        //console.log('RECEIVE CHANGE OP',this.col, 'OP',this.op_filter)
+        console.log('RECEIVE CHANGE OP', this.col, 'OP', this.filter_value);
         //console.log('EMIT changeHeaderFilter', fromInputKey);
         if (fromInputKey)
             this.op_filter.setFirstChoice();
@@ -703,8 +722,8 @@ DataGridHeadFilterComponent.propDecorators = {
     filter_value: [{ type: Input }],
     col: [{ type: Input }],
     changeHeaderFilter: [{ type: Output }],
-    op_filter: [{ type: ViewChild, args: [DataGridOpFilterComponent, { static: true },] }],
-    madate_picker: [{ type: ViewChild, args: [DataGridPickerDateComponent, { static: true },] }]
+    op_filter: [{ type: ViewChild, args: [DataGridOpFilterComponent,] }],
+    madate_picker: [{ type: ViewChild, args: [DataGridPickerDateComponent,] }]
 };
 
 class MaGridFilterComponent {

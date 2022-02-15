@@ -12,6 +12,7 @@ export declare class DataGridHeadFilterComponent implements OnInit {
     astuce_datapicker: string;
     constructor();
     ngOnInit(): void;
+    ngAfterViewInit(): void;
     getFilter(): any[];
     _changeEmptyOperator(): void;
     _changeOperator(event: any, fromInputKey: any): void;

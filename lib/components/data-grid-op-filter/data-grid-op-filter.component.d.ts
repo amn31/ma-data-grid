@@ -7,7 +7,7 @@ export declare class DataGridOpFilterComponent implements OnInit {
     elemValue: ElementRef;
     changeOperator: EventEmitter<any>;
     changeEmptyOperator: EventEmitter<any>;
-    options: any;
+    options: MaDataGridHeadFilter[];
     multiple: boolean;
     isRowHTML: boolean;
     values: MaDataGridHeadFilter[];
@@ -16,11 +16,12 @@ export declare class DataGridOpFilterComponent implements OnInit {
     constructor();
     getFuncClickDocument(): () => void;
     toggleDiv(): void;
+    cloneOptions(opts: any): MaDataGridHeadFilter[];
     ngOnInit(): void;
     setFirstChoice(): void;
-    getOperator(): any;
+    getOperator(): MaDataGridHeadFilter;
     changeValues(opt: any): void;
     getConditions(filter_value: any): any[];
-    changeValue(opt: any, ignoreToggle?: boolean): void;
+    changeValue(opt: MaDataGridHeadFilter, ignoreToggle?: boolean): void;
     _changeOperator(): void;
 }

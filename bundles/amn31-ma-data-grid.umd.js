@@ -358,24 +358,35 @@
                 $__namespace(document).off('click', onClickDocument);
             }
         };
+        DataGridOpFilterComponent.prototype.cloneOptions = function (opts) {
+            if (opts == null) {
+                return null;
+            }
+            var options = [];
+            for (var i = 0; i < opts.length; i++) {
+                options.push(Object.assign({}, opts[i]));
+            }
+            return options;
+        };
         DataGridOpFilterComponent.prototype.ngOnInit = function () {
+            var _this = this;
             this.isRowHTML = this.col.isRowHTML;
             if (this.col.dataType == 'string') {
-                this.options = options_header_string;
+                this.options = this.cloneOptions(options_header_string);
             }
             if (this.col.dataType == 'boolean') {
                 this.multiple = true;
-                this.options = options_header_boolean;
+                this.options = this.cloneOptions(options_header_boolean);
             }
             if (this.col.dataType == 'bool') {
                 this.multiple = true;
-                this.options = options_header_bool;
+                this.options = this.cloneOptions(options_header_bool);
             }
             if (this.col.dataType == 'number' || this.col.dataType == 'float') {
-                this.options = options_header_number;
+                this.options = this.cloneOptions(options_header_number);
             }
             if (this.col.dataType == 'date') {
-                this.options = options_header_date;
+                this.options = this.cloneOptions(options_header_date);
             }
             if (this.col.dataType == 'selector') {
                 this.options = [];
@@ -386,14 +397,18 @@
             }
             if (this.options == null)
                 throw ('Bad definition to operator ' + this.col.prop);
-            //if (this.multiple) {
-            for (var i in this.options) {
-                this.options[i].checked = false;
+            // Pré-selection de l'operator
+            if (!this.multiple && this.col.selectedFilter) {
+                var selected = this.options.find(function (d) { return d.operator === _this.col.selectedFilter.operator; });
+                if (selected) {
+                    // console.log("SELECTED", this.col.prop, selected);
+                    this.changeValue(selected, true);
+                }
             }
-            //}
-            //var elems = document.querySelectorAll('select');
-            //var instances = M.FormSelect.init(elems, {});
-            //console.log('M',instances)
+            for (var i in this.options) {
+                if (this.options[i].checked !== true)
+                    this.options[i].checked = false;
+            }
         };
         DataGridOpFilterComponent.prototype.setFirstChoice = function () {
             // console.log("setFirstChoice (1) "+this.value+' '+this.label);
@@ -421,7 +436,7 @@
         DataGridOpFilterComponent.prototype.changeValues = function (opt) {
             /* Changement de l'operateur dans la cas de valeurs multiples d'operateurs
                 Ex: { value: "Apple", operator: "=", label: "Apple", checked: false } */
-            // console.log("CHANGES VALUES",opt)
+            //console.log("CHANGES VALUES", this.col.prop, opt)
             if (opt.checked) {
                 // console.log("checked");
                 opt.checked = false;
@@ -478,19 +493,11 @@
             /* Changement de l'operateur dans la cas de valeurs simple (un seul choix)
                 Ex: { value: "%${1}%", operator: "like", label: "contains", checked: false } */
             // 
-            console.log("CHANGES VALUES", opt);
+            // console.log("CHANGE VALUE", opt.operator, this.col.prop, opt)
             if (this.options.find(function (d) { return d.checked === true; })) {
                 this.options.find(function (d) { return d.checked === true; }).checked = false;
             }
-            if (opt.checked) {
-                // console.log("checked");
-                opt.checked = false;
-                //this.values.splice(this.values.find((a) => a.value === opt.value && a.operator === opt.operator),1);
-            }
-            else {
-                opt.checked = true;
-                //this.values.push(opt);
-            }
+            opt.checked = !opt.checked;
             if (opt.label.match(/^\s+$/)) {
                 this.value = '';
                 this.label = '';
@@ -509,7 +516,8 @@
             }
         };
         DataGridOpFilterComponent.prototype._changeOperator = function () {
-            // console.log('EMIT OP', this.options)
+            // 
+            console.log('EMIT OP', this.col.prop, this.options.find(function (d) { return d.checked === true; }), this.options);
             this.changeOperator.emit({
                 prop: this.col,
             });
@@ -661,12 +669,21 @@
         function DataGridHeadFilterComponent() {
             this.filter_value = '';
             this.changeHeaderFilter = new core.EventEmitter();
+            // Récupération de tous les filtres
+            // @ViewChildren('op_filter') op_filters:QueryList<DataGridOpFilterComponent>;
             this.astuce_datapicker = 'display: none';
         }
         DataGridHeadFilterComponent.prototype.ngOnInit = function () {
             if (this.col.dataType == 'date') {
                 this.astuce_datapicker = 'display: block';
             }
+            if (this.col.selectedFilter && this.col.selectedFilter.value) {
+                this.filter_value = this.col.selectedFilter.value.toString();
+            }
+        };
+        DataGridHeadFilterComponent.prototype.ngAfterViewInit = function () {
+            // Récupération de tous les filtres
+            //console.log('op_filters',this.op_filters.toArray());
         };
         DataGridHeadFilterComponent.prototype.getFilter = function () {
             // console.log('getFilter',this.col)
@@ -687,10 +704,13 @@
             this.madate_picker.setDate(null);
         };
         DataGridHeadFilterComponent.prototype._changeOperator = function (event, fromInputKey) {
+            // Récupération de tous les filtres
+            // for (let c of this.op_filters.toArray()) {
+            // }
             if (this.col.filter == false) {
                 return;
             }
-            //console.log('RECEIVE CHANGE OP',this.col, 'OP',this.op_filter)
+            console.log('RECEIVE CHANGE OP', this.col, 'OP', this.filter_value);
             //console.log('EMIT changeHeaderFilter', fromInputKey);
             if (fromInputKey)
                 this.op_filter.setFirstChoice();
@@ -729,8 +749,8 @@
         filter_value: [{ type: core.Input }],
         col: [{ type: core.Input }],
         changeHeaderFilter: [{ type: core.Output }],
-        op_filter: [{ type: core.ViewChild, args: [DataGridOpFilterComponent, { static: true },] }],
-        madate_picker: [{ type: core.ViewChild, args: [DataGridPickerDateComponent, { static: true },] }]
+        op_filter: [{ type: core.ViewChild, args: [DataGridOpFilterComponent,] }],
+        madate_picker: [{ type: core.ViewChild, args: [DataGridPickerDateComponent,] }]
     };
 
     /*! *****************************************************************************
