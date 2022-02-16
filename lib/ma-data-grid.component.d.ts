@@ -1,7 +1,7 @@
 import { QueryList } from '@angular/core';
 import { EventEmitter, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { DataGridHeadFilterComponent } from './components/data-grid-head-filter/data-grid-head-filter.component';
-import { MaDataGridFilterEvent, MaDataGridColumnOptions, MaDataGridSelectMethod, MaDataGridSelectEvent } from './interfaces/ma-data-grid-options';
+import { MaDataGridFilterEvent, MaDataGridColumnOptions, MaDataGridSelectMethod, MaDataGridSelectEvent, MaDataGridSortedField } from './interfaces/ma-data-grid-options';
 import { MaGridFilterComponent } from './ma-grid-filter.component';
 import { FilterConditions } from "@amn31/filter-multiple-conditions";
 export declare class MaDataGridComponent implements OnInit, OnChanges {
@@ -21,10 +21,10 @@ export declare class MaDataGridComponent implements OnInit, OnChanges {
     extFilterChange: EventEmitter<MaDataGridFilterEvent>;
     filterChange: EventEmitter<any>;
     changePage: EventEmitter<any>;
-    sort: EventEmitter<any>;
+    sort: EventEmitter<MaDataGridSortedField>;
     canSelectChange: EventEmitter<MaDataGridSelectMethod>;
     rowsChange: EventEmitter<any>;
-    rowsSelect: EventEmitter<any>;
+    rowsSelect: EventEmitter<any[]>;
     gridfilter: MaGridFilterComponent;
     headerfilter: QueryList<DataGridHeadFilterComponent>;
     grid_cell_first: string;
@@ -42,10 +42,7 @@ export declare class MaDataGridComponent implements OnInit, OnChanges {
     row_selected: number;
     cell_selected: number;
     temp: any[];
-    sortedField: {
-        field: string;
-        reverse: boolean;
-    };
+    sortedField: MaDataGridSortedField;
     constructor();
     resetSelection(): void;
     ngOnChanges(changes: SimpleChanges): void;

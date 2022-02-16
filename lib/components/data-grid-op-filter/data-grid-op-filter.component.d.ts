@@ -9,7 +9,7 @@ export declare class DataGridOpFilterComponent implements OnInit {
     changeEmptyOperator: EventEmitter<any>;
     options: MaDataGridHeadFilter[];
     multiple: boolean;
-    isRowHTML: boolean;
+    isHTML: boolean;
     values: MaDataGridHeadFilter[];
     label: string;
     popupPosition: any;

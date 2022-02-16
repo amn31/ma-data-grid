@@ -140,6 +140,8 @@ columns: MaDataGridColumnOptions[] = [
     { prop: 'commune', 
       title: 'City', sorted: true, dataType: 'string', 
       cssClass: 'td_small'    // cssClass to use to display each cell 
+      canEdit: false          // If you want to change the data use: 
+                              // canEdit: true
     },
     {
       prop: 'usage', title: 'Usage', sorted: true, dataType: 'number',
@@ -150,12 +152,11 @@ columns: MaDataGridColumnOptions[] = [
     { prop: 'lng', title: 'Lng', sorted: true, dataType: 'number' },
     { prop: 'timestamp', title: 'Recorded', sorted: true, dataType: 'date' },
     { prop: 'liaison', title: 'Link', sorted: true,
-      isRowHTML: true     // the value can be display using DOM HTML
+      isHTML: true     // the value can be display using DOM HTML
     },
     { prop: 'internet', title: 'Type', sorted: true,
       pipe: this.formatData // A method can be used to change the data value
     },
-
     { prop: 'internet', title: 'Internet', sorted: true,
       /* In order to filter some data, 
         We can define specific filter with "headFilter" based on this model 
@@ -266,7 +267,7 @@ In column 'City', we have used **cssClass** so, the associated value have to be 
 In column 'Usage', we have used **useTemplate** so, the defined component must exist
 
 ```typescript
-import { Component, Input } from '@angular/core';
+import { Component, Input, Type } from '@angular/core';
 import { MaDataGridCell } from '@amn31/ma-data-grid'
 
 @Component({
@@ -280,9 +281,11 @@ import { MaDataGridCell } from '@amn31/ma-data-grid'
 export class CellUsageComponent implements MaDataGridCell   {
   
   style: string = '';
-  data: any;
+  @Input() data: any;
+  @Input() prop: string;
+  @Input() col: MaDataGridColumnOptions;
 
-  constructor() {
+  constructor(private datagrid:MaDataGridComponent) {
   }
   
   ngOnInit(): void {
