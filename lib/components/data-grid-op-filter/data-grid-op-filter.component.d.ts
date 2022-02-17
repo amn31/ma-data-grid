@@ -1,6 +1,6 @@
-import { ElementRef, EventEmitter, OnInit } from '@angular/core';
+import { AfterViewInit, ElementRef, EventEmitter, OnInit } from '@angular/core';
 import { MaDataGridColumnOptions, MaDataGridHeadFilter } from '../../interfaces/ma-data-grid-options';
-export declare class DataGridOpFilterComponent implements OnInit {
+export declare class DataGridOpFilterComponent implements OnInit, AfterViewInit {
     value: string;
     col: MaDataGridColumnOptions;
     elemToggle: ElementRef;
@@ -15,8 +15,12 @@ export declare class DataGridOpFilterComponent implements OnInit {
     popupPosition: any;
     constructor();
     getFuncClickDocument(): () => void;
+    cssElemToggle: {
+        height: any;
+    };
     toggleDiv(): void;
     cloneOptions(opts: any): MaDataGridHeadFilter[];
+    ngAfterViewInit(): void;
     ngOnInit(): void;
     setFirstChoice(): void;
     getOperator(): MaDataGridHeadFilter;

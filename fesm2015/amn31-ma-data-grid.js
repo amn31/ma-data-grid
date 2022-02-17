@@ -308,12 +308,13 @@ class DataGridOpFilterComponent {
             top: 0,
             left: 0
         };
+        this.cssElemToggle = { height: undefined };
     }
     getFuncClickDocument() {
-        let p = this;
-        let fct = function () {
-            // console.log('CLICK',fct);
-            p.elemToggle.nativeElement.style.display = 'none';
+        let fct = () => {
+            this.elemToggle.nativeElement.style.opacity = 0;
+            this.elemToggle.nativeElement.style.borderColor = 'aliceblue';
+            this.elemToggle.nativeElement.style.height = 0;
             $(document).off('click', fct);
         };
         return fct;
@@ -321,18 +322,16 @@ class DataGridOpFilterComponent {
     toggleDiv() {
         var onClickDocument = this.getFuncClickDocument();
         $(document).off('click', onClickDocument);
-        if (this.elemToggle.nativeElement.style.display == 'none') {
-            //this.elemToggle.nativeElement.style.position = 'absolute';
-            this.elemToggle.nativeElement.style.display = 'block';
-            let anchor = this.elemValue.nativeElement.parentElement;
-            //this.elemToggle.nativeElement.style.top = ($(anchor).height()+$(anchor).offset().top)+'px';
-            //this.elemToggle.nativeElement.style.left = $(anchor).offset().left+'px';
-            setTimeout(function () {
+        if (this.elemToggle.nativeElement.style.opacity == 0) {
+            this.elemToggle.nativeElement.style.opacity = 1;
+            this.elemToggle.nativeElement.style.borderColor = '#9e9e9e';
+            this.elemToggle.nativeElement.style.height = this.cssElemToggle.height + 'px';
+            setTimeout(() => {
+                $(document).off('click', onClickDocument);
                 $(document).on('click', onClickDocument);
             }, 500);
         }
         else {
-            this.elemToggle.nativeElement.style.display = 'none';
             $(document).off('click', onClickDocument);
         }
     }
@@ -345,6 +344,10 @@ class DataGridOpFilterComponent {
             options.push(Object.assign({}, opts[i]));
         }
         return options;
+    }
+    ngAfterViewInit() {
+        this.cssElemToggle.height = this.elemToggle.nativeElement.offsetHeight;
+        this.elemToggle.nativeElement.style.height = '0px';
     }
     ngOnInit() {
         this.isHTML = this.col.isHTML;
@@ -492,8 +495,7 @@ class DataGridOpFilterComponent {
         }
     }
     _changeOperator() {
-        // 
-        console.log('EMIT OP', this.col.prop, this.options.find((d) => d.checked === true), this.options);
+        // console.log('EMIT OP', this.col.prop, this.options.find((d) => d.checked === true), this.options)
         this.changeOperator.emit({
             prop: this.col,
         });
@@ -502,8 +504,8 @@ class DataGridOpFilterComponent {
 DataGridOpFilterComponent.decorators = [
     { type: Component, args: [{
                 selector: 'ma-data-grid-op-filter',
-                template: "<!--\n<div class=\"red\">=</div>(onComplete)=\"onComplete($event)\"\n\n<app-ma-completion [data]=\"choices\" placeholder=\"\" value=\"defautValue\"  ></app-ma-completion>\n     <select dir=\"rtl\">\n    <option>Foo</option>    \n    <option>bar</option>\n    <option>to the right</option>\n</select>\n\n\n<div *ngIf=\"col.isRowNumber === true; then RowNumberBlock else dataBlock\"></div>\n<ng-template #RowNumberBlock>{{i}}</ng-template>\n<ng-template #dataBlock> {{u[col.prop] | dataGridPipe :u :c}}</ng-template>\n-->\n\n<div>\n\n    <div #elemValue (click)=\"toggleDiv()\" class=\"op_label\"><i *ngIf=\"label == ''\" class=\"tiny material-icons\">search</i>{{label}}\n    </div>\n    <!-- [style.left.px]=\"popupPosition.left\"  [style.top.px]=\"popupPosition.top\"-->\n    <div #elemToggle style=\"display: none; position: absolute; z-index: 20; max-height: 300px; overflow-y: auto; background-color: aliceblue;border: 1px solid #9e9e9e;\">\n        <div *ngFor=\"let opt of options;\" class=\"op_filter\" [value]=\"opt.value\">\n            <div *ngIf=\"multiple === true\">\n                <label>\n                    <input type=\"checkbox\" class=\"op_filter\" [value]=\"opt.value\" [checked]=\"opt.checked\" (click)=\"changeValues(opt)\" />\n                    <span *ngIf=\"!isHTML\">{{opt.label}}</span>\n                    <span *ngIf=\"isHTML === true\" [innerHTML]=\"opt.label\"></span>\n                </label>\n            </div>\n            <div *ngIf=\"multiple === false\">\n                <div (click)=\"changeValue(opt)\">{{opt.label}}&nbsp;</div>\n            </div>\n        </div>\n    </div>\n\n</div>\n<!--\n<select class=\"browser-default op_filter\" [(ngModel)]=\"value\" (change)=\"_changeOperator($event)\" >\n    <option *ngFor=\"let opt of options;\"  class=\"op_filter\" [value]=\"opt.value\">{{opt.label}}\n    </option>\n</select>\n\n\n-->",
-                styles: ["select.op_filter{border:1px inset #9e9e9e;height:1.4rem;min-width:25px;padding:0}.op_filter{border-top:1px solid #9e9e9e;padding-left:10px;padding-right:10px}.op_filter,.op_label{font-weight:lighter}"]
+                template: "<!--\n<div class=\"red\">=</div>(onComplete)=\"onComplete($event)\"\n\n<app-ma-completion [data]=\"choices\" placeholder=\"\" value=\"defautValue\"  ></app-ma-completion>\n     <select dir=\"rtl\">\n    <option>Foo</option>    \n    <option>bar</option>\n    <option>to the right</option>\n</select>\n\n\n<div *ngIf=\"col.isRowNumber === true; then RowNumberBlock else dataBlock\"></div>\n<ng-template #RowNumberBlock>{{i}}</ng-template>\n<ng-template #dataBlock> {{u[col.prop] | dataGridPipe :u :c}}</ng-template>\n-->\n\n<div>\n\n    <div #elemValue (click)=\"toggleDiv()\" class=\"op_label\"><i *ngIf=\"label == ''\" class=\"tiny material-icons\">search</i>{{label}}\n    </div>\n    <!-- [style.left.px]=\"popupPosition.left\"  [style.top.px]=\"popupPosition.top\"-->\n    <div #elemToggle class=\"popup-operator\">\n        <div *ngFor=\"let opt of options;\" class=\"op_filter\" [value]=\"opt.value\">\n            <div *ngIf=\"multiple === true\">\n                <label>\n                    <input type=\"checkbox\" class=\"op_filter\" [value]=\"opt.value\" [checked]=\"opt.checked\" (click)=\"changeValues(opt)\" />\n                    <span *ngIf=\"!isHTML\">{{opt.label}}</span>\n                    <span *ngIf=\"isHTML === true\" [innerHTML]=\"opt.label\"></span>\n                </label>\n            </div>\n            <div *ngIf=\"multiple === false\">\n                <div (click)=\"changeValue(opt)\">{{opt.label}}&nbsp;</div>\n            </div>\n        </div>\n    </div>\n\n</div>\n<!--\n<select class=\"browser-default op_filter\" [(ngModel)]=\"value\" (change)=\"_changeOperator($event)\" >\n    <option *ngFor=\"let opt of options;\"  class=\"op_filter\" [value]=\"opt.value\">{{opt.label}}\n    </option>\n</select>\n\n\n-->",
+                styles: ["select.op_filter{border:1px inset #9e9e9e;height:1.4rem;min-width:25px;padding:0}.op_filter{border-top:1px solid #9e9e9e;font-weight:lighter;padding-left:10px;padding-right:10px}.popup-operator{background-color:#f0f8ff;border:0 solid #9e9e9e;box-shadow:2px 3px 3px #000;max-height:300px;opacity:.4;overflow-y:auto;position:absolute;scrollbar-width:none;transition:opacity .5s,border-color 1s,height .5s;transition-timing-function:ease-in-out;z-index:20}.op_label,.popup-operator{cursor:-webkit-grab;cursor:grab}.op_label{font-weight:lighter}"]
             },] }
 ];
 DataGridOpFilterComponent.ctorParameters = () => [];
@@ -856,7 +858,6 @@ class MaDataGridComponent {
             reverse: true
         };
         this.timeout = null;
-        //console.log('YO')
     }
     resetSelection() {
         this.cell_selected = -1;
@@ -864,7 +865,7 @@ class MaDataGridComponent {
     }
     ngOnChanges(changes) {
         // console.log("this.searchValue: " + this.searchValue)
-        console.log('ngOnChanges ', changes);
+        // console.log('ngOnChanges ', changes);
         if (changes.page && changes.page.currentValue >= 0) {
         }
         if (changes.canSelect && changes.canSelect.currentValue) {
