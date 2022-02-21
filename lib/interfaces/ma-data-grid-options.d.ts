@@ -27,13 +27,13 @@ export interface MaDataGridSortedField {
 }
 export interface MaDataGridSelectedFilter {
     /**
-     * Operator can be '=','>',...
+     * Operator can be '==','>',...
      */
-    operator: string;
+    label: string;
     /**
-     * value to compare
+     * value(s) to select in the filter when data-grid is initialized
      */
-    value: string | number;
+    value?: string | number | string[] | number[];
 }
 export interface MaDataGridColumnOptions {
     /**
@@ -104,6 +104,10 @@ export interface MaDataGridColumnOptions {
                     value: '0',
                     operator: '=',
                     label: 'false'
+                  }, {
+                    label: 'between [20-37]',
+                    values: ['20','37'],
+                    operators: ['>=','<=']
                   }
                 ]
      */
@@ -147,11 +151,11 @@ export interface MaDataGridHeadFilter {
                 label: 'without',
               }
      */
-    value: string;
+    value: string | string[];
     /**
      * Operator of research Example : '=','like',...
      */
-    operator: string;
+    operator: string | string[];
     /**
      * Value displayed for selecting
      */

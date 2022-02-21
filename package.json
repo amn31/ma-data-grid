@@ -1,6 +1,6 @@
 {
   "name": "@amn31/ma-data-grid",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "peerDependencies": {
     "@angular/common": "^10.1.6",
     "@angular/core": "^10.1.6"

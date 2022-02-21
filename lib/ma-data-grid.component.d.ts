@@ -49,9 +49,9 @@ export declare class MaDataGridComponent implements OnInit, OnChanges {
     IncrementPage(): void;
     DecrementPage(): void;
     FastIncrementPage(): void;
-    _dataChange(evt: any): void;
+    dataChange(evt: any): void;
     _dataSelector(evt: any, prop: any): void;
-    FastDecrementPage(): void;
+    private FastDecrementPage;
     private _changePage;
     ngOnInit(): void;
     private _sortData;

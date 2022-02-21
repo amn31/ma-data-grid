@@ -1,5 +1,10 @@
 import { AfterViewInit, ElementRef, EventEmitter, OnInit } from '@angular/core';
 import { MaDataGridColumnOptions, MaDataGridHeadFilter } from '../../interfaces/ma-data-grid-options';
+import { FilterConditions } from '@amn31/filter-multiple-conditions';
+export interface OperatorEvent {
+    isMultipleValue: boolean;
+    col: MaDataGridColumnOptions;
+}
 export declare class DataGridOpFilterComponent implements OnInit, AfterViewInit {
     value: string;
     col: MaDataGridColumnOptions;
@@ -7,6 +12,7 @@ export declare class DataGridOpFilterComponent implements OnInit, AfterViewInit 
     elemValue: ElementRef;
     changeOperator: EventEmitter<any>;
     changeEmptyOperator: EventEmitter<any>;
+    isMultipleValue: boolean;
     options: MaDataGridHeadFilter[];
     multiple: boolean;
     isHTML: boolean;
@@ -25,7 +31,8 @@ export declare class DataGridOpFilterComponent implements OnInit, AfterViewInit 
     setFirstChoice(): void;
     getOperator(): MaDataGridHeadFilter;
     changeValues(opt: any): void;
-    getConditions(filter_value: any): any[];
+    isOperatorMultiple(o: MaDataGridHeadFilter): boolean;
+    getConditions(filter_value1: any, filter_value2: any): FilterConditions;
     changeValue(opt: MaDataGridHeadFilter, ignoreToggle?: boolean): void;
     _changeOperator(): void;
 }

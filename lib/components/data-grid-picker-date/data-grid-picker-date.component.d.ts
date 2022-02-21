@@ -5,7 +5,9 @@ export declare class DataGridPickerDateComponent implements OnInit, OnDestroy, A
     realValue: string;
     time: string;
     value: string;
+    materialize: boolean;
     type: 'date' | 'time';
+    date: Date;
     changePicker: EventEmitter<any>;
     datepicker_id: string;
     madatepicker: ElementRef;
@@ -14,6 +16,7 @@ export declare class DataGridPickerDateComponent implements OnInit, OnDestroy, A
     ngOnDestroy(): void;
     ngOnInit(): void;
     getDate(): Date;
+    changeDateByInput(evt: any): void;
     setDate(date: any): void;
     getTime(): string;
     setTime(hour: any, min: any): void;

@@ -113,7 +113,12 @@
             value: '${1}',
             operator: '<',
             label: '<',
-        }];
+        }, {
+            value: ['${1}', '${1}'],
+            operator: ['>=', '<='],
+            label: 'between'
+        }
+    ];
     var options_header_date = [{
             value: '',
             operator: '',
@@ -142,6 +147,10 @@
             value: '${1}',
             operator: '<',
             label: '<',
+        }, {
+            value: ['${1}', '${1}'],
+            operator: ['>=', '<='],
+            label: 'between'
         }];
     // export class MaData {
     //   static FilterByConditions(where, temp: any) {
@@ -321,6 +330,7 @@
             this.value = '';
             this.changeOperator = new core.EventEmitter();
             this.changeEmptyOperator = new core.EventEmitter();
+            this.isMultipleValue = false;
             this.options = null;
             this.multiple = false;
             this.isHTML = false;
@@ -335,6 +345,7 @@
         DataGridOpFilterComponent.prototype.getFuncClickDocument = function () {
             var _this = this;
             var fct = function () {
+                // console.log('CLICK')
                 _this.elemToggle.nativeElement.style.opacity = 0;
                 _this.elemToggle.nativeElement.style.borderColor = 'aliceblue';
                 _this.elemToggle.nativeElement.style.height = 0;
@@ -343,6 +354,12 @@
             return fct;
         };
         DataGridOpFilterComponent.prototype.toggleDiv = function () {
+            // docudddent.addEventListener('click',(evt) => 
+            // {
+            //   console.log('RRRRRRRRRRRRRRRRRRRRRRRRRR')
+            //     return null
+            //   }
+            // ,false)
             var onClickDocument = this.getFuncClickDocument();
             $__namespace(document).off('click', onClickDocument);
             if (this.elemToggle.nativeElement.style.opacity == 0) {
@@ -403,7 +420,7 @@
                 throw ('Bad definition to operator ' + this.col.prop);
             // Pré-selection de l'operator
             if (!this.multiple && this.col.selectedFilter) {
-                var selected = this.options.find(function (d) { return d.operator === _this.col.selectedFilter.operator; });
+                var selected = this.options.find(function (d) { return d.label === _this.col.selectedFilter.label; });
                 if (selected) {
                     // console.log("SELECTED", this.col.prop, selected);
                     this.changeValue(selected, true);
@@ -433,14 +450,14 @@
                 if (this.value == '') {
                     return null;
                 }
-                return this.options.find(function (d) { return d.value === _this.value && d.checked == true; });
+                return this.options.find(function (d) { return d.label === _this.value && d.checked == true; });
             }
             return null;
         };
         DataGridOpFilterComponent.prototype.changeValues = function (opt) {
             /* Changement de l'operateur dans la cas de valeurs multiples d'operateurs
                 Ex: { value: "Apple", operator: "=", label: "Apple", checked: false } */
-            //console.log("CHANGES VALUES", this.col.prop, opt)
+            // console.log("CHANGES VALUES", this.col.prop, opt)
             if (opt.checked) {
                 // console.log("checked");
                 opt.checked = false;
@@ -456,6 +473,7 @@
                     this.values.push(this.options[i]);
                 }
             }
+            // console.log(this.values)
             this.label = '(' + this.values.length + ')';
             if (this.values.length == 0)
                 this.label = defaut_label;
@@ -463,27 +481,69 @@
             // console.log('changeValue OP', this.values);
             this._changeOperator();
         };
-        DataGridOpFilterComponent.prototype.getConditions = function (filter_value) {
+        DataGridOpFilterComponent.prototype.isOperatorMultiple = function (o) {
+            return (o &&
+                o.operator && typeof (o.operator) == 'object' && o.operator.length > 0 &&
+                o.value && typeof (o.value) == 'object' && o.value.length > 0);
+        };
+        DataGridOpFilterComponent.prototype.getConditions = function (filter_value1, filter_value2) {
             if (this.multiple == false) {
                 var o = this.getOperator();
                 // console.log('getFilter ' + this.col.prop + " o", o)
                 if (o != null && o.operator != '') {
-                    var value = o.value.toString().replace('${1}', filter_value);
-                    //if (this.col.dataType == 'number') {
-                    //  value = parseFloat(value);
-                    //}
-                    return [this.col.prop, o.operator, value];
+                    // CAS: OperatorMultiple
+                    if (this.isOperatorMultiple(o)) {
+                        //console.log('getFilter values ' , filter_value1 , " /", filter_value2)
+                        // console.log("getConditions() OperatorMultiple ValueMultiple ", o)
+                        var value1 = o.value[0].toString().replace('${1}', filter_value1);
+                        var value2 = o.value[1].toString().replace('${1}', filter_value2);
+                        //console.log('getFilter values(2) ' , value1 , " /", value2)
+                        var conds = [];
+                        if (filter_value1 != '') {
+                            conds.push([this.col.prop, o.operator[0], value1]);
+                        }
+                        if (filter_value2 != '') {
+                            if (filter_value1 != '') {
+                                conds.push('and');
+                            }
+                            conds.push([this.col.prop, o.operator[1], value2]);
+                        }
+                        return conds;
+                    }
+                    else {
+                        //console.log("getConditions() SimpleValue ", o)
+                        var value = o.value.toString().replace('${1}', filter_value1);
+                        //if (this.col.dataType == 'number') {
+                        //  value = parseFloat(value);
+                        //}
+                        return [this.col.prop, o.operator, value];
+                    }
                 }
             }
             else {
                 if (this.values.length > 0) {
                     var conditions = [];
                     for (var i = 0; i < this.values.length; i++) {
-                        var v = this.values[i].value;
-                        //if (this.col.dataType == 'number') {
-                        //  v = parseFloat(v);
-                        //}
-                        conditions.push([this.col.prop, this.values[i].operator, v]);
+                        // CAS: OperatorMultiple
+                        if (this.isOperatorMultiple(this.values[i])) {
+                            // console.log("getConditions() OperatorMultiple ",this.values);
+                            var val = this.values[i].value;
+                            var ops = this.values[i].operator;
+                            var conds = [];
+                            for (var ic = 0; ic < val.length && ic < ops.length; ic++) {
+                                conds.push([this.col.prop, ops[ic], val[ic]]);
+                                if (ic < (val.length - 1)) {
+                                    conds.push('and');
+                                }
+                            }
+                            conditions.push(conds);
+                        }
+                        else {
+                            //if (this.col.dataType == 'number') {
+                            //  v = parseFloat(v);
+                            //}
+                            conditions.push([this.col.prop, this.values[i].operator.toString(), this.values[i].value.toString()]);
+                        }
                         if (this.values.length - 1 > i) {
                             conditions.push('or');
                         }
@@ -505,10 +565,12 @@
             if (opt.label.match(/^\s+$/)) {
                 this.value = '';
                 this.label = '';
+                this.isMultipleValue = false;
             }
             else {
-                this.value = opt.value;
+                this.value = opt.label;
                 this.label = opt.label;
+                this.isMultipleValue = this.isOperatorMultiple(opt);
             }
             // console.log('changeValue OP', this.options);
             if (!ignoreToggle) {
@@ -516,13 +578,18 @@
             }
             this._changeOperator();
             if (opt.operator == '') {
-                this.changeEmptyOperator.emit();
+                this.changeEmptyOperator.emit({
+                    col: this.col,
+                    isMultipleValue: this.isMultipleValue
+                });
             }
         };
         DataGridOpFilterComponent.prototype._changeOperator = function () {
             // console.log('EMIT OP', this.col.prop, this.options.find((d) => d.checked === true), this.options)
             this.changeOperator.emit({
-                prop: this.col,
+                col: this.col,
+                isMultipleValue: this.isMultipleValue
+                //  condition: [ this.col.prop, this.value ]
             });
         };
         return DataGridOpFilterComponent;
@@ -530,8 +597,8 @@
     DataGridOpFilterComponent.decorators = [
         { type: core.Component, args: [{
                     selector: 'ma-data-grid-op-filter',
-                    template: "<!--\n<div class=\"red\">=</div>(onComplete)=\"onComplete($event)\"\n\n<app-ma-completion [data]=\"choices\" placeholder=\"\" value=\"defautValue\"  ></app-ma-completion>\n     <select dir=\"rtl\">\n    <option>Foo</option>    \n    <option>bar</option>\n    <option>to the right</option>\n</select>\n\n\n<div *ngIf=\"col.isRowNumber === true; then RowNumberBlock else dataBlock\"></div>\n<ng-template #RowNumberBlock>{{i}}</ng-template>\n<ng-template #dataBlock> {{u[col.prop] | dataGridPipe :u :c}}</ng-template>\n-->\n\n<div>\n\n    <div #elemValue (click)=\"toggleDiv()\" class=\"op_label\"><i *ngIf=\"label == ''\" class=\"tiny material-icons\">search</i>{{label}}\n    </div>\n    <!-- [style.left.px]=\"popupPosition.left\"  [style.top.px]=\"popupPosition.top\"-->\n    <div #elemToggle class=\"popup-operator invisible-scrollbar\">\n        <div *ngFor=\"let opt of options;\" class=\"op_filter\" [value]=\"opt.value\">\n            <div *ngIf=\"multiple === true\">\n                <label>\n                    <input type=\"checkbox\" class=\"op_filter\" [value]=\"opt.value\" [checked]=\"opt.checked\" (click)=\"changeValues(opt)\" />\n                    <span *ngIf=\"!isHTML\">{{opt.label}}</span>\n                    <span *ngIf=\"isHTML === true\" [innerHTML]=\"opt.label\"></span>\n                </label>\n            </div>\n            <div *ngIf=\"multiple === false\">\n                <div (click)=\"changeValue(opt)\">{{opt.label}}&nbsp;</div>\n            </div>\n        </div>\n    </div>\n\n</div>\n<!--\n<select class=\"browser-default op_filter\" [(ngModel)]=\"value\" (change)=\"_changeOperator($event)\" >\n    <option *ngFor=\"let opt of options;\"  class=\"op_filter\" [value]=\"opt.value\">{{opt.label}}\n    </option>\n</select>\n\n\n-->",
-                    styles: ["select.op_filter{border:1px inset #9e9e9e;height:1.4rem;min-width:25px;padding:0}.op_filter{border-top:1px solid #9e9e9e;font-weight:lighter;padding-left:10px;padding-right:10px}.popup-operator{background-color:#f0f8ff;border:0 solid #9e9e9e;box-shadow:2px 3px 3px #000;cursor:-webkit-grab;cursor:grab;max-height:300px;opacity:.4;overflow-y:auto;position:absolute;transition:opacity .5s,border-color 1s,height .5s;transition-timing-function:ease-in-out;z-index:20}.invisible-scrollbar{scrollbar-width:none}.invisible-scrollbar::-webkit-scrollbar{display:none}.op_label{cursor:-webkit-grab;cursor:grab;font-weight:lighter}"]
+                    template: "<div>\n\n    <div #elemValue (click)=\"toggleDiv()\" class=\"op_label\"><i *ngIf=\"label == ''\" class=\"tiny material-icons\">search</i>{{label}}\n    </div>\n    <!-- [style.left.px]=\"popupPosition.left\"  [style.top.px]=\"popupPosition.top\"-->\n    <div #elemToggle class=\"popup-operator invisible-scrollbar\">\n        <div *ngFor=\"let opt of options;\" class=\"op_filter\" [value]=\"opt.value\">\n            \n            <div *ngIf=\"multiple === true\">\n                <label>\n                    <input type=\"checkbox\" class=\"op_filter\" [value]=\"opt.value\" [checked]=\"opt.checked\" (click)=\"changeValues(opt)\" />\n                    <span *ngIf=\"!isHTML\">{{opt.label}}</span>\n                    <span *ngIf=\"isHTML === true\" [innerHTML]=\"opt.label\"></span>\n                </label>\n            </div>\n            <div *ngIf=\"multiple === false\">\n                <div (click)=\"changeValue(opt)\" class=\"op_label\">{{opt.label}}&nbsp;</div>\n            </div>\n        </div>\n    </div>\n\n</div>",
+                    styles: ["select.op_filter{border:1px inset #9e9e9e;height:1.4rem;min-width:25px;padding:0}.op_label{cursor:-webkit-grab;cursor:grab;font-stretch:ultra-condensed;font-weight:lighter}.op_filter{border-top:1px solid #9e9e9e;font-weight:lighter;padding-left:10px;padding-right:10px}.popup-operator{background-color:#e8f5f8;border:0 solid #9e9e9e;box-shadow:2px 3px 3px #000;cursor:-webkit-grab;cursor:grab;max-height:300px;opacity:.4;overflow-y:auto;position:absolute;transition:opacity .5s,border-color 1s,height .5s;transition-timing-function:ease-in-out;z-index:20}.invisible-scrollbar{scrollbar-width:none}.invisible-scrollbar::-webkit-scrollbar{display:none}"]
                 },] }
     ];
     DataGridOpFilterComponent.ctorParameters = function () { return []; };
@@ -550,6 +617,8 @@
             this.realValue = "";
             this.time = '';
             this.value = '';
+            this.materialize = false;
+            this.date = null;
             this.changePicker = new core.EventEmitter();
             this.datepicker_id = "dp_" + Math.floor((Math.random() * 100000));
         }
@@ -565,21 +634,54 @@
             if (this.value == '') {
                 this.datevalue = null;
             }
+            if (this.date) {
+                if (this.materialize == true) {
+                    var offset = new Date().getTimezoneOffset();
+                    this.datevalue = new Date(this.date.getTime() - (2 * offset * 60 * 1000));
+                    // console.log('SET TO ', this.datevalue.toISOString());
+                    this.realValue = this.datevalue.toISOString().replace(/T.+/, '');
+                }
+                else {
+                    this.datevalue = new Date(this.date.getTime());
+                    // console.log('SET TO ', this.datevalue.toISOString());
+                    this.realValue = this.datevalue.toISOString().replace(/T.+/, '');
+                }
+                this.onChange();
+            }
         };
         DataGridPickerDateComponent.prototype.getDate = function () {
             return this.datevalue;
         };
+        DataGridPickerDateComponent.prototype.changeDateByInput = function (evt) {
+            if (this.realValue === null ||
+                this.realValue.length == 0 || !this.realValue.match(/^\d\d\d\d-\d\d-\d\d$/)) {
+                this.setDate(null);
+                this.changePicker.emit(this.datevalue);
+                return;
+            }
+            else {
+                try {
+                    this.datevalue = new Date(this.realValue.toString());
+                }
+                catch (e) {
+                    this.setDate(null);
+                }
+                this.changePicker.emit(this.datevalue);
+            }
+        };
         DataGridPickerDateComponent.prototype.setDate = function (date) {
             if (date != null) {
                 var offset = new Date().getTimezoneOffset();
-                date = new Date(date.getTime() - (offset * 60 * 1000));
+                date = new Date(date.getTime() - (2 * offset * 60 * 1000));
             }
-            var elem = document.getElementById(this.datepicker_id);
-            if (date == null) {
-                elem.value = '';
-            }
-            else {
-                elem.value = date.toISOString().replace(/T.+/, '');
+            if (this.materialize) {
+                var elem = document.getElementById(this.datepicker_id);
+                if (date == null) {
+                    elem.value = '';
+                }
+                else {
+                    elem.value = date.toISOString().replace(/T.+/, '');
+                }
             }
             this.datevalue = date;
             // console.log("setDate VALUE", this.datevalue);
@@ -598,6 +700,9 @@
             // console.log("VALUE", this.time);
         };
         DataGridPickerDateComponent.prototype._init = function () {
+            if (!this.materialize) {
+                return;
+            }
             //var elems = document.querySelectorAll('.ma-data-grid-datepicker');
             var elem = document.getElementById(this.datepicker_id);
             var ptr = this;
@@ -605,7 +710,10 @@
                 var instances = M.Datepicker.init(elem, {
                     autoClose: true,
                     format: 'yyyy-mm-dd',
+                    defaultDate: this.datevalue,
+                    setDefaultDate: true,
                     onSelect: function (d) {
+                        // console.log('SELECT ',d)
                         ptr.setDate(d);
                     }
                     //minDate: new Date(),
@@ -632,12 +740,11 @@
                     }
                 });
             }
-            //this.instance= instances[0];
-            //this.instance.setDate(new Date());
-            //instance.gotoDate(new Date());
         };
         DataGridPickerDateComponent.prototype.onChange = function () {
-            // console.log("realValue" + this.realValue);
+            var offset = new Date().getTimezoneOffset();
+            this.datevalue = new Date(this.datevalue.getTime() - (2 * offset * 60 * 1000));
+            // console.log('onChange', this.datevalue)
             if (this.type == 'date') {
                 this.changePicker.emit(this.datevalue);
             }
@@ -646,6 +753,8 @@
             }
         };
         DataGridPickerDateComponent.prototype.emitDateEvent = function () {
+            var offset = new Date().getTimezoneOffset();
+            this.datevalue = new Date(this.datevalue.getTime() - (2 * offset * 60 * 1000));
             this.changePicker.emit(this.datevalue);
         };
         DataGridPickerDateComponent.prototype.emitTimeEvent = function () {
@@ -656,32 +765,57 @@
     DataGridPickerDateComponent.decorators = [
         { type: core.Component, args: [{
                     selector: 'ma-data-grid-datepicker',
-                    template: "\n    <!-- [(ngModel)]=\"realValue\"   -->\n    <input \n        [id]=\"datepicker_id\" \n        #madatepicker type=\"text\" \n        [(ngModel)]=\"realValue\"\n        class=\"ma-data-grid-datepicker datepicker\">\n\n",
+                    template: "\n    <!-- [(ngModel)]=\"realValue\"   -->\n    <div *ngIf=\"materialize == true\">\n        <input [id]=\"datepicker_id\" \n        #madatepicker type=\"text\" \n        [(ngModel)]=\"realValue\"\n        class=\"ma-data-grid-datepicker datepicker\">\n    </div>\n    <div *ngIf=\"materialize == false\">\n        <input \n         type=\"date\" \n        [(ngModel)]=\"realValue\"\n        (change)=\"changeDateByInput(evt)\"\n        >\n    </div>\n\n",
                     styles: [""]
                 },] }
     ];
     DataGridPickerDateComponent.ctorParameters = function () { return []; };
     DataGridPickerDateComponent.propDecorators = {
         value: [{ type: core.Input }],
+        materialize: [{ type: core.Input }],
         type: [{ type: core.Input }],
+        date: [{ type: core.Input }],
         changePicker: [{ type: core.Output }],
         madatepicker: [{ type: core.ViewChild, args: ["madatepicker", { static: false },] }]
     };
 
     var DataGridHeadFilterComponent = /** @class */ (function () {
         function DataGridHeadFilterComponent() {
-            this.filter_value = '';
+            this.filter_value1 = '';
+            this.filter_value2 = '';
             this.changeHeaderFilter = new core.EventEmitter();
             // Récupération de tous les filtres
             // @ViewChildren('op_filter') op_filters:QueryList<DataGridOpFilterComponent>;
             this.astuce_datapicker = 'display: none';
+            this.isMultipleValue = false;
+            this.date1 = null;
+            this.date2 = null;
         }
         DataGridHeadFilterComponent.prototype.ngOnInit = function () {
             if (this.col.dataType == 'date') {
                 this.astuce_datapicker = 'display: block';
             }
-            if (this.col.selectedFilter && this.col.selectedFilter.value) {
-                this.filter_value = this.col.selectedFilter.value.toString();
+            if (this.col.selectedFilter) {
+                if (typeof (this.col.selectedFilter.value) == 'object' && this.col.selectedFilter.value.length > 0) {
+                    if (this.col.dataType == 'date') {
+                        this.date1 = new Date(this.col.selectedFilter.value[0].toString());
+                        if (this.col.selectedFilter.value.length > 1) {
+                            this.date2 = new Date(this.col.selectedFilter.value[1].toString());
+                        }
+                    }
+                    else {
+                        this.filter_value1 = this.col.selectedFilter.value[0].toString();
+                        if (this.col.selectedFilter.value.length > 1) {
+                            this.filter_value2 = this.col.selectedFilter.value[1].toString();
+                        }
+                    }
+                }
+                else {
+                    if (this.col.selectedFilter.value != undefined) {
+                        this.filter_value1 = this.col.selectedFilter.value.toString();
+                        this.filter_value2 = '';
+                    }
+                }
             }
         };
         DataGridHeadFilterComponent.prototype.ngAfterViewInit = function () {
@@ -693,49 +827,67 @@
             if (this.col.filter == false) {
                 return null;
             }
-            if (this.filter_value != '' ||
+            if (this.filter_value1 != '' ||
                 this.col.dataType == 'boolean' ||
                 this.col.dataType == 'bool' || this.col.headFilter != null) {
-                var o = this.op_filter.getConditions(this.filter_value);
+                var o = this.op_filter.getConditions(this.filter_value1, this.filter_value2);
                 // console.log('getConditions '+this.col.prop+ " o",o)
                 return o;
             }
             return null;
         };
-        DataGridHeadFilterComponent.prototype._changeEmptyOperator = function () {
+        DataGridHeadFilterComponent.prototype._changeEmptyOperator = function (event) {
             // console.log("_changeEmptyOperator");
-            this.madate_picker.setDate(null);
+            //this.isMultipleValue = event.isMultipleValue;
+            this.madate_picker1.setDate(null);
+            this.madate_picker2.setDate(null);
         };
         DataGridHeadFilterComponent.prototype._changeOperator = function (event, fromInputKey) {
+            // console.log("event.isMultipleValue;",event.isMultipleValue)
             // Récupération de tous les filtres
             // for (let c of this.op_filters.toArray()) {
             // }
+            if (fromInputKey == false)
+                this.isMultipleValue = event.isMultipleValue;
             if (this.col.filter == false) {
                 return;
             }
-            //console.log('RECEIVE CHANGE OP',this.col, 'OP',this.filter_value)
+            // console.log('RECEIVE CHANGE OP',this.col, 'OP',this.filter_value1,this.filter_value2)
             //console.log('EMIT changeHeaderFilter', fromInputKey);
             if (fromInputKey)
                 this.op_filter.setFirstChoice();
             this.changeHeaderFilter.emit({
                 prop: this.col,
-                value: this.filter_value,
             });
         };
-        DataGridHeadFilterComponent.prototype._changeDate = function (date) {
+        DataGridHeadFilterComponent.prototype._changeDate1 = function (date) {
             if (this.col.filter == false) {
                 return;
             }
-            this.filter_value = '';
+            this.filter_value1 = '';
             try {
-                this.filter_value = date.toISOString();
+                // On supprime la notion de Timezone pour la sélection de date
+                this.filter_value1 = date.toISOString().replace(/T.+/, ''); //.replace(/T.+/,'T00:00:00.000Z');
             }
             catch (e) {
             }
-            // console.log("_changeDate",this.filter_value);
             this.changeHeaderFilter.emit({
                 prop: this.col,
-                value: this.filter_value,
+            });
+        };
+        DataGridHeadFilterComponent.prototype._changeDate2 = function (date) {
+            if (this.col.filter == false) {
+                return;
+            }
+            this.filter_value2 = '';
+            try {
+                // On supprime la notion de Timezone pour la sélection de date
+                this.filter_value2 = date.toISOString().replace(/T.+/, ''); //.replace(/T.+/,'T00:00:00.000Z');
+            }
+            catch (e) {
+            }
+            this.changeHeaderFilter.emit({
+                prop: this.col,
             });
         };
         return DataGridHeadFilterComponent;
@@ -743,17 +895,19 @@
     DataGridHeadFilterComponent.decorators = [
         { type: core.Component, args: [{
                     selector: 'ma-data-grid-head-filter',
-                    template: "<table>\n    <tr>\n        <td class=\"header_filter_op\">\n           <ma-data-grid-op-filter #op_filter [col]=\"col\" (changeEmptyOperator)=\"_changeEmptyOperator()\" (changeOperator)=\"_changeOperator($event,false)\"></ma-data-grid-op-filter>\n        </td>\n        <td class=\"header_filter\" *ngIf=\"col.dataType != 'date' && col.dataType != 'bool' && col.dataType != 'boolean' && (!col.headFilter || col.headFilter.length == 0)\">\n            <input class=\"header_filter\" [(ngModel)]=\"filter_value\" (keyup)=\"_changeOperator($event,true)\" />\n        </td>\n        <td class=\"header_filter\" [style]=\"astuce_datapicker\">\n            <ma-data-grid-datepicker #madate_picker type=\"date\" (changePicker)=\"_changeDate($event)\"></ma-data-grid-datepicker>\n        </td>\n    </tr>\n</table>",
+                    template: "<table>\n    <tr>\n        <td class=\"header_filter_op\">\n           <ma-data-grid-op-filter #op_filter [col]=\"col\" (changeEmptyOperator)=\"_changeEmptyOperator($event)\" (changeOperator)=\"_changeOperator($event,false)\"></ma-data-grid-op-filter>\n        </td>\n        <td class=\"header_filter\" *ngIf=\"col.dataType != 'date' && col.dataType != 'bool' && col.dataType != 'boolean' && (!col.headFilter || col.headFilter.length == 0)\">\n            <div>\n                <input class=\"header_filter\" [(ngModel)]=\"filter_value1\" (keyup)=\"_changeOperator($event,true)\" />\n            </div>\n            <div *ngIf=\"isMultipleValue\">\n                <input class=\"header_filter\" [(ngModel)]=\"filter_value2\" (keyup)=\"_changeOperator($event,true)\" />\n            </div>\n        </td>\n        <td class=\"header_filter\" [style]=\"astuce_datapicker\">\n            <div>\n                <ma-data-grid-datepicker #madate_picker1 [date]=\"date1\" [materialize]=\"false\" type=\"date\" (changePicker)=\"_changeDate1($event)\"></ma-data-grid-datepicker>\n            </div>\n            <div *ngIf=\"isMultipleValue\">\n                <ma-data-grid-datepicker #madate_picker2 [date]=\"date2\" [materialize]=\"false\" type=\"date\" (changePicker)=\"_changeDate2($event)\"></ma-data-grid-datepicker>\n            </div>\n        </td>\n    </tr>\n</table>",
                     styles: ["input.header_filter{background-color:#e8f5f8;border:0 inset #9e9e9e;height:1.2rem;margin:0 0 0 -5px}/deep/ .ma-data-grid-datepicker{height:1.2rem;max-height:1.2rem}td.header_filter{padding:1px 1px 1px 5px}td.header_filter_op{padding:1px 1px 1px 0}"]
                 },] }
     ];
     DataGridHeadFilterComponent.ctorParameters = function () { return []; };
     DataGridHeadFilterComponent.propDecorators = {
-        filter_value: [{ type: core.Input }],
+        filter_value1: [{ type: core.Input }],
+        filter_value2: [{ type: core.Input }],
         col: [{ type: core.Input }],
         changeHeaderFilter: [{ type: core.Output }],
         op_filter: [{ type: core.ViewChild, args: [DataGridOpFilterComponent,] }],
-        madate_picker: [{ type: core.ViewChild, args: [DataGridPickerDateComponent,] }]
+        madate_picker1: [{ type: core.ViewChild, args: [DataGridPickerDateComponent,] }],
+        madate_picker2: [{ type: core.ViewChild, args: [DataGridPickerDateComponent,] }]
     };
 
     /*! *****************************************************************************
@@ -1233,8 +1387,8 @@
             var p = this.current_page + 5; //Math.round(this.max_page / 50);
             this._changePage(p, this.temp);
         };
-        MaDataGridComponent.prototype._dataChange = function (evt) {
-            // console.log("_dataChange",evt);
+        MaDataGridComponent.prototype.dataChange = function (evt) {
+            // console.log("dataChange",evt);
             this.rowsChange.emit(evt);
         };
         MaDataGridComponent.prototype._dataSelector = function (evt, prop) {
@@ -1330,7 +1484,7 @@
         MaDataGridComponent.prototype._sortData = function (rows) {
             var _this = this;
             var sf = this.sortedField.field;
-            //console.log('_sortData',this.sortedField)
+            // console.log('_sortData',this.sortedField)
             return rows.sort(function (a, b) {
                 var r;
                 if (typeof (a[sf]) === 'string' || typeof (b[sf]) === 'string') {
@@ -1417,13 +1571,15 @@
         };
         MaDataGridComponent.prototype._changeHeaderFilter = function (e) {
             var _this = this;
+            // console.log('_changeHeaderFilter')
             clearTimeout(this.timeout);
             this.timeout = setTimeout(function () {
-                _this._delayChangeHeaderFilter(e);
+                _this._delayChangeHeaderFilter();
             }, 500);
         };
-        MaDataGridComponent.prototype._delayChangeHeaderFilter = function (e) {
+        MaDataGridComponent.prototype._delayChangeHeaderFilter = function () {
             var conditions = [];
+            // console.log('_delayChangeHeaderFilter')
             this.headerfilter.forEach(function (item) {
                 //item.filter_value;
                 var condition = item.getFilter();
@@ -1431,11 +1587,12 @@
                     if (conditions.length > 0) {
                         conditions.push('and');
                     }
+                    //console.log("GET CONDITION",condition)
                     conditions.push(condition);
                 }
                 //console.log(item.col.prop + ' => '+item.filter_value);
             });
-            // console.log("CONDITIONS", conditions);
+            //console.log("CONDITIONS", conditions);
             if (this.pagination == false) {
                 this.conditions = conditions;
                 this._changePage(0, this.rows, true);
@@ -1548,9 +1705,8 @@
             componentRef.instance.dataChange = new core.EventEmitter();
             componentRef.instance.myGrid = component.myGrid;
             (_a = componentRef.instance.dataChange) === null || _a === void 0 ? void 0 : _a.subscribe(function (d) {
-                // console.log("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD", d);
                 if (componentRef.instance.myGrid != null) {
-                    componentRef.instance.myGrid._dataChange(d);
+                    componentRef.instance.myGrid.dataChange(d);
                 }
             });
         };
@@ -1680,8 +1836,16 @@
                 // console.log('EMIT dataChange',this.data);
                 this.dataChange.emit(this.data);
                 if (this.myGrid != null) {
-                    this.myGrid._dataChange(this.data);
+                    this.myGrid.dataChange(this.data);
                 }
+            }
+        };
+        DataGridCelleditItemComponent.prototype.onChangeDate = function (evt) {
+            //this.data[this.prop] = evt.nativeElement.value;
+            // console.log('EMIT dataChange',this.data);
+            this.dataChange.emit(this.data);
+            if (this.myGrid != null) {
+                this.myGrid.dataChange(this.data);
             }
         };
         DataGridCelleditItemComponent.prototype.onChangeCheckbox = function () {
@@ -1690,7 +1854,7 @@
             // console.log('EMIT dataChange',this.data);
             this.dataChange.emit(this.data);
             if (this.myGrid != null) {
-                this.myGrid._dataChange(this.data);
+                this.myGrid.dataChange(this.data);
             }
         };
         DataGridCelleditItemComponent.prototype.ngOnChanges = function (changes) {
@@ -1701,7 +1865,7 @@
     DataGridCelleditItemComponent.decorators = [
         { type: core.Component, args: [{
                     selector: 'ma-data-grid-celledit-item',
-                    template: "<div *ngIf=\"!col || col.dataType != 'boolean'\">\n    <!-- (keyup)=\"onChange()\" (keypress)=\"onPress($Event)\" -->\n    <input #myInput type=\"text\" [(value)]=\"data[prop]\" (keypress)=\"onPress($event)\" (change)=\"onChange()\">\n</div>\n<div *ngIf=\"col && col.dataType == 'boolean'\">\n    <label>\n        <input #myInputCheckbox type=\"checkbox\" [(ngModel)]=\"data[col.prop]\" (change)=\"onChangeCheckbox()\" />\n        <span></span>\n    </label>\n</div>",
+                    template: "<div *ngIf=\"!col && col.dataType != 'boolean' && col.dataType != 'date'\">\n    <!-- (keyup)=\"onChange()\" (keypress)=\"onPress($Event)\" -->\n    <input #myInput type=\"text\" [(value)]=\"data[prop]\" (keypress)=\"onPress($event)\" (change)=\"onChange()\">\n</div>\n<div *ngIf=\"col && col.dataType == 'boolean'\">\n    <label>\n        <input #myInputCheckbox type=\"checkbox\" [(ngModel)]=\"data[col.prop]\" (change)=\"onChangeCheckbox()\" />\n        <span></span>\n    </label>\n</div>\n<div *ngIf=\"col && col.dataType == 'date'\">\n   <input type=\"date\" [(ngModel)]=\"data[col.prop]\" (change)=\"onChangeDate($event)\" />\n</div>",
                     styles: [""]
                 },] }
     ];

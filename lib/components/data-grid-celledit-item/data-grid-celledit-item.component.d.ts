@@ -15,6 +15,7 @@ export declare class DataGridCelleditItemComponent implements MaDataGridCell, On
     ngOnInit(): void;
     onPress(evt: any): void;
     onChange(): void;
+    onChangeDate(evt: any): void;
     onChangeCheckbox(): void;
     ngOnChanges(changes: SimpleChanges): void;
 }
