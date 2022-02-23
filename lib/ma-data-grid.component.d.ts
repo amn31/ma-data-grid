@@ -44,6 +44,9 @@ export declare class MaDataGridComponent implements OnInit, OnChanges {
     temp: any[];
     sortedField: MaDataGridSortedField;
     constructor();
+    /**
+     * Unselect row or cell which has been selected
+     */
     resetSelection(): void;
     ngOnChanges(changes: SimpleChanges): void;
     IncrementPage(): void;

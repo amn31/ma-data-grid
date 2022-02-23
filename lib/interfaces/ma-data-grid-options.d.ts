@@ -29,7 +29,7 @@ export interface MaDataGridSelectedFilter {
     /**
      * Operator can be '==','>',...
      */
-    label: string;
+    label: string | string[];
     /**
      * value(s) to select in the filter when data-grid is initialized
      */
@@ -91,7 +91,7 @@ export interface MaDataGridColumnOptions {
      * To catch the event when a row is selected you have to use 'rowsSelect'
      * <ma-data-grid (rowsSelect)="SelectRowOrCell($event)" .../>
      */
-    dataType?: 'boolean' | 'bool' | 'number' | 'date' | 'string' | 'datetime' | 'time' | 'float' | 'selector';
+    dataType?: 'boolean?' | 'boolean' | 'number' | 'date' | 'string' | 'datetime' | 'time' | 'float' | 'selector';
     /**
      * Filter of the column, according to the 'dataType', the column will be filtered.
      * Here you can changed the type or pre-select the filter:
@@ -165,10 +165,25 @@ export interface MaDataGridHeadFilter {
      */
     checked?: boolean;
 }
+/**
+ * Pre-define Head Filter for a dataType 'boolean' with null and not null
+ */
+export declare const options_header_booleanornull: MaDataGridHeadFilter[];
+/**
+ * Pre-define Head Filter for a dataType 'boolean'
+ */
 export declare const options_header_boolean: MaDataGridHeadFilter[];
-export declare const options_header_bool: MaDataGridHeadFilter[];
+/**
+ * Pre-define Head Filter for a dataType 'string'
+ */
 export declare const options_header_string: MaDataGridHeadFilter[];
+/**
+ * Pre-define Head Filter for a dataType 'number'
+ */
 export declare const options_header_number: MaDataGridHeadFilter[];
+/**
+ * Pre-define Head Filter for a dataType 'date'
+ */
 export declare const options_header_date: MaDataGridHeadFilter[];
 export interface MaDataGridFilterEvent {
     text: string;

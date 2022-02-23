@@ -1,6 +1,6 @@
-import { EventEmitter, OnInit, SimpleChanges } from '@angular/core';
+import { AfterViewInit, EventEmitter, OnInit, SimpleChanges } from '@angular/core';
 import { MaDataGridFilterEvent, MaDataGridColumnOptions } from './interfaces/ma-data-grid-options';
-export declare class MaGridFilterComponent implements OnInit {
+export declare class MaGridFilterComponent implements OnInit, AfterViewInit {
     constructor();
     placeholder: string;
     searchValue: string;
@@ -12,6 +12,7 @@ export declare class MaGridFilterComponent implements OnInit {
     filters: any[];
     selectedFields: any[];
     ngOnChanges(changes: SimpleChanges): void;
+    ngAfterViewInit(): void;
     _init(): void;
     ngOnInit(): void;
     clickChekbox(col: any): void;
